@@ -1,0 +1,17 @@
+{
+	"extends": "../../tsconfig.json",
+	"compilerOptions": {
+		"outDir": "./dist",
+		"baseUrl": "./",
+		"skipLibCheck": true,
+		"experimentalDecorators": true,
+		"sourceRoot": "./src",
+		"mapRoot": "./dist",
+		"paths": {
+			"@progress/api/*": ["./node_modules/@progress/api/dist/*"],
+			"@progress/api": ["./node_modules/@progress/api/dist"]
+		}
+	},
+	"include": ["src/**/*"],
+	"exclude": ["dist", "node_modules"]
+}
