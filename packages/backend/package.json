@@ -9,9 +9,9 @@
 		"clean": "rm -rf ./dist",
 		"compile": "npx tsc",
 		"start": "nest start",
+		"start:prod": "NODE_OPTIONS=--max_old_space_size=2048;node dist/main.js",
 		"test": "npx jest  --runInBand --detectOpenHandles --forceExit",
-		"doc": "npx compodoc -p tsconfig.json -s",
-		"ecs-start": "NODE_OPTIONS=--max_old_space_size=2048;node dist/AppLocal.js"
+		"doc": "npx compodoc -p tsconfig.json -s"
 	},
 	"dependencies": {
 		"@nestjs/common": "^7.0.0",
