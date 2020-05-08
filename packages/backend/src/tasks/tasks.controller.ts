@@ -8,6 +8,14 @@ import { TasksService } from './tasks.service'
 export class TasksController {
 	constructor(private readonly tasksService: TasksService) {}
 
+	@Get()
+	getHello() {
+		return {
+			message: 'hello',
+			time: new Date(),
+		}
+	}
+
 	@Get('/:id')
 	getTaskById(@Param('id') id: number): Promise<Task> {
 		return this.tasksService.getTaskById(id)
