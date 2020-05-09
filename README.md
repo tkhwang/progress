@@ -1,7 +1,7 @@
 # Progress
 
 -   Inspired by [(번역) 공개적으로 학습하라](https://tkhwang.me/2020-04-22-learn-in-public-korean-translation)
--   **Study memo and tracker** for YouTube and other online lectures like TED, U-Demy, ...
+-   **Knowledge management, tracker, ... and sharing wisdome with people** for YouTube and other online lectures like TED, U-Demy, ...
 
 ## TL;DR
 
