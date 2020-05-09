@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -6,6 +6,7 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
+import { Drawer, Button as AntdButton, Radio, Space } from 'antd';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -21,6 +22,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar() {
 	const classes = useStyles()
+	const [visibleLogin, setVisibleLogin] = useState(false)
+
+	const showDrawer = () => {
+		setVisibleLogin(false)
+	}
 
 	return (
 		<div className={classes.root}>
@@ -32,10 +38,21 @@ export default function ButtonAppBar() {
 					<Typography variant="h6" className={classes.title}>
 						Learn-In-Public
 					</Typography>
-					<Button color="inherit">Login</Button>
+					<Button color="inherit" onClick={() => setVisibleLogin(true)}>Login</Button>
 					<Button color="inherit">Register</Button>
 				</Toolbar>
 			</AppBar>
+			<Drawer
+				title="Basic Drawer"
+				placement='right'
+				closable={false}
+				onClose={() => setVisibleLogin(false)}
+				visible={visibleLogin}
+			>
+				<p>Some contents...</p>
+				<p>Some contents...</p>
+				<p>Some contents...</p>
+			</Drawer>
 		</div>
 	)
 }
