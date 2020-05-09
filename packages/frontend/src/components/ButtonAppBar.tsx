@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Drawer, Button as AntdButton, Radio, Space } from 'antd';
+import { GithubLoginButton, FacebookLoginButton, TwitterLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -38,20 +39,21 @@ export default function ButtonAppBar() {
 					<Typography variant="h6" className={classes.title}>
 						Learn-In-Public
 					</Typography>
-					<Button color="inherit" onClick={() => setVisibleLogin(true)}>Login</Button>
-					<Button color="inherit">Register</Button>
+					<Button color="inherit" onClick={() => setVisibleLogin(true)}>Sign-in</Button>
 				</Toolbar>
 			</AppBar>
 			<Drawer
-				title="Basic Drawer"
+				title="Sign-in"
 				placement='right'
+				width="300"
 				closable={false}
 				onClose={() => setVisibleLogin(false)}
 				visible={visibleLogin}
 			>
-				<p>Some contents...</p>
-				<p>Some contents...</p>
-				<p>Some contents...</p>
+				<GithubLoginButton onClick={() => alert("Hello")} />
+				<FacebookLoginButton onClick={() => alert("Hello")} />
+				<TwitterLoginButton onClick={() => alert("Hello")} />
+				<GoogleLoginButton onClick={() => alert("Hello")} />
 			</Drawer>
 		</div>
 	)
