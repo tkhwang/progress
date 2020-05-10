@@ -1,11 +1,9 @@
 import React from 'react'
 import './App.css'
-import ButtonAppBar from './components/ButtonAppBar'
 
 function App() {
 	return (
 		<div className="App">
-			<ButtonAppBar />
 			<ul>
 				<li>
 					Inspired by{' '}
@@ -19,9 +17,8 @@ function App() {
 					)
 				</li>
 			</ul>
-
 			<img
-				style={{ width: '100%'}}
+				style={{ width: '100%' }}
 				src="https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2020/04/photo-1523240795612-9a054b0db644.jpeg"
 				alt="new"
 			/>

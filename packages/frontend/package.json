@@ -29,6 +29,7 @@
 		"react-redux": "^7.2.0",
 		"react-scripts": "3.4.1",
 		"react-social-login-buttons": "^3.0.0",
+		"react-sticky-header": "^0.2.0",
 		"typescript": "~3.8.2"
 	},
 	"eslintConfig": {
@@ -46,7 +47,6 @@
 			"last 1 safari version"
 		]
 	},
-	"devDependencies": {},
 	"_moduleAliases": {
 		"@progress/api": "node_modules/@progress/api/dist",
 		"class-validator": "node_modules/@progress/api/node_modules/class-validator"
