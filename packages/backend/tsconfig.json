@@ -9,7 +9,9 @@
 		"mapRoot": "./dist",
 		"paths": {
 			"@progress/api/*": ["./node_modules/@progress/api/dist/*"],
-			"@progress/api": ["./node_modules/@progress/api/dist"]
+			"@progress/api": ["./node_modules/@progress/api/dist"],
+			"@progress/orm/*": ["./node_modules/@progress/orm/dist/*"],
+			"@progress/orm": ["./node_modules/@progress/orm/dist"]
 		}
 	},
 	"include": ["src/**/*"],

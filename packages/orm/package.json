@@ -1,0 +1,40 @@
+{
+	"name": "@progress/orm",
+	"version": "0.0.1",
+	"description": "> TODO: description",
+	"author": "Taekeun Hwang <tkhwang@gmail.com>",
+	"license": "ISC",
+	"private": true,
+	"main": "dist/index",
+	"types": "dist/index",
+	"files": [
+		"dist"
+	],
+	"scripts": {
+		"typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+		"migration": "npx tsc && yarn typeorm migration:generate -n ",
+		"build": "yarn clean && yarn compile",
+		"clean": "rm -rf ./dist",
+		"compile": "npx tsc -p tsconfig.json",
+		"prepublishOnly": "yarn build"
+	},
+	"dependencies": {
+		"@progress/api": "^0.0.1",
+		"module-alias": "2.2.2",
+		"mysql": "2.15.0",
+		"typeorm": "0.2.19",
+		"typeorm-naming-strategies": "1.1.0"
+	},
+	"devDependencies": {
+		"@types/dotenv": "^4.0.2",
+		"@types/node": "^8.5.5",
+		"ts-node": "^5.0.0",
+		"tsconfig-paths": "^3.9.0",
+		"tslint": "^5.10.0",
+		"tslint-eslint-rules": "^5.4.0",
+		"typescript": "3.7.2"
+	},
+	"_moduleAliases": {
+		"@progress/api": "node_modules/@progress/api/dist"
+	}
+}
