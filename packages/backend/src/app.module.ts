@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
 import { UsersModule } from './users/users.module'
+import { EtcModule } from './etc/etc.module';
 import connectionOptions from '@progress/orm/ormConfig'
 import 'module-alias/register'
 import path from 'path'
@@ -17,6 +18,7 @@ import path from 'path'
 			isGlobal: true,
 		}),
 		UsersModule,
+		EtcModule,
 	],
 })
 export class AppModule {}
