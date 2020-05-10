@@ -12,8 +12,6 @@
 		"eject": "react-scripts eject"
 	},
 	"dependencies": {
-		"@material-ui/core": "^4.9.13",
-		"@material-ui/icons": "^4.9.1",
 		"@progress/api": "^0.0.1",
 		"@reduxjs/toolkit": "^1.2.5",
 		"@testing-library/jest-dom": "^4.2.4",
@@ -48,11 +46,9 @@
 			"last 1 safari version"
 		]
 	},
+	"devDependencies": {},
 	"_moduleAliases": {
 		"@progress/api": "node_modules/@progress/api/dist",
 		"class-validator": "node_modules/@progress/api/node_modules/class-validator"
-	},
-	"devDependencies": {
-		"@types/material-ui": "^0.21.7"
 	}
 }
