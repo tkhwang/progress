@@ -34,9 +34,8 @@
 
 ### Dev infra : easy to deploy
 
-#### Backend : Heroku
-
-#### Frontend : Netlify
+-   Backend : Heroku
+-   Frontend : Netlify
 
 ### Backend
 
