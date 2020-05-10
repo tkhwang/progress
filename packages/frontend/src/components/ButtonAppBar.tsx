@@ -6,8 +6,13 @@ import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
-import { Drawer, Button as AntdButton, Radio, Space } from 'antd';
-import { GithubLoginButton, FacebookLoginButton, TwitterLoginButton, GoogleLoginButton } from "react-social-login-buttons";
+import { Drawer } from 'antd'
+import {
+	GithubLoginButton,
+	FacebookLoginButton,
+	TwitterLoginButton,
+	GoogleLoginButton,
+} from 'react-social-login-buttons'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -25,9 +30,9 @@ export default function ButtonAppBar() {
 	const classes = useStyles()
 	const [visibleLogin, setVisibleLogin] = useState(false)
 
-	const showDrawer = () => {
-		setVisibleLogin(false)
-	}
+	// const showDrawer = () => {
+	// 	setVisibleLogin(false)
+	// }
 
 	return (
 		<div className={classes.root}>
@@ -36,24 +41,26 @@ export default function ButtonAppBar() {
 					<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
 						<MenuIcon />
 					</IconButton>
-					<Typography variant="h6" className={classes.title}>
+					<Typography color="inherit" variant="h6" className={classes.title}>
 						Learn-In-Public
 					</Typography>
-					<Button color="inherit" onClick={() => setVisibleLogin(true)}>Sign-in</Button>
+					<Button color="inherit" onClick={() => setVisibleLogin(true)}>
+						Sign-in
+					</Button>
 				</Toolbar>
 			</AppBar>
 			<Drawer
 				title="Sign-in"
-				placement='right'
+				placement="right"
 				width="300"
 				closable={false}
 				onClose={() => setVisibleLogin(false)}
 				visible={visibleLogin}
 			>
-				<GithubLoginButton onClick={() => alert("Hello")} />
-				<FacebookLoginButton onClick={() => alert("Hello")} />
-				<TwitterLoginButton onClick={() => alert("Hello")} />
-				<GoogleLoginButton onClick={() => alert("Hello")} />
+				<GithubLoginButton onClick={() => alert('Hello')} />
+				<FacebookLoginButton onClick={() => alert('Hello')} />
+				<TwitterLoginButton onClick={() => alert('Hello')} />
+				<GoogleLoginButton onClick={() => alert('Hello')} />
 			</Drawer>
 		</div>
 	)
