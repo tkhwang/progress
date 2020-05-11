@@ -7,11 +7,15 @@ import { UsersRepository } from './users.repository'
 export class UsersService {
 	private readonly users: User[]
 
+	constructor(
+		@InjectRepository(User)
+		private readonly usersRepository: UsersRepository,
+	) {}
+
 	// TODO:
-	// @InjectRepository(User) private readonly usersRepository: UsersRepository
 
 	async findOne(username: string): Promise<User | undefined> {
-		// return await this.usersRepository.findOne({ where: { username: username } })
-		return undefined
+		return await this.usersRepository.findOne({ where: { username: username } })
+		// return undefined
 	}
 }
