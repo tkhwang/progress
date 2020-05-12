@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useCallback } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
@@ -13,6 +13,7 @@ import {
 	TwitterLoginButton,
 	GoogleLoginButton,
 } from 'react-social-login-buttons'
+import { LoginForm } from './LoginForm'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -61,6 +62,8 @@ export default function ButtonAppBar() {
 				<FacebookLoginButton onClick={() => alert('Hello')} />
 				<TwitterLoginButton onClick={() => alert('Hello')} />
 				<GoogleLoginButton onClick={() => alert('Hello')} />
+				<hr />
+				<LoginForm />
 			</Drawer>
 		</div>
 	)
