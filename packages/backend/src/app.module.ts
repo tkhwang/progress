@@ -2,10 +2,12 @@ import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
 import { UsersModule } from './users/users.module'
-import { EtcModule } from './etc/etc.module';
+import { EtcModule } from './etc/etc.module'
 import connectionOptions from '@progress/orm/ormConfig'
 import 'module-alias/register'
 import path from 'path'
+import { AuthModule } from './auth/auth.module'
+import { MorganModule } from 'nest-morgan'
 
 @Module({
 	imports: [
@@ -17,6 +19,8 @@ import path from 'path'
 		ConfigModule.forRoot({
 			isGlobal: true,
 		}),
+		MorganModule.forRoot(),
+		AuthModule,
 		UsersModule,
 		EtcModule,
 	],
