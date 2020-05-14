@@ -1,5 +1,9 @@
 import { IsDefined, IsString, Matches, MaxLength, MinLength } from 'class-validator'
 
+export enum Provider {
+	GOOGLE = 'google',
+}
+
 export class AuthLoginDto {
 	@IsDefined()
 	@IsString()
