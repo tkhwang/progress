@@ -8,6 +8,7 @@ import 'module-alias/register'
 import path from 'path'
 import { AuthModule } from './auth/auth.module'
 import { MorganModule } from 'nest-morgan'
+import configuration from './config/configurations'
 
 @Module({
 	imports: [
@@ -18,6 +19,7 @@ import { MorganModule } from 'nest-morgan'
 		}),
 		ConfigModule.forRoot({
 			isGlobal: true,
+			load: [configuration],
 		}),
 		MorganModule.forRoot(),
 		AuthModule,
