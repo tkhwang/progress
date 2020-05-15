@@ -14,6 +14,8 @@ import {
 	GoogleLoginButton,
 } from 'react-social-login-buttons'
 import { LoginForm } from './LoginForm'
+import Axios from 'axios'
+import { SocialLoginButton } from './SocialLoginButton'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -34,6 +36,13 @@ export default function ButtonAppBar() {
 	// const showDrawer = () => {
 	// 	setVisibleLogin(false)
 	// }
+
+	const loginGoogle = async () => {
+		const data = await Axios.get(`${process.env.REACT_APP_API_URL}/v1/auth/google`)
+		console.log('loginGoogle -> data', data)
+	}
+
+	const socialLogin = `${process.env.REACT_APP_API_URL}/v1/auth/`
 
 	return (
 		<div className={classes.root}>
@@ -58,10 +67,10 @@ export default function ButtonAppBar() {
 				onClose={() => setVisibleLogin(false)}
 				visible={visibleLogin}
 			>
+				<SocialLoginButton social="google" />
 				<GithubLoginButton onClick={() => alert('Hello')} />
 				<FacebookLoginButton onClick={() => alert('Hello')} />
 				<TwitterLoginButton onClick={() => alert('Hello')} />
-				<GoogleLoginButton onClick={() => alert('Hello')} />
 				<hr />
 				<LoginForm />
 			</Drawer>
