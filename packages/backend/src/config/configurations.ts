@@ -1,4 +1,6 @@
 export default () => ({
+	PROGRESS_API_URL:
+		process.env.NODE_ENV === 'dev' ? process.env.PROGRESS_API_URL_DEV : process.env.PROGRESS_API_URL_LOCAL,
 	local: {
 		oauth: {
 			google: {

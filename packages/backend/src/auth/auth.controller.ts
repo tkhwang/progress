@@ -3,9 +3,12 @@ import { AuthGuard } from '@nestjs/passport'
 import { AuthLoginDto } from '@progress/api'
 import { LocalAuthGuard } from './local-auth.guard'
 import { Request, Response } from 'express'
+import { ConfigService } from '@nestjs/config'
 
 @Controller('auth')
 export class AuthController {
+	constructor(private configService: ConfigService) {}
+
 	// @UseGuards(AuthGuard('local'))
 	@UseGuards(LocalAuthGuard)
 	@Post('/login')
@@ -28,9 +31,10 @@ export class AuthController {
 		// handles the Google OAuth2 callback
 		console.log('AuthController -> googleLoginCallback -> req.user', req.user)
 
-		const jwt = 'jwt' // req && req.user && req.user.jwt
-		if (jwt) res.redirect('http://localhost:80/login/succes/' + jwt)
-		else res.redirect('http://localhost:80/login/failure')
+		const API_URL = this.configService.get<string>('PROGRESS_API_URL')
+		const jwt = 'jwt' // req && req.user && req.user.jwt!
+		if (jwt) res.redirect(`${API_URL}/success/${jwt}`)
+		else res.redirect(`${API_URL}/fail`)
 	}
 
 	@Get('protected')
