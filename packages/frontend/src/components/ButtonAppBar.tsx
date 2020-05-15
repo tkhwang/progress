@@ -15,6 +15,7 @@ import {
 } from 'react-social-login-buttons'
 import { LoginForm } from './LoginForm'
 import Axios from 'axios'
+import { SocialLoginButton } from './SocialLoginButton'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -66,9 +67,7 @@ export default function ButtonAppBar() {
 				onClose={() => setVisibleLogin(false)}
 				visible={visibleLogin}
 			>
-				<a href={`${process.env.REACT_APP_API_URL}/v1/auth/google`}>
-					<GoogleLoginButton />
-				</a>
+				<SocialLoginButton social="google" />
 				<GithubLoginButton onClick={() => alert('Hello')} />
 				<FacebookLoginButton onClick={() => alert('Hello')} />
 				<TwitterLoginButton onClick={() => alert('Hello')} />
