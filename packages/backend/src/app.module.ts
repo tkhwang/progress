@@ -16,14 +16,7 @@ import { AuthService } from './services/AuthService'
 import { UsersService } from './services/UsersService'
 
 @Module({
-	imports: [
-		TypeOrmModule.forRoot({
-			...(connectionOptions as TypeOrmModuleOptions),
-			entities: [path.resolve('node_modules/@progress/orm/dist/entities/*.js')],
-			subscribers: [path.resolve('node_modules/@progress/orm/dist/subscribers/*.js')],
-		}),
-		TypeOrmModule.forFeature([User, UsersRepository]),
-	],
+	imports: [TypeOrmModule.forFeature([User, UsersRepository])],
 	controllers: [AuthController, EtcController],
 	providers: [AuthService, UsersService, GoogleStrategy, JwtStrategy],
 })
