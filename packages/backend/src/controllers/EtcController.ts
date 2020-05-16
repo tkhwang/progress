@@ -10,8 +10,7 @@ export class EtcController {
 		return {
 			message: 'Welcome to learn-in-public',
 			now: new Date(),
-			local: this.configService.get<string>('local.oauth.google.url'),
-			dev: this.configService.get<string>('dev.oauth.google.url'),
+			PROGRESS_API_URL: this.configService.get<string>('PROGRESS_API_URL'),
 		}
 	}
 }

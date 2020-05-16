@@ -16,7 +16,7 @@ import { AuthService } from './services/AuthService'
 import { UsersService } from './services/UsersService'
 
 @Module({
-	imports: [TypeOrmModule.forFeature([User, UsersRepository])],
+	imports: [TypeOrmModule.forFeature([User, UsersRepository]), ConfigModule],
 	controllers: [AuthController, EtcController],
 	providers: [AuthService, UsersService, GoogleStrategy, JwtStrategy],
 })
