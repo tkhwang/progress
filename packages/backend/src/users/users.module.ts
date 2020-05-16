@@ -5,7 +5,7 @@ import { User } from '@progress/orm'
 import { UsersRepository } from './users.repository'
 
 @Module({
-	imports: [TypeOrmModule.forFeature([User, UsersRepository])],
+	imports: [TypeOrmModule.forFeature([User])],
 	providers: [UsersService],
 	exports: [UsersService],
 })
