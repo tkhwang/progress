@@ -20,8 +20,7 @@ export class AuthService {
 			const { email, sub, picture, given_name, family_name } = profile._json
 
 			let user = email
-				? // ? await this.usersService.findOneByEmail(email)
-				  await this.usersRepository.findOne({ where: { email: email } })
+				? await this.usersRepository.findOne({ where: { email: email } })
 				: await this.usersRepository.findOneBySocial(OAuthProvider.GOOGLE, sub)
 
 			if (user) {
@@ -44,7 +43,10 @@ export class AuthService {
 
 			const payload = {
 				id: user.id,
-				provider: user.provider
+				provider: user.provider,
+				name: user.username,
+				email: user.email,
+				iss: 'learn-in-public@dev'
 			}
 
 			const jwt: string = sign(payload, process.env.PROGRESS_OAUTH_JWT_SECRET!, { expiresIn: 3600 })

@@ -1,16 +1,18 @@
 import { IsDefined, IsString, Matches, MaxLength, MinLength } from 'class-validator'
 
 export enum OAuthProvider {
-	GOOGLE = 'google'
+	GOOGLE = 'google',
 }
 
-export interface IUserJwt {
+export interface UserJwt {
 	id: number
 	name?: string
 	provider: string
 	providerId?: string
 	iss: string
 }
+
+// export type PassportUserExt =
 
 export class AuthLoginDto {
 	@IsDefined()
