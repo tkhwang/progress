@@ -11,9 +11,12 @@
 			"@progress/api/*": ["./node_modules/@progress/api/dist/*"],
 			"@progress/api": ["./node_modules/@progress/api/dist"],
 			"@progress/orm/*": ["./node_modules/@progress/orm/dist/*"],
-			"@progress/orm": ["./node_modules/@progress/orm/dist"]
+			"@progress/orm": ["./node_modules/@progress/orm/dist"],
+			"@controllers/*": ["src/controllers/*"],
+			"@services/*": ["src/services/*"],
+			"@repositories/*": ["src/repositories/*"]
 		}
 	},
-	"include": ["src/**/*", "src/services/.ts"],
+	"include": ["src/**/*"],
 	"exclude": ["dist", "node_modules"]
 }
