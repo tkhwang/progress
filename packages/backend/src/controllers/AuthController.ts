@@ -15,7 +15,7 @@ export class AuthController {
 	async login(@Body() req: AuthLoginDto) {
 		return {
 			username: req.username,
-			password: req.password,
+			password: req.password
 		}
 	}
 

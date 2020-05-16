@@ -17,20 +17,19 @@ export class AuthService {
 
 	async validateOAuthLogin(profile: any, provider: OAuthProvider): Promise<string> {
 		try {
-			// You can add some registration logic here,
-			// to register the user using their thirdPartyId (in this case their googleId)
-			// let user: IUser = await this.usersService.findOneByThirdPartyId(thirdPartyId, provider)
-			let user = await this.usersService.findOneByEmail(profile.email)
-
 			const { email, sub, picture, given_name, family_name } = profile._json
+
+			let user = email
+				? // ? await this.usersService.findOneByEmail(email)
+				  await this.usersRepository.findOne({ where: { email: email } })
+				: await this.usersRepository.findOneBySocial(OAuthProvider.GOOGLE, sub)
+
 			if (user) {
 				const newName = `${family_name} ${given_name}`
 				if (newName !== user.username) user.username = newName
 				if (email !== user.email) user.email = email
 				if (sub !== user.providerId) user.providerId = sub
 				if (picture !== user.imageUrl) user.imageUrl = picture
-
-				await this.usersRepository.save(user)
 			} else {
 				user = new User()
 				user.provider = OAuthProvider.GOOGLE
@@ -38,15 +37,14 @@ export class AuthService {
 				if (email) user.email = email
 				if (sub) user.providerId = sub
 				if (picture) user.imageUrl = picture
-
-				await this.usersRepository.save(user)
 			}
+			await this.usersRepository.save(user)
 
 			// if (!user) user = await this.usersService.registerOAuthUser(thirdPartyId, provider)
 
 			const payload = {
 				id: user.id,
-				provider: user.provider,
+				provider: user.provider
 			}
 
 			const jwt: string = sign(payload, process.env.PROGRESS_OAUTH_JWT_SECRET!, { expiresIn: 3600 })
