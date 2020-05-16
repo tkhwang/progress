@@ -16,7 +16,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 					? process.env.PROGRESS_OAUTH_GOOGLE_CALLBACK_URL_LOCAL
 					: process.env.PROGRESS_OAUTH_GOOGLE_CALLBACK_URL_DEV,
 			passReqToCallback: true,
-			scope: ['profile']
+			scope: ['profile'],
 		})
 	}
 

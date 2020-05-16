@@ -46,7 +46,7 @@ export class AuthService {
 
 			const payload = {
 				id: user.id,
-				provider: user.provider
+				provider: user.provider,
 			}
 
 			const jwt: string = sign(payload, process.env.PROGRESS_OAUTH_JWT_SECRET!, { expiresIn: 3600 })
