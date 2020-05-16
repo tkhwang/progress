@@ -1,7 +1,6 @@
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn, Unique, CreateDateColumn, UpdateDateColumn } from 'typeorm'
+import { BaseEntity, Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from 'typeorm'
 
 @Entity()
-@Unique(['username'])
 export class User extends BaseEntity {
 	@PrimaryGeneratedColumn()
 	id: number
@@ -15,8 +14,11 @@ export class User extends BaseEntity {
 	@Column('varchar', { length: 50, comment: 'email' })
 	email: string
 
-	@Column('varchar', { length: 20, nullable: true, comment: 'oauth social login provider' })
+	@Column('varchar', { length: 20, nullable: true, comment: 'oauth social provider' })
 	provider?: string | null
+
+	@Column('varchar', { length: 20, nullable: true, comment: 'oauth social providerId' })
+	providerId?: string | null
 
 	@Column('varchar', { nullable: true, length: 200, comment: 'user avatar link' })
 	imageUrl: string | null

@@ -1,7 +1,15 @@
 import { IsDefined, IsString, Matches, MaxLength, MinLength } from 'class-validator'
 
-export enum Provider {
-	GOOGLE = 'google',
+export enum OAuthProvider {
+	GOOGLE = 'google'
+}
+
+export interface IUserJwt {
+	id: number
+	name?: string
+	provider: string
+	providerId?: string
+	iss: string
 }
 
 export class AuthLoginDto {

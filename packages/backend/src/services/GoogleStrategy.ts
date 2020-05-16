@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common'
-import { PassportStrategy } from '@nestjs/passport'
-import { Strategy } from 'passport-google-oauth20'
-import { Provider } from '@progress/api'
 import { ConfigService } from '@nestjs/config'
+import { PassportStrategy } from '@nestjs/passport'
+import { OAuthProvider } from '@progress/api'
+import { Strategy } from 'passport-google-oauth20'
 import { AuthService } from './AuthService'
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
-	constructor(private configService: ConfigService, private readonly authService: AuthService) {
+	constructor(private readonly configService: ConfigService, private readonly authService: AuthService) {
 		super({
 			clientID: process.env.PROGRESS_OAUTH_GOOGLE_CLIENT_ID,
 			clientSecret: process.env.PROGRESS_OAUTH_GOOGLE_CLIENT_SECRET,
@@ -16,7 +16,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 					? process.env.PROGRESS_OAUTH_GOOGLE_CALLBACK_URL_LOCAL
 					: process.env.PROGRESS_OAUTH_GOOGLE_CALLBACK_URL_DEV,
 			passReqToCallback: true,
-			scope: ['profile'],
+			scope: ['profile']
 		})
 	}
 
@@ -24,8 +24,8 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
 		try {
 			console.log(profile)
 
-			const jwt: string = await this.authService.validateOAuthLogin(profile, Provider.GOOGLE)
-			const user = { jwt }
+			const jwt: string = await this.authService.validateOAuthLogin(profile, OAuthProvider.GOOGLE)
+			const user = { jwt: jwt }
 			done(null, user)
 		} catch (err) {
 			// console.log(err)
