@@ -15,5 +15,9 @@
 		"noEmit": true,
 		"jsx": "react"
 	},
-	"include": ["src"]
+	"include": ["src"],
+	"paths": {
+		"@components/*": ["src/components/*"],
+		"@services/*": ["src/services/*"]
+	}
 }

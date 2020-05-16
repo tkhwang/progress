@@ -1,4 +1,5 @@
 import { Inject, Injectable, InternalServerErrorException } from '@nestjs/common'
+import { JwtService } from '@nestjs/jwt'
 import { InjectRepository } from '@nestjs/typeorm'
 import { OAuthProvider } from '@progress/api'
 import { User } from '@progress/orm'
@@ -8,11 +9,17 @@ import { UsersService } from './UsersService'
 
 @Injectable()
 export class AuthService {
-	@Inject() private readonly usersService: UsersService
-	constructor(@InjectRepository(User) private readonly usersRepository: UsersRepository) {}
+	// @Inject() private readonly usersService: UsersService
+	constructor(
+		@InjectRepository(User) private readonly usersRepository: UsersRepository,
+		private readonly jwtService: JwtService
+	) {}
 
-	async signPayload(payload: any) {
-		return sign(payload, 'secretKey', { expiresIn: '12h' })
+	async login(user: any) {
+		const payload = { username: user.username, sub: user.userId }
+		return {
+			access_token: this.jwtService.sign(payload)
+		}
 	}
 
 	async validateOAuthLogin(profile: any, provider: OAuthProvider): Promise<string> {
@@ -54,5 +61,26 @@ export class AuthService {
 		} catch (err) {
 			throw new InternalServerErrorException('validateOAuthLogin', err.message)
 		}
+	}
+
+	async signPayload(payload: any) {
+		return sign(payload, 'secretKey', { expiresIn: '12h' })
+	}
+
+	/**
+	 * Validate user in local strategy
+	 *
+	 * @param {string} username
+	 * @param {string} password
+	 * @returns {Promise<any>}
+	 * @memberof AuthService
+	 */
+	async validateUser(username: string, password: string): Promise<any> {
+		const user = await this.usersRepository.findOne({ where: { username: username } })
+		if (user && user.password === password) {
+			const { password, ...rest } = user
+			return rest
+		}
+		return null
 	}
 }

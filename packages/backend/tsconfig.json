@@ -14,7 +14,8 @@
 			"@progress/orm": ["./node_modules/@progress/orm/dist"],
 			"@controllers/*": ["src/controllers/*"],
 			"@services/*": ["src/services/*"],
-			"@repositories/*": ["src/repositories/*"]
+			"@repositories/*": ["src/repositories/*"],
+			"@utils/*": ["src/utils/*"]
 		}
 	},
 	"include": ["src/**/*"],

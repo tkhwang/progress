@@ -1,6 +1,8 @@
+// import auth from '@services/AuthService'
 import * as React from 'react'
-import config from '../config'
 import { GithubLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
+import config from '../config'
+import auth from '../services/AuthService'
 
 export interface ISocialLoginButtonProps {
 	social: string
@@ -13,10 +15,9 @@ export function SocialLoginButton({ social }: ISocialLoginButtonProps) {
 	let Button
 	switch (social) {
 		case 'google':
-			Button = <GoogleLoginButton />
+			Button = <GoogleLoginButton onClick={() => auth.loginSocial('google')} />
 			break
 		default:
-			break
 	}
 	return (
 		<React.Fragment>
