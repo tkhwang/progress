@@ -1,9 +1,9 @@
 import { Controller, Post, UseGuards, Body, Get, Req, Res } from '@nestjs/common'
 import { AuthGuard } from '@nestjs/passport'
 import { AuthLoginDto } from '@progress/api'
-import { LocalAuthGuard } from './local-auth.guard'
 import { Request, Response } from 'express'
 import { ConfigService } from '@nestjs/config'
+import { LocalAuthGuard } from 'src/services/LocalAuthGuard'
 
 @Controller('auth')
 export class AuthController {

@@ -1,10 +1,9 @@
 import { Injectable, InternalServerErrorException, Inject } from '@nestjs/common'
-import { UsersService } from 'src/users/users.service'
 import { sign } from 'jsonwebtoken'
 import { Provider } from '@progress/api'
 import { InjectRepository } from '@nestjs/typeorm'
 import { User } from '@progress/orm'
-import { UsersRepository } from 'src/users/users.repository'
+import { UsersService } from './UsersService'
 
 @Injectable()
 export class AuthService {
