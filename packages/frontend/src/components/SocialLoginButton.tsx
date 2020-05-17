@@ -1,7 +1,7 @@
 // import auth from '@services/AuthService'
 import * as React from 'react'
 import { GoogleLoginButton } from 'react-social-login-buttons'
-import config from '../config/config'
+import config from '../config'
 import { AuthService } from '../services/AuthService'
 
 export interface ISocialLoginButtonProps {

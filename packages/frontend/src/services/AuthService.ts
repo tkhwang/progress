@@ -1,6 +1,6 @@
 import { AUTH_KEY } from '@progress/api'
 import jwtDecode from 'jwt-decode'
-import config from 'src/config/config'
+import config from 'src/config'
 import http from 'src/services/http'
 
 export class AuthService {
