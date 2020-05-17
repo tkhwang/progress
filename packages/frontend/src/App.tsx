@@ -1,8 +1,8 @@
 import React from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import { Auth } from './components/Auth'
+import Auth from './components/Auth'
 import ButtonAppBar from './components/ButtonAppBar'
-import { LandingPage } from './components/LandingPage'
+import LandingPage from './components/LandingPage'
 
 import './App.css'
 

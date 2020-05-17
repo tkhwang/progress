@@ -10,7 +10,7 @@ export interface ISocialLoginButtonProps {
 
 const { API_URL } = config()
 
-export function SocialLoginButton({ social }: ISocialLoginButtonProps) {
+export default function SocialLoginButton({ social }: ISocialLoginButtonProps) {
 	const urlSocialAuth = `${API_URL}/v1/auth/${social}`
 	let button
 	switch (social) {

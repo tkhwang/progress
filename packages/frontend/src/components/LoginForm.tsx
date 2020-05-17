@@ -6,7 +6,7 @@ import http from 'src/services/http'
 
 export interface ILoginFormProps {}
 
-export function LoginForm(props: ILoginFormProps) {
+export default function LoginForm(props: ILoginFormProps) {
 	const { control, handleSubmit } = useForm()
 	const onSubmit = async (data: any) => {
 		const param = new AuthLoginDto()

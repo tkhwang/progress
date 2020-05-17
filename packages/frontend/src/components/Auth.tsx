@@ -7,7 +7,7 @@ export interface IAuthProps {
 	location: any
 }
 
-export function Auth(props: IAuthProps) {
+export default function Auth(props: IAuthProps) {
 	// Similar to useState but first arg is key to the value in local storage.
 	const [name, setName] = useLocalStorage('name', 'Bob')
 
