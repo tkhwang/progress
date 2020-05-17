@@ -1,10 +1,21 @@
 import * as React from 'react'
+import config from 'src/config/config'
 
 export interface ILandingPageProps {}
 
 export default function LandingPage(props: ILandingPageProps) {
+	const { PROGRESS_URL } = config()
 	return (
 		<React.Fragment>
+			<div className='App'>
+				<h1>Coming soon...</h1>
+				<img src={`${PROGRESS_URL}/image/team_meeting__two_color.svg`} />
+			</div>
+		</React.Fragment>
+	)
+}
+
+/*
 			<ul>
 				<li>
 					Inspired by{' '}
@@ -24,6 +35,4 @@ export default function LandingPage(props: ILandingPageProps) {
 				src='https://raw.githubusercontent.com/tkhwang/tkhwang-etc/master/img/2020/04/photo-1523240795612-9a054b0db644.jpeg'
 				alt='new'
 			/>
-		</React.Fragment>
-	)
-}
+*/
