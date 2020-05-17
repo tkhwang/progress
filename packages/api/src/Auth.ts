@@ -28,3 +28,8 @@ export class AuthLoginDto {
 	@Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, { message: 'Password too weak.' })
 	password: string
 }
+
+export enum AUTH_KEY {
+	TOKEN = 'AUTH_TOKEN',
+	USER = 'AUTH_USER'
+}

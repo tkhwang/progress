@@ -2,7 +2,7 @@
 import * as React from 'react'
 import { GithubLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
 import config from '../config'
-import auth from '../services/AuthService'
+import { AuthService } from '../services/AuthService'
 
 export interface ISocialLoginButtonProps {
 	social: string
@@ -12,16 +12,17 @@ const { API_URL } = config()
 
 export function SocialLoginButton({ social }: ISocialLoginButtonProps) {
 	const urlSocialAuth = `${API_URL}/v1/auth/${social}`
-	let Button
+	let button
 	switch (social) {
 		case 'google':
-			Button = <GoogleLoginButton onClick={() => auth.loginSocial('google')} />
+			button = <GoogleLoginButton onClick={() => AuthService.loginSocial('google')} />
 			break
 		default:
 	}
+
 	return (
 		<React.Fragment>
-			<a href={urlSocialAuth}>{Button}</a>
+			<a href={urlSocialAuth}>{button}</a>
 		</React.Fragment>
 	)
 }

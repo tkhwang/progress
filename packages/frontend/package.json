@@ -28,10 +28,13 @@
 		"@types/react-redux": "^7.1.7",
 		"antd": "^4.2.0",
 		"axios": "^0.19.2",
+		"jwt-decode": "^2.2.0",
+		"query-string": "^6.12.1",
 		"react": "^16.13.1",
 		"react-dom": "^16.13.1",
 		"react-hook-form": "^5.7.2",
 		"react-redux": "^7.2.0",
+		"react-router-dom": "^5.2.0",
 		"react-scripts": "3.4.1",
 		"react-select": "^3.1.0",
 		"react-social-login-buttons": "^3.0.0",
@@ -58,7 +61,10 @@
 	},
 	"devDependencies": {
 		"@types/axios": "^0.14.0",
+		"@types/jwt-decode": "^2.2.1",
 		"@types/material-ui": "^0.21.7",
+		"@types/query-string": "^6.3.0",
+		"@types/react-router-dom": "^5.1.5",
 		"@types/react-select": "^3.0.12"
 	}
 }
