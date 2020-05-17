@@ -53,6 +53,7 @@ export class AuthService {
 				provider: user.provider,
 				name: user.username,
 				email: user.email,
+				image_url: user.imageUrl,
 				iss: 'learn-in-public@dev'
 			}
 

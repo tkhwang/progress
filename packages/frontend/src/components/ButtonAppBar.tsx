@@ -16,6 +16,7 @@ import {
 } from 'react-social-login-buttons'
 import http from 'src/services/http'
 import { AuthService } from '../services/AuthService'
+import AvatarComp from './AvatarComp'
 import LoginForm from './LoginForm'
 import SocialLoginButton from './SocialLoginButton'
 
@@ -63,6 +64,7 @@ export default function ButtonAppBar() {
 						<Button color='inherit' onClick={() => AuthService.logout()}>
 							Logout
 						</Button>
+						<AvatarComp />
 					</Toolbar>
 				</BrowserRouter>
 			</AppBar>
