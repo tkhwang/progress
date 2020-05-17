@@ -38,6 +38,7 @@
 		"react-scripts": "3.4.1",
 		"react-select": "^3.1.0",
 		"react-social-login-buttons": "^3.0.0",
+		"react-toastify": "^6.0.4",
 		"typescript": "~3.8.2"
 	},
 	"eslintConfig": {
@@ -55,16 +56,17 @@
 			"last 1 safari version"
 		]
 	},
-	"_moduleAliases": {
-		"@progress/api": "node_modules/@progress/api/dist",
-		"class-validator": "node_modules/@progress/api/node_modules/class-validator"
-	},
 	"devDependencies": {
 		"@types/axios": "^0.14.0",
 		"@types/jwt-decode": "^2.2.1",
 		"@types/material-ui": "^0.21.7",
 		"@types/query-string": "^6.3.0",
 		"@types/react-router-dom": "^5.1.5",
-		"@types/react-select": "^3.0.12"
+		"@types/react-select": "^3.0.12",
+		"@types/react-toastify": "^4.1.0"
+	},
+	"_moduleAliases": {
+		"@progress/api": "node_modules/@progress/api/dist",
+		"class-validator": "node_modules/@progress/api/node_modules/class-validator"
 	}
 }

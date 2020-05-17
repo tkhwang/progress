@@ -1,15 +1,25 @@
-import { useState } from 'react'
-
+import querystring from 'query-string'
+import { useEffect, useState } from 'react'
 import * as React from 'react'
+import { AuthService } from '../services/AuthService'
 
-export interface IAuthProps {}
+export interface IAuthProps {
+	location: any
+}
 
 export function Auth(props: IAuthProps) {
 	// Similar to useState but first arg is key to the value in local storage.
 	const [name, setName] = useLocalStorage('name', 'Bob')
 
+	useEffect(() => {
+		const values = querystring.parse(props.location.search)
+		if (values && values.token) AuthService.loginWithJwt(values.token as string)
+		console.log('Auth -> values', values)
+	}, [])
+
 	return (
 		<div>
+			<h1>Auth: {`${JSON.stringify(props)}`}</h1>
 			<input type='text' placeholder='Enter your name' value={name} onChange={(e) => setName(e.target.value)} />
 		</div>
 	)

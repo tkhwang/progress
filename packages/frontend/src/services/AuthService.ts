@@ -3,10 +3,24 @@ import Axios from 'axios'
 import jwtDecode from 'jwt-decode'
 
 export class AuthService {
+	/**
+	 * Get JWT token which is stored in localStorage.
+	 *
+	 * @static
+	 * @returns
+	 * @memberof AuthService
+	 */
 	static getJwt() {
 		return localStorage.getItem(AUTH_KEY.TOKEN)
 	}
 
+	/**
+	 * Take encoded JWT and save back to localStorage.
+	 *
+	 * @static
+	 * @param {string} jwt
+	 * @memberof AuthService
+	 */
 	static async saveJwt(jwt: string) {
 		if (!jwt) return
 
@@ -24,9 +38,16 @@ export class AuthService {
 		}
 	}
 
-	static logout(): void {
-		localStorage.removeItem(AUTH_KEY.TOKEN)
-		localStorage.removeItem(AUTH_KEY.USER)
+	/**
+	 *
+	 *
+	 * @static
+	 * @param {string} jwt
+	 * @memberof AuthService
+	 */
+	static loginWithJwt(jwt: string) {
+		// localStorage.setItem(KEY_TOKEN, jwt);
+		AuthService.saveJwt(jwt)
 	}
 
 	/**
@@ -40,5 +61,10 @@ export class AuthService {
 		const { data: jwt } = await Axios.get(`${process.env.REACT_APP_API_URL}/v1/auth/${provider}`)
 		// localStorage.setItem(KEY_TOKEN, jwt);
 		AuthService.saveJwt(jwt)
+	}
+
+	static logout(): void {
+		localStorage.removeItem(AUTH_KEY.TOKEN)
+		localStorage.removeItem(AUTH_KEY.USER)
 	}
 }

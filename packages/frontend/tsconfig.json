@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "./tsconfig.build.json",
   "compilerOptions": {
     "target": "es5",
     "lib": [
@@ -8,6 +8,7 @@
       "esnext"
     ],
     "allowJs": true,
+    "outDir": "./dist",
     "baseUrl": "./",
     "skipLibCheck": true,
     "esModuleInterop": true,
