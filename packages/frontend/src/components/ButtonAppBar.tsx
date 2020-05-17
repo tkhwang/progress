@@ -6,7 +6,6 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Drawer } from 'antd'
-import Axios from 'axios'
 import React, { useCallback, useState } from 'react'
 import { BrowserRouter, Link, Redirect } from 'react-router-dom'
 import {
@@ -15,6 +14,8 @@ import {
 	GoogleLoginButton,
 	TwitterLoginButton
 } from 'react-social-login-buttons'
+import http from 'src/services/http'
+import { AuthService } from '../services/AuthService'
 import { LoginForm } from './LoginForm'
 import { SocialLoginButton } from './SocialLoginButton'
 
@@ -39,7 +40,7 @@ export default function ButtonAppBar() {
 	// }
 
 	const loginGoogle = async () => {
-		const data = await Axios.get(`${process.env.REACT_APP_API_URL}/v1/auth/google`)
+		const data = await http.get(`${process.env.REACT_APP_API_URL}/v1/auth/google`)
 		console.log('loginGoogle -> data', data)
 	}
 
@@ -58,6 +59,9 @@ export default function ButtonAppBar() {
 						</Typography>
 						<Button color='inherit' onClick={() => setVisibleLogin(true)}>
 							Sign-in
+						</Button>
+						<Button color='inherit' onClick={() => AuthService.logout()}>
+							Logout
 						</Button>
 					</Toolbar>
 				</BrowserRouter>

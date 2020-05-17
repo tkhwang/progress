@@ -1,6 +1,6 @@
 import { AUTH_KEY } from '@progress/api'
-import Axios from 'axios'
 import jwtDecode from 'jwt-decode'
+import http from 'src/services/http'
 
 export class AuthService {
 	/**
@@ -58,7 +58,7 @@ export class AuthService {
 	 * @memberof AuthService
 	 */
 	static async loginSocial(provider: string) {
-		const { data: jwt } = await Axios.get(`${process.env.REACT_APP_API_URL}/v1/auth/${provider}`)
+		const { data: jwt } = await http.get(`${process.env.REACT_APP_API_URL}/v1/auth/${provider}`)
 		// localStorage.setItem(KEY_TOKEN, jwt);
 		AuthService.saveJwt(jwt)
 	}
