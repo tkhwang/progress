@@ -1,17 +1,16 @@
 // import auth from '@services/AuthService'
 import * as React from 'react'
 import { GoogleLoginButton } from 'react-social-login-buttons'
-import config from '../config'
+import config from '../config/config'
 import { AuthService } from '../services/AuthService'
 
 export interface ISocialLoginButtonProps {
 	social: string
 }
 
-const { API_URL } = config()
-
 export default function SocialLoginButton({ social }: ISocialLoginButtonProps) {
-	const urlSocialAuth = `${API_URL}/v1/auth/${social}`
+	const { PROGRESS_API_URL } = config()
+	const urlSocialAuth = `${PROGRESS_API_URL}/v1/auth/${social}`
 	let button
 	switch (social) {
 		case 'google':

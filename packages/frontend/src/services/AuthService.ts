@@ -1,5 +1,6 @@
 import { AUTH_KEY } from '@progress/api'
 import jwtDecode from 'jwt-decode'
+import config from 'src/config/config'
 import http from 'src/services/http'
 
 export class AuthService {
@@ -58,7 +59,8 @@ export class AuthService {
 	 * @memberof AuthService
 	 */
 	static async loginSocial(provider: string) {
-		const { data: jwt } = await http.get(`${process.env.REACT_APP_API_URL}/v1/auth/${provider}`)
+		const { PROGRESS_API_URL } = config()
+		const { data: jwt } = await http.get(`${PROGRESS_API_URL}/v1/auth/${provider}`)
 		AuthService.saveJwt(jwt)
 	}
 

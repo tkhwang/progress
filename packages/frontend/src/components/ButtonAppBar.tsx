@@ -39,8 +39,6 @@ export default function ButtonAppBar(props: IButtonAppBarProps) {
 	// 	setVisibleLogin(false)
 	// }
 
-	console.log('ButtonAppBar -> props', props)
-
 	return (
 		<div className={classes.root}>
 			<AppBar position='static'>
