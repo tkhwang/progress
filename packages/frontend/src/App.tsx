@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import Auth from './components/Auth'
 import ButtonAppBar from './components/ButtonAppBar'
@@ -7,10 +7,10 @@ import LandingPage from './components/LandingPage'
 import './App.css'
 
 function App() {
-	// <Route path='/token' component={Auth} />
+	const [uniqueKey, setUniqueKey] = useState(new Date().getTime().toString())
 	return (
 		<React.Fragment>
-			<ButtonAppBar />
+			<ButtonAppBar key={uniqueKey} forceUpdate={setUniqueKey} />
 			<main className='content'>
 				<BrowserRouter>
 					<Switch>

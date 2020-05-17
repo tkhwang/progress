@@ -1,6 +1,6 @@
 // import auth from '@services/AuthService'
 import * as React from 'react'
-import { GithubLoginButton, GoogleLoginButton } from 'react-social-login-buttons'
+import { GoogleLoginButton } from 'react-social-login-buttons'
 import config from '../config'
 import { AuthService } from '../services/AuthService'
 

@@ -59,12 +59,13 @@ export class AuthService {
 	 */
 	static async loginSocial(provider: string) {
 		const { data: jwt } = await http.get(`${process.env.REACT_APP_API_URL}/v1/auth/${provider}`)
-		// localStorage.setItem(KEY_TOKEN, jwt);
 		AuthService.saveJwt(jwt)
 	}
 
-	static logout(): void {
+	static logout(forceUpdate?: Function): void {
 		localStorage.removeItem(AUTH_KEY.TOKEN)
 		localStorage.removeItem(AUTH_KEY.USER)
+
+		if (forceUpdate) forceUpdate(new Date().getTime().toString())
 	}
 }

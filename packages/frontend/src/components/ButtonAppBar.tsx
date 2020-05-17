@@ -6,15 +6,9 @@ import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Drawer } from 'antd'
-import React, { useCallback, useState } from 'react'
-import { BrowserRouter, Link, Redirect } from 'react-router-dom'
-import {
-	FacebookLoginButton,
-	GithubLoginButton,
-	GoogleLoginButton,
-	TwitterLoginButton
-} from 'react-social-login-buttons'
-import http from 'src/services/http'
+import React, { useState } from 'react'
+import { BrowserRouter } from 'react-router-dom'
+import { FacebookLoginButton, GithubLoginButton, TwitterLoginButton } from 'react-social-login-buttons'
 import { AuthService } from '../services/AuthService'
 import AvatarComp from './AvatarComp'
 import LoginForm from './LoginForm'
@@ -32,7 +26,12 @@ const useStyles = makeStyles((theme) => ({
 	}
 }))
 
-export default function ButtonAppBar() {
+export interface IButtonAppBarProps {
+	key: string
+	forceUpdate: Function
+}
+
+export default function ButtonAppBar(props: IButtonAppBarProps) {
 	const classes = useStyles()
 	const [visibleLogin, setVisibleLogin] = useState(false)
 
@@ -40,12 +39,7 @@ export default function ButtonAppBar() {
 	// 	setVisibleLogin(false)
 	// }
 
-	const loginGoogle = async () => {
-		const data = await http.get(`${process.env.REACT_APP_API_URL}/v1/auth/google`)
-		console.log('loginGoogle -> data', data)
-	}
-
-	const socialLogin = `${process.env.REACT_APP_API_URL}/v1/auth/`
+	console.log('ButtonAppBar -> props', props)
 
 	return (
 		<div className={classes.root}>
@@ -58,13 +52,18 @@ export default function ButtonAppBar() {
 						<Typography color='inherit' variant='h6' className={classes.title}>
 							<a href='/'>Learn-In-Public</a>
 						</Typography>
-						<Button color='inherit' onClick={() => setVisibleLogin(true)}>
-							Sign-in
-						</Button>
-						<Button color='inherit' onClick={() => AuthService.logout()}>
-							Logout
-						</Button>
-						<AvatarComp />
+						{AuthService.getCurrentUser() ? (
+							<>
+								<Button color='inherit' onClick={() => AuthService.logout(props.forceUpdate)}>
+									Logout
+								</Button>
+								<AvatarComp />
+							</>
+						) : (
+							<Button color='inherit' onClick={() => setVisibleLogin(true)}>
+								Sign-in
+							</Button>
+						)}
 					</Toolbar>
 				</BrowserRouter>
 			</AppBar>
