@@ -4,6 +4,9 @@ import Auth from './components/Auth'
 import ButtonAppBar from './components/ButtonAppBar'
 import LandingPage from './components/LandingPage'
 
+import { Me } from './components/Me'
+import ProtectedRoute from './components/ProtectedRoute'
+import { Signin } from './components/Signin'
 import './App.css'
 
 function App() {
@@ -15,10 +18,12 @@ function App() {
 				<BrowserRouter>
 					<Switch>
 						<Route path='/token' component={Auth} />
+						<Route path='/signin' component={Signin} />
+						<ProtectedRoute path='/me' render={() => <Me />} />
+						<Route exact path='/' component={LandingPage} />
 					</Switch>
 				</BrowserRouter>
 			</main>
-			<LandingPage />
 		</React.Fragment>
 	)
 }
