@@ -11,6 +11,7 @@ import './App.css'
 
 function App() {
 	const [uniqueKey, setUniqueKey] = useState(new Date().getTime().toString())
+
 	return (
 		<React.Fragment>
 			<ButtonAppBar key={uniqueKey} forceUpdate={setUniqueKey} />
@@ -19,7 +20,7 @@ function App() {
 					<Switch>
 						<Route path='/token' component={Auth} />
 						<Route path='/signin' component={Signin} />
-						<ProtectedRoute path='/me' render={() => <Me />} />
+						<ProtectedRoute path='/me' render={() => <Me forceUpdate={setUniqueKey} />} />
 						<Route exact path='/' component={LandingPage} />
 					</Switch>
 				</BrowserRouter>

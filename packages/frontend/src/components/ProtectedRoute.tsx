@@ -10,7 +10,7 @@ export default function ProtectedRoute({ path, component: Component, render, ...
 	return (
 		<Route
 			{...rest}
-			render={(props) => {
+			render={(props: any) => {
 				if (!AuthService.getCurrentUser()) {
 					return (
 						<Redirect
