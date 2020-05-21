@@ -13,7 +13,7 @@ export function Signin(props: ISigninProps) {
 		<div>
 			<Row>
 				<Col span={12}>
-					<img src={`${PROGRESS_URL}/image/123.svg`} />
+					<img src={`${PROGRESS_URL}/image/123.svg`} alt='image' />
 				</Col>
 				<Col span={12}>
 					<div style={{ padding: 30 }}>

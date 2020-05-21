@@ -12,7 +12,7 @@ export default function Auth(props: IAuthProps) {
 		const values = querystring.parse(props.location.search)
 		if (values && values.token) AuthService.loginWithJwt(values.token as string)
 
-		props.history.replace('/me')
+		props.history.replace('/lip')
 	})
 
 	return null

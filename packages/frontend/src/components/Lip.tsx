@@ -1,4 +1,5 @@
-import { Col, Row } from 'antd'
+import { BorderOuterOutlined } from '@ant-design/icons'
+import { Col, Row, Typography } from 'antd'
 import * as React from 'react'
 import { useEffect } from 'react'
 import config from 'src/config'
@@ -7,7 +8,7 @@ export interface IMeProps {
 	forceUpdate: Function
 }
 
-export function Me(props: IMeProps) {
+export function Lip(props: IMeProps) {
 	useEffect(() => {
 		props.forceUpdate(new Date().getTime().toString())
 	}, [])
@@ -15,6 +16,9 @@ export function Me(props: IMeProps) {
 
 	return (
 		<div>
+			<h1>
+				<BorderOuterOutlined /> Interest Fields
+			</h1>
 			<Row>
 				<Col span={12}>
 					<img src={`${PROGRESS_URL}/image/073.svg`} />

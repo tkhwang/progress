@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography'
 import MenuIcon from '@material-ui/icons/Menu'
 import { Drawer } from 'antd'
 import React, { useState } from 'react'
-import { BrowserRouter } from 'react-router-dom'
+import { useHistory, BrowserRouter, Redirect } from 'react-router-dom'
 import { FacebookLoginButton, GithubLoginButton, TwitterLoginButton } from 'react-social-login-buttons'
 import { AuthService } from '../services/AuthService'
 import AvatarComp from './AvatarComp'
@@ -34,10 +34,6 @@ export interface IButtonAppBarProps {
 export default function ButtonAppBar(props: IButtonAppBarProps) {
 	const classes = useStyles()
 	const [visibleLogin, setVisibleLogin] = useState(false)
-
-	// const showDrawer = () => {
-	// 	setVisibleLogin(false)
-	// }
 
 	return (
 		<div className={classes.root}>
