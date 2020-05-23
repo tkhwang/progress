@@ -1,6 +1,7 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
-import { PostUrlGetInfoRequest, PostUrlGetInfoResponse } from '@progress/api/models';
-import { UrlService } from '@services/UrlService';
+import { Body, Controller, Get, Post } from '@nestjs/common'
+// import { PostUrlGetInfoRequest, PostUrlGetInfoResponse } from '@progress/api/models';
+import { UrlService } from '@services/UrlService'
+import { PostUrlGetInfoRequest, PostUrlGetInfoResponse } from '@progress/api'
 
 @Controller('url')
 export class UrlController {
@@ -8,6 +9,6 @@ export class UrlController {
 
   @Post('/info')
   async postUrlInfo(@Body() params: PostUrlGetInfoRequest): Promise<PostUrlGetInfoResponse> {
-    return this.urlService.extractUrlInfo(params.url);
+    return this.urlService.extractUrlInfo(params.url)
   }
 }

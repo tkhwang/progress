@@ -1,19 +1,19 @@
-import Input from '@material-ui/core/Input';
-import { AuthLoginDto } from '@progress/api/models';
-import React from 'react';
-import { useForm, Controller } from 'react-hook-form';
-import http from 'src/services/http';
+import Input from '@material-ui/core/Input'
+import { AuthLoginDto } from '@progress/api/models'
+import React from 'react'
+import { useForm, Controller } from 'react-hook-form'
+import http from 'src/services/http'
 
 export interface ILoginFormProps {}
 
 export default function LoginForm(props: ILoginFormProps) {
-  const { control, handleSubmit } = useForm();
+  const { control, handleSubmit } = useForm()
   const onSubmit = async (data: any) => {
-    const param = new AuthLoginDto();
-    param.username = data.username;
-    param.password = data.password;
-    await http.post(`${process.env.REACT_APP_API_URL}/v1/auth/login`, param);
-  };
+    const param = new AuthLoginDto()
+    param.username = data.username
+    param.password = data.password
+    await http.post(`${process.env.REACT_APP_API_URL}/v1/auth/login`, param)
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -33,5 +33,5 @@ export default function LoginForm(props: ILoginFormProps) {
       />
       <input type="submit" name="Register" />
     </form>
-  );
+  )
 }

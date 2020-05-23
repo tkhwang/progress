@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 import config from 'src/config'
 import { InterestCard } from './IntrestCard'
 import Search from 'antd/lib/input/Search'
+import { APIS, PostUrlGetInfoResponse } from '@progress/api'
 
 export interface IMeProps {
   forceUpdate: (time: string) => void
@@ -14,6 +15,11 @@ export function Lip(props: IMeProps) {
   useEffect(() => {
     props.forceUpdate(new Date().getTime().toString())
   }, [])
+
+  const extractUrlInfo = async (url: string) => {
+    const apis = new APIS.Url()
+    return apis.postUrlInfo({ url })
+  }
 
   const { PROGRESS_URL } = config()
 
@@ -29,7 +35,7 @@ export function Lip(props: IMeProps) {
         />
         <Search
           placeholder="Enter url of your current learning material on interests."
-          onSearch={value => console.log(value)}
+          onSearch={(value: string) => extractUrlInfo(value)}
           enterButton="Add"
           size="large"
         />

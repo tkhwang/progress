@@ -1,3 +1,3 @@
-export * from './Auth'
-export * from './Task'
-export * from './Url'
+export * from './AuthModel'
+export * from './TaskModel'
+export * from './UrlModel'
