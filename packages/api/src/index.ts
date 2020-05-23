@@ -1,3 +1,4 @@
-export * from './Auth'
-export * from './Task'
-export * from './Url'
+import 'reflect-metadata'
+export * from 'class-validator'
+export { transformAndValidate } from 'class-transformer-validator'
+export * from 'class-transformer'

@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
-import { PassportStrategy } from '@nestjs/passport'
-import { OAuthProvider } from '@progress/api'
-import { Strategy } from 'passport-google-oauth20'
-import { AuthService } from './AuthService'
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { PassportStrategy } from '@nestjs/passport';
+import { OAuthProvider } from '@progress/api/models';
+import { Strategy } from 'passport-google-oauth20';
+import { AuthService } from './AuthService';
 
 @Injectable()
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
@@ -22,7 +22,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
         'https://www.googleapis.com/auth/userinfo.profile',
         'https://www.googleapis.com/auth/userinfo.email',
       ],
-    })
+    });
   }
 
   async validate(
@@ -33,14 +33,14 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     done: Function,
   ) {
     try {
-      console.log(profile)
+      console.log(profile);
 
-      const jwt: string = await this.authService.validateOAuthLogin(profile, OAuthProvider.GOOGLE)
-      const user = { jwt }
-      done(null, user)
+      const jwt: string = await this.authService.validateOAuthLogin(profile, OAuthProvider.GOOGLE);
+      const user = { jwt };
+      done(null, user);
     } catch (err) {
       // console.log(err)
-      done(err, false)
+      done(err, false);
     }
   }
 }

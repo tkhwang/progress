@@ -1,17 +1,17 @@
+import { TaskStatus } from '@progress/api/models'
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm'
-import { TaskStatus } from '@progress/api'
 
 @Entity()
 export class Task extends BaseEntity {
-	@PrimaryGeneratedColumn()
-	id: number
+  @PrimaryGeneratedColumn()
+  public id: number
 
-	@Column()
-	title: string
+  @Column()
+  public title: string
 
-	@Column()
-	description: string
+  @Column()
+  public description: string
 
-	@Column()
-	status: TaskStatus
+  @Column()
+  public status: TaskStatus
 }

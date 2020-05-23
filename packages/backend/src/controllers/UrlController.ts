@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
-import { PostUrlGetInfoRequest, PostUrlGetInfoResponse } from '@progress/api';
+import { PostUrlGetInfoRequest, PostUrlGetInfoResponse } from '@progress/api/models';
 import { UrlService } from '@services/UrlService';
 
 @Controller('url')

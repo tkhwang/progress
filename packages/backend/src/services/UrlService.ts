@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PostUrlGetInfoResponse } from '@progress/api';
+import { PostUrlGetInfoResponse } from '@progress/api/models';
 import { getLinkPreview } from 'link-preview-js';
 
 @Injectable()

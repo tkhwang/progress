@@ -1,6 +1,6 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@progress/api/*": ["./node_modules/@progress/api/dist/*"],
       "@progress/api": ["./node_modules/@progress/api/dist"]

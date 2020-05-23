@@ -8,18 +8,18 @@ export default function (): IClientConfig {
   switch (env) {
     case 'local':
       return {
-        PROGRESS_URL: process.env.REACT_APP_PROGRESS_URL_LOCAL,
         PROGRESS_API_URL: process.env.REACT_APP_PROGRESS_API_URL_LOCAL,
+        PROGRESS_URL: process.env.REACT_APP_PROGRESS_URL_LOCAL,
       }
     case 'dev':
       return {
-        PROGRESS_URL: process.env.REACT_APP_PROGRESS_URL_DEV,
         PROGRESS_API_URL: process.env.REACT_APP_PROGRESS_API_URL_DEV,
+        PROGRESS_URL: process.env.REACT_APP_PROGRESS_URL_DEV,
       }
     default:
       return {
-        PROGRESS_URL: process.env.REACT_APP_PROGRESS_URL_DEV,
         PROGRESS_API_URL: process.env.REACT_APP_PROGRESS_API_URL_DEV,
+        PROGRESS_URL: process.env.REACT_APP_PROGRESS_URL_DEV,
       }
   }
 }
