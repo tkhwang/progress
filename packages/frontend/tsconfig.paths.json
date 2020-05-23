@@ -3,7 +3,9 @@
     "baseUrl": ".",
     "paths": {
       "@progress/api/*": ["./node_modules/@progress/api/dist/*"],
-      "@progress/api": ["./node_modules/@progress/api/dist"]
+      "@progress/api": ["./node_modules/@progress/api/dist"],
+      "class-transformer": ["node_modules/@progress/api/node_modules/class-transformer"],
+      "class-validator": ["node_modules/@progress/api/node_modules/class-validator"]
     }
   }
 }
