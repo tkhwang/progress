@@ -16,9 +16,12 @@ export function Lip(props: IMeProps) {
     props.forceUpdate(new Date().getTime().toString())
   }, [])
 
+  const [title, setTitle] = useState('')
+
   const extractUrlInfo = async (url: string) => {
-    const apis = new APIS.Url()
-    return apis.postUrlInfo({ url })
+    console.log('extractUrlInfo -> url', url)
+    const data = await new APIS.Url().postUrlInfo({ url })
+    console.log('extractUrlInfo -> data', data)
   }
 
   const { PROGRESS_URL } = config()

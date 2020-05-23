@@ -6,7 +6,7 @@ export class PostUrlGetInfoRequest {
   public url: string
 }
 
-export type PostUrlGetInfoResponse = GetLinkPreviewSimpleResponse | GetLinkPreviewFullResponse
+export type PostUrlGetInfoResponse = GetLinkPreviewFullResponse | GetLinkPreviewSimpleResponse
 
 export class GetLinkPreviewSimpleResponse {
   public url: string
