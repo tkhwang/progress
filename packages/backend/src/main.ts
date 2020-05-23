@@ -1,11 +1,13 @@
-import 'module-alias/register'
+import { ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
-import { AppModule } from './app.module'
 import bodyParser from 'body-parser'
+import 'module-alias/register'
 import morgan from 'morgan'
+import { AppModule } from './app.module'
 
 async function bootstrap() {
 	const app = await NestFactory.create(AppModule)
+	app.useGlobalPipes(new ValidationPipe())
 	app.use(bodyParser.json())
 	app.use(morgan('[:status]:method :url :response-time ms'))
 	app.enableCors()
