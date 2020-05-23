@@ -28,6 +28,7 @@
 		"dotenv": "^8.2.0",
 		"express": "^4.17.1",
 		"jsonwebtoken": "^8.5.1",
+		"link-preview-js": "^2.0.4",
 		"module-alias": "^2.2.2",
 		"morgan": "^1.10.0",
 		"mysql": "^2.18.1",
@@ -75,6 +76,9 @@
 		"@progress/api": "node_modules/@progress/api/dist",
 		"@progress/orm": "node_modules/@progress/orm/dist",
 		"class-transformer": "node_modules/@progress/api/node_modules/class-transformer",
-		"class-validator": "node_modules/@progress/api/node_modules/class-validator"
+		"class-validator": "node_modules/@progress/api/node_modules/class-validator",
+		"@controllers": "dist/controllers",
+		"@services": "dist/services",
+		"@repositories": "dist/repositories"
 	}
 }

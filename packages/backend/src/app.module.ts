@@ -12,6 +12,8 @@ import { GoogleStrategy } from '@services/GoogleStrategy'
 import { JwtStrategy } from '@services/JwtStrategy'
 import { UsersService } from '@services/UsersService'
 
+import { UrlController } from '@controllers/UrlController'
+import { UrlService } from '@services/UrlService'
 import { jwtConstants } from '@utils/AuthContstants'
 import 'module-alias/register'
 import { MorganModule } from 'nest-morgan'
@@ -28,8 +30,8 @@ import { LocalStrategy } from './services/LocalStrategy'
 			signOptions: { expiresIn: '60s' }
 		})
 	],
-	controllers: [AuthController, EtcController],
-	providers: [AuthService, UsersService, LocalStrategy, GoogleStrategy, JwtStrategy]
+	controllers: [AuthController, EtcController, UrlController],
+	providers: [AuthService, UsersService, LocalStrategy, GoogleStrategy, JwtStrategy, UrlService]
 })
 export class AllModule {}
 
