@@ -6,29 +6,20 @@ export class PostUrlGetInfoRequest {
   public url: string
 }
 
-export type PostUrlGetInfoResponse = GetLinkPreviewFullResponse | GetLinkPreviewSimpleResponse
-
-export class GetLinkPreviewSimpleResponse {
+export class PostUrlGetInfoResponse {
   public url: string
-  public mediaType: string
-  public contentType: string
-  public favicons: any[]
-}
-
-export class GetLinkPreviewFullResponse {
-  public url: string
-  public title: any
-  public siteName: any
-  public description: any
-  public mediaType: any
-  public contentType: string | undefined
-  public images: string[]
-  public videos: Array<{
+  public title?: any
+  public siteName?: any
+  public description?: any
+  public mediaType?: any
+  public contentType?: string
+  public images?: string[]
+  public videos?: Array<{
     url: any;
     secureUrl: any;
     type: any;
     width: any;
     height: any;
   }>
-  public favicons: any[]
+  public favicons?: any[]
 }

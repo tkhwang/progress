@@ -16,33 +16,59 @@ export function Lip(props: IMeProps) {
     props.forceUpdate(new Date().getTime().toString())
   }, [])
 
-  const [title, setTitle] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [urlTitle, setUrlTitle] = useState('')
+  const [urlDescription, setUrlDescription] = useState('')
+  const [urlSiteName, setUrlSiteName] = useState('')
+  const [urlImages, setUrlImages] = useState('')
+
+  const clearContents = () => {
+    setLoading(true)
+    setUrlTitle('')
+    setUrlDescription('')
+    setUrlImages('')
+  }
 
   const extractUrlInfo = async (url: string) => {
-    console.log('extractUrlInfo -> url', url)
-    const data = await new APIS.Url().postUrlInfo({ url })
-    console.log('extractUrlInfo -> data', data)
+    clearContents()
+
+    const apis = new APIS.Url()
+    const { title, siteName, description, mediaType, images, videos } = await apis.postUrlInfo({
+      url,
+    })
+    if (title) setUrlTitle(title)
+    if (description) setUrlDescription(description)
+    if (siteName) setUrlSiteName(siteName)
+    if (images && images.length) setUrlImages(images[0])
+    setLoading(false)
   }
 
   const { PROGRESS_URL } = config()
 
   return (
     <div>
-      <h1>
-        <BorderOuterOutlined />
-        <InterestCard
-          title="add interest"
-          width="200px"
-          image={`${PROGRESS_URL}/image/add.svg`}
-          description="add interest"
-        />
-        <Search
-          placeholder="Enter url of your current learning material on interests."
-          onSearch={(value: string) => extractUrlInfo(value)}
-          enterButton="Add"
-          size="large"
-        />
-      </h1>
+      <BorderOuterOutlined />
+      <InterestCard
+        title="add interest"
+        width="200px"
+        image={`${PROGRESS_URL}/image/add.svg`}
+        description="add interest"
+      />
+      <Search
+        placeholder="Enter url of your current learning material on interests."
+        onSearch={(value: string) => extractUrlInfo(value)}
+        enterButton="Add"
+        size="large"
+      />
+      <h3>{urlSiteName}</h3>
+      <Card
+        loading={loading}
+        hoverable
+        style={{ width: 560, height: 280 }}
+        cover={<img src={urlImages} />}
+      >
+        <Meta title={urlTitle} description={urlDescription} />
+      </Card>
     </div>
   )
 }

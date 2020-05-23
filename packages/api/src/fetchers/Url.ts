@@ -9,6 +9,7 @@ export class Url extends BaseAPI {
    */
   public async postUrlInfo(request: PostUrlGetInfoRequest): Promise<PostUrlGetInfoResponse> {
     const path = '/v1/url/info'
-    return this.client.post(path, request)
+    const { data } = await this.client.post(path, request)
+    return data
   }
 }
