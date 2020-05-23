@@ -12,9 +12,12 @@
 	"devDependencies": {
 		"lerna": "3.16.4",
 		"nodemon": "^1.19.3",
+		"prettier": "^2.0.5",
 		"ts-node": "^5.0.0",
 		"tslint": "^6.1.2",
+		"tslint-config-prettier": "^1.18.0",
 		"tslint-eslint-rules": "^5.4.0",
+		"tslint-plugin-prettier": "^2.3.0",
 		"typescript": "3.7.2"
 	},
 	"dependencies": {}
