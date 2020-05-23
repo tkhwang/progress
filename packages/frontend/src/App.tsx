@@ -10,23 +10,23 @@ import { Signin } from './components/Signin'
 import './App.css'
 
 function App() {
-	const [uniqueKey, setUniqueKey] = useState(new Date().getTime().toString())
+  const [uniqueKey, setUniqueKey] = useState(new Date().getTime().toString())
 
-	return (
-		<React.Fragment>
-			<ButtonAppBar key={uniqueKey} forceUpdate={setUniqueKey} />
-			<main className='content' style={{ margin: 25 }}>
-				<BrowserRouter>
-					<Switch>
-						<Route path='/token' component={Auth} />
-						<Route path='/signin' component={Signin} />
-						<ProtectedRoute path='/lip' render={() => <Lip forceUpdate={setUniqueKey} />} />
-						<Route exact path='/' component={LandingPage} />
-					</Switch>
-				</BrowserRouter>
-			</main>
-		</React.Fragment>
-	)
+  return (
+    <React.Fragment>
+      <ButtonAppBar key={uniqueKey} forceUpdate={setUniqueKey} />
+      <main className="content" style={{ margin: 25 }}>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/token" component={Auth} />
+            <Route path="/signin" component={Signin} />
+            <ProtectedRoute path="/lip" render={() => <Lip forceUpdate={setUniqueKey} />} />
+            <Route exact path="/" component={LandingPage} />
+          </Switch>
+        </BrowserRouter>
+      </main>
+    </React.Fragment>
+  )
 }
 
 export default App

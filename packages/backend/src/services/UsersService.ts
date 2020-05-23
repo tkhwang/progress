@@ -5,10 +5,10 @@ import { UsersRepository } from '@repositories/UsersRepository'
 
 @Injectable()
 export class UsersService {
-	constructor(@InjectRepository(User) private readonly usersRepository: UsersRepository) {}
+  constructor(@InjectRepository(User) private readonly usersRepository: UsersRepository) {}
 
-	async findOne(username: string): Promise<User | undefined> {
-		return await this.usersRepository.findOne({ where: { username: username } })
-		// return undefined
-	}
+  async findOne(username: string): Promise<User | undefined> {
+    return this.usersRepository.findOne({ where: { username } })
+    // return undefined
+  }
 }

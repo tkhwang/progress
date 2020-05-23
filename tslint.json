@@ -1,6 +1,9 @@
 {
   "extends": ["tslint:latest", "tslint-config-prettier"],
   "rules": {
-    "no-implicit-dependencies": false
+    "semicolon": [true, "never"],
+    "no-implicit-dependencies": false,
+    "no-empty-interface": false,
+    "no-submodule-imports": false
   }
 }

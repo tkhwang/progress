@@ -6,27 +6,27 @@ import config from 'src/config'
 import { InterestCard } from './IntrestCard'
 
 export interface IMeProps {
-	forceUpdate: Function
+  forceUpdate: (time: string) => void
 }
 
 export function Lip(props: IMeProps) {
-	useEffect(() => {
-		props.forceUpdate(new Date().getTime().toString())
-	}, [])
+  useEffect(() => {
+    props.forceUpdate(new Date().getTime().toString())
+  }, [])
 
-	const { PROGRESS_URL } = config()
+  const { PROGRESS_URL } = config()
 
-	return (
-		<div>
-			<h1>
-				<BorderOuterOutlined />
-				<InterestCard
-					title='add interest'
-					width='200px'
-					image={`${PROGRESS_URL}/image/add.svg`}
-					description='add interest'
-				/>
-			</h1>
-		</div>
-	)
+  return (
+    <div>
+      <h1>
+        <BorderOuterOutlined />
+        <InterestCard
+          title="add interest"
+          width="200px"
+          image={`${PROGRESS_URL}/image/add.svg`}
+          description="add interest"
+        />
+      </h1>
+    </div>
+  )
 }

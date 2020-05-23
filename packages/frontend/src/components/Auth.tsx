@@ -3,17 +3,17 @@ import { useEffect } from 'react'
 import { AuthService } from '../services/AuthService'
 
 export interface IAuthProps {
-	location: any
-	history: any
+  location: any
+  history: any
 }
 
 export default function Auth(props: IAuthProps) {
-	useEffect(() => {
-		const values = querystring.parse(props.location.search)
-		if (values && values.token) AuthService.loginWithJwt(values.token as string)
+  useEffect(() => {
+    const values = querystring.parse(props.location.search)
+    if (values && values.token) AuthService.loginWithJwt(values.token as string)
 
-		props.history.replace('/lip')
-	})
+    props.history.replace('/lip')
+  })
 
-	return null
+  return null
 }
