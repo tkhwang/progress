@@ -3,10 +3,8 @@ import config from 'src/config'
 import Modal from 'antd/lib/modal/Modal'
 import React, { useState } from 'react'
 import Search from 'antd/lib/input/Search'
-import { LottieComp } from './LottieComp'
-import animationDataOnlineClass from '../data/21903-online-class-animation.json'
-import animationDataWaiting from '../data/17723-waitting.json'
 import { UniqueKey } from 'src/services/UniqueKey'
+import { APIS } from '@progress/api'
 
 export interface IAddNewInterestCardProps {
   modalVisible: boolean
@@ -28,6 +26,15 @@ export function AddNewInterestCard(props: IAddNewInterestCardProps) {
     props.setModalVisible(false)
   }
 
+  const onRegisterInterest = async (interest: string) => {
+    const apis = new APIS.Interest()
+    try {
+      await apis.postInterest({ interest, user: 1 })
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <div>
       <InterestCard
@@ -47,7 +54,7 @@ export function AddNewInterestCard(props: IAddNewInterestCardProps) {
           key={uniqueKey}
           defaultValue=""
           placeholder="Add fields of interest these days : (eg) python, nlp, typescript, ..."
-          onSearch={value => {}}
+          onSearch={value => onRegisterInterest(value)}
           style={{ width: '100%' }}
         />
       </Modal>
