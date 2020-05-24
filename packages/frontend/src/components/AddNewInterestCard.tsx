@@ -6,6 +6,7 @@ import Search from 'antd/lib/input/Search'
 import { LottieComp } from './LottieComp'
 import animationDataOnlineClass from '../data/21903-online-class-animation.json'
 import animationDataWaiting from '../data/17723-waitting.json'
+import { UniqueKey } from 'src/services/UniqueKey'
 
 export interface IAddNewInterestCardProps {
   modalVisible: boolean
@@ -16,10 +17,14 @@ export interface IAddNewInterestCardProps {
 export function AddNewInterestCard(props: IAddNewInterestCardProps) {
   const { PROGRESS_URL } = config()
 
+  const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
+
   const handleOk = () => {
+    setUniqueKey(UniqueKey.newKey())
     props.setModalVisible(false)
   }
   const handleCancel = () => {
+    setUniqueKey(UniqueKey.newKey())
     props.setModalVisible(false)
   }
 
@@ -39,6 +44,8 @@ export function AddNewInterestCard(props: IAddNewInterestCardProps) {
         onCancel={handleCancel}
       >
         <Search
+          key={uniqueKey}
+          defaultValue=""
           placeholder="Add fields of interest these days : (eg) python, nlp, typescript, ..."
           onSearch={value => {}}
           style={{ width: '100%' }}

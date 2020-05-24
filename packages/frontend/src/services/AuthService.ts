@@ -2,6 +2,7 @@ import jwtDecode from 'jwt-decode'
 import config from 'src/config'
 import http from 'src/services/http'
 import { AUTH_KEY } from '@progress/api/models'
+import { UniqueKey } from './UniqueKey'
 
 export class AuthService {
   /**
@@ -68,6 +69,6 @@ export class AuthService {
     localStorage.removeItem(AUTH_KEY.TOKEN)
     localStorage.removeItem(AUTH_KEY.USER)
 
-    if (forceUpdate) forceUpdate(new Date().getTime().toString())
+    if (forceUpdate) forceUpdate(UniqueKey.newKey())
   }
 }
