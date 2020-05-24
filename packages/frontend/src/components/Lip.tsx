@@ -61,14 +61,11 @@ export function Lip(props: IMeProps) {
         size="large"
       />
       <h3>{urlSiteName}</h3>
-      <Card
-        loading={loading}
-        hoverable
-        style={{ width: 560, height: 280 }}
-        cover={<img src={urlImages} />}
-      >
-        <Meta title={urlTitle} description={urlDescription} />
-      </Card>
+      {urlTitle ? (
+        <Card loading={loading} hoverable style={{ width: '100%' }} cover={<img src={urlImages} />}>
+          <Meta title={urlTitle} description={urlDescription} />
+        </Card>
+      ) : null}
     </div>
   )
 }
