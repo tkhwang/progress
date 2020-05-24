@@ -1,7 +1,11 @@
 import { InterestCard } from './InterestCard'
 import config from 'src/config'
 import Modal from 'antd/lib/modal/Modal'
-import React from 'react'
+import React, { useState } from 'react'
+import Search from 'antd/lib/input/Search'
+import { LottieComp } from './LottieComp'
+import animationDataOnlineClass from '../data/21903-online-class-animation.json'
+import animationDataWaiting from '../data/17723-waitting.json'
 
 export interface IAddNewInterestCardProps {
   modalVisible: boolean
@@ -11,8 +15,13 @@ export interface IAddNewInterestCardProps {
 
 export function AddNewInterestCard(props: IAddNewInterestCardProps) {
   const { PROGRESS_URL } = config()
-  const handleOk = (e: any) => props.setModalVisible(false)
-  const handleCancel = (e: any) => props.setModalVisible(false)
+
+  const handleOk = () => {
+    props.setModalVisible(false)
+  }
+  const handleCancel = () => {
+    props.setModalVisible(false)
+  }
 
   return (
     <div>
@@ -29,9 +38,11 @@ export function AddNewInterestCard(props: IAddNewInterestCardProps) {
         onOk={handleOk}
         onCancel={handleCancel}
       >
-        <p>Some contents...</p>
-        <p>Some contents...</p>
-        <p>Some contents...</p>
+        <Search
+          placeholder="Add fields of interest these days : (eg) python, nlp, typescript, ..."
+          onSearch={value => {}}
+          style={{ width: '100%' }}
+        />
       </Modal>
     </div>
   )
