@@ -1,4 +1,15 @@
+import { Type } from 'class-transformer'
 import { IsDefined, IsNumber, IsString } from 'class-validator'
+import QueryString = require('qs')
+
+export class InterestGetInterestsRequest {
+  @IsDefined()
+  @IsNumber()
+  @Type(() => Number)
+  public user: number
+}
+
+export class InterestGetInterestsResponse {}
 
 export class InterestPostInterestRequest {
   @IsDefined()

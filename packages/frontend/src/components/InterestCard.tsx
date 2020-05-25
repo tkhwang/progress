@@ -7,7 +7,7 @@ export interface IInterestCardProps {
   width: string
   description?: string
   image?: string
-  onClick: () => void
+  onClick?: () => void
 }
 
 export function InterestCard(props: IInterestCardProps) {

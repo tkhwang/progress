@@ -13,6 +13,10 @@ export class InterestRepository extends Repository<Interest> {
     //   .getRawOne()
   }
 
+  async findInterestsByUser(user: number) {
+    return this.find({ where: { createdUser: user } })
+  }
+
   async insertInterest(interest: string, user: number) {
     return getConnection()
       .createQueryBuilder()

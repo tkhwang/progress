@@ -39,7 +39,7 @@ export function AddNewInterestCard(props: IAddNewInterestCardProps) {
     <div>
       <InterestCard
         title="add new interest"
-        width="20%"
+        width="100%"
         image={`${PROGRESS_URL}/image/add2.svg`}
         description="Add fields of interest these days : (eg) python, nlp, typescript, ..."
         onClick={props.onClick}
@@ -53,7 +53,7 @@ export function AddNewInterestCard(props: IAddNewInterestCardProps) {
         <Search
           key={uniqueKey}
           defaultValue=""
-          placeholder="Add fields of interest these days : (eg) python, nlp, typescript, ..."
+          placeholder="Add your interest."
           onSearch={value => onRegisterInterest(value)}
           style={{ width: '100%' }}
         />

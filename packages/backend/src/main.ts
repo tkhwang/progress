@@ -13,7 +13,8 @@ async function bootstrap() {
     }),
   )
   app.use(bodyParser.json())
-  app.use(morgan('[:status]:method :url :response-time ms'))
+  // app.use(morgan('[:status]:method :url :response-time ms'))
+  app.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
   app.enableCors()
 
   const globalPrefix = 'v1'
