@@ -10,10 +10,9 @@ export interface IInterestCardProps {
 export function InterestCard(props: IInterestCardProps) {
   return (
     <>
-      <Card title={`${props.title}`} style={{ width: 300 }}>{`${moment(
-        props.description,
-        'YYYY-MM-DD',
-      )}`}</Card>
+      <Card title={`${props.title}`} style={{ width: 300 }}>
+        {props.description}
+      </Card>
     </>
   )
 }

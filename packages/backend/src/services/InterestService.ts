@@ -4,6 +4,7 @@ import { InterestRepository } from '@repositories/InterestRepository'
 import { Interest, User } from '@progress/orm'
 import { InterestPostInterestErrors } from '@progress/api'
 import { UsersRepository } from '@repositories/UsersRepository'
+import moment from 'moment'
 
 @Injectable()
 export class InterestService {
@@ -16,9 +17,14 @@ export class InterestService {
    * @returns  interests
    */
   async getInterests(user: number) {
-    return this.interestRepository.findInterestsByUser(user)
-    // const interests = await this.interestRepository.findInterestsByUser(user)
-    // return interests.map((interest: any) => interest.interest)
+    // return this.interestRepository.findInterestsByUser(user)
+    const interests = await this.interestRepository.findInterestsByUser(user)
+    return interests.map((interest: any) => {
+      return {
+        interest: interest.interest,
+        createdAt: moment(interest.createdAt, 'YYYY-MM-DD HH:mm').toDate(),
+      }
+    })
   }
 
   /**
