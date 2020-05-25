@@ -6,15 +6,10 @@ export class InterestRepository extends Repository<Interest> {
   async findInterestByUser(interest: string, user: number) {
     // return this.find({ select: ['interest'], where: { createdUser: user } })
     return this.findOne({ where: { interest, createdUser: user } })
-
-    // return this.createQueryBuilder()
-    //   .select('interest')
-    //   .where(`created_user_id = :user`, { user })
-    //   .getRawOne()
   }
 
   async findInterestsByUser(user: number) {
-    return this.find({ where: { createdUser: user } })
+    return this.find({ select: ['interest', 'createdAt'], where: { createdUser: user } })
   }
 
   async insertInterest(interest: string, user: number) {

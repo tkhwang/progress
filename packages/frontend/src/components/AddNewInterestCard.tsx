@@ -1,4 +1,4 @@
-import { InterestCard } from './InterestCard'
+import { InterestDetailCard } from './InterestDetailCard'
 import config from 'src/config'
 import Modal from 'antd/lib/modal/Modal'
 import React, { useState } from 'react'
@@ -37,7 +37,7 @@ export function AddNewInterestCard(props: IAddNewInterestCardProps) {
 
   return (
     <div>
-      <InterestCard
+      <InterestDetailCard
         title="add new interest"
         width="100%"
         image={`${PROGRESS_URL}/image/add2.svg`}

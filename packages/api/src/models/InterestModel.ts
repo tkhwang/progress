@@ -9,7 +9,12 @@ export class InterestGetInterestsRequest {
   public user: number
 }
 
-export class InterestGetInterestsResponse {}
+export type InterestGetInterestsResponse = InterestGetInterestsResult[]
+
+export class InterestGetInterestsResult {
+  public interest: string
+  public createdAt: Date
+}
 
 export class InterestPostInterestRequest {
   @IsDefined()

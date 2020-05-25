@@ -16,8 +16,9 @@ export class InterestService {
    * @returns  interests
    */
   async getInterests(user: number) {
-    const interests = await this.interestRepository.findInterestsByUser(user)
-    return interests.map((interest: any) => interest.interest)
+    return this.interestRepository.findInterestsByUser(user)
+    // const interests = await this.interestRepository.findInterestsByUser(user)
+    // return interests.map((interest: any) => interest.interest)
   }
 
   /**

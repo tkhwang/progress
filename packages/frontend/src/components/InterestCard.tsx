@@ -1,26 +1,19 @@
-import { Card } from 'antd'
-import Meta from 'antd/lib/card/Meta'
 import * as React from 'react'
+import { Card } from 'antd'
+import moment from 'antd/node_modules/moment'
 
 export interface IInterestCardProps {
   title: string
-  width: string
   description?: string
-  image?: string
-  onClick?: () => void
 }
 
 export function InterestCard(props: IInterestCardProps) {
   return (
-    <div>
-      <Card
-        hoverable
-        style={{ width: `${props.width}`, padding: 5 }}
-        cover={<img alt={`${props.title}`} src={`${props.image}`} />}
-        onClick={props.onClick}
-      >
-        <Meta title={`${props.title}`} description={`${props.description}`} />
-      </Card>
-    </div>
+    <>
+      <Card title={`${props.title}`} style={{ width: 300 }}>{`${moment(
+        props.description,
+        'YYYY-MM-DD',
+      )}`}</Card>
+    </>
   )
 }
