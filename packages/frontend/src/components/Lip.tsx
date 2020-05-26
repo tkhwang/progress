@@ -12,8 +12,9 @@ export interface IMeProps {
 
 export function Lip(props: IMeProps) {
   const [modalVisible, setModalVisible] = useState(false)
+  const [interests, setInterests] = useState<string[]>([])
+  const [rawInterests, setRawInterests] = useState([])
 
-  const [interests, setInterests] = useState([])
   useEffect(() => {
     props.forceUpdate(UniqueKey.newKey())
 
@@ -22,27 +23,30 @@ export function Lip(props: IMeProps) {
       const param = new InterestGetInterestsRequest()
       param.user = 1
       const data = await apis.getInterests(param)
-      setInterests(data)
+      const arrayOfInterests = data.map((d: any) => d.interest)
+      console.log('fetchData -> data', data)
+      setRawInterests(data)
+      setInterests([...interests, ...arrayOfInterests])
+      console.log('Lip -> interests', interests)
     }
     fetchData()
-  }, [])
+  }, interests)
 
   return (
     <div>
       <h1>Interests</h1>
       <div className="flexbox-container">
-        {interests.map((interest: InterestGetInterestsResult) => (
-          <InterestCard title={`${interest.interest}`} description={`${interest.createdAt}`} />
+        {rawInterests.map((int: InterestGetInterestsResult) => (
+          <InterestCard title={`${int.interest}`} description={`${int.createdAt}`} />
         ))}
       </div>
       <AddNewInterestCard
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
         onClick={() => setModalVisible(true)}
+        interests={interests}
+        setInterests={setInterests}
       />
-      <hr />
-      <h1>Add New Link</h1>
-      <AddNewLink />
     </div>
   )
 }
