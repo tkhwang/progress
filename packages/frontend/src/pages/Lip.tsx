@@ -79,8 +79,8 @@ export const Lip = observer((props: ILipProps) => {
                 {`Add new`}
               </div>
             ) : (
-              <Title level={3}>
-                <span className="font-do-hyeon">{i}</span>
+              <Title level={4}>
+                <span className="font-roboto-condensed">{i}</span>
               </Title>
             )}
           </Card.Grid>
