@@ -2,16 +2,16 @@ import { APIS, InterestGetInterestsRequest } from '@progress/api'
 import { Card, Input } from 'antd'
 import Modal from 'antd/lib/modal/Modal'
 import Title from 'antd/lib/typography/Title'
+import { observer } from 'mobx-react-lite'
 import React, { CSSProperties, useEffect, useState } from 'react'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { AuthService } from 'src/services/AuthService'
 import { UniqueKey } from 'src/services/UniqueKey'
-
 export interface ILipProps {
   forceUpdate: (time: string) => void
 }
 
-export function Lip(props: ILipProps) {
+export const Lip = observer((props: ILipProps) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
   const [interest, setInterest] = useState('')
@@ -43,6 +43,7 @@ export function Lip(props: ILipProps) {
     width: '33%',
     height: '133px',
     textAlign: 'center',
+    verticalAlign: 'middle',
   }
 
   const handleOk = () => {
@@ -78,7 +79,9 @@ export function Lip(props: ILipProps) {
                 {`Add new`}
               </div>
             ) : (
-              <Title level={3}>{i}</Title>
+              <Title level={3}>
+                <span className="font-do-hyeon">{i}</span>
+              </Title>
             )}
           </Card.Grid>
         ))}
@@ -102,4 +105,4 @@ export function Lip(props: ILipProps) {
       </Modal>
     </div>
   )
-}
+})

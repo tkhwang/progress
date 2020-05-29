@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import './App.css'
+import './App.scss'
 import Auth from './components/Auth'
 import ButtonAppBar from './components/ButtonAppBar'
-import LandingPage from './components/LandingPage'
-import { Lip } from './components/Lip'
 import ProtectedRoute from './components/ProtectedRoute'
 import { Signin } from './components/Signin'
+import { Interests } from './pages/Interests'
+import LandingPage from './pages/LandingPage'
+import { Lip } from './pages/Lip'
 
 function App() {
   const [uniqueKey, setUniqueKey] = useState(new Date().getTime().toString())
@@ -19,7 +20,8 @@ function App() {
           <Switch>
             <Route path="/token" component={Auth} />
             <Route path="/signin" component={Signin} />
-            <ProtectedRoute path="/lip" render={() => <Lip forceUpdate={setUniqueKey} />} />
+            <ProtectedRoute exact path="/lip" render={() => <Lip forceUpdate={setUniqueKey} />} />
+            <ProtectedRoute exact path="/lip/interests" render={() => <Interests />} />
             <Route exact path="/" component={LandingPage} />
           </Switch>
         </BrowserRouter>
