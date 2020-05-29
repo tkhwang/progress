@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import { withRouter, BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import './App.css'
 import Auth from './components/Auth'
 import ButtonAppBar from './components/ButtonAppBar'
 import LandingPage from './components/LandingPage'
-
 import { Lip } from './components/Lip'
 import ProtectedRoute from './components/ProtectedRoute'
 import { Signin } from './components/Signin'
-import './App.css'
 
 function App() {
   const [uniqueKey, setUniqueKey] = useState(new Date().getTime().toString())

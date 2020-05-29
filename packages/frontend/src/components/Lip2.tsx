@@ -1,42 +1,41 @@
-import { APIS, InterestGetInterestsRequest } from '@progress/api'
+import { APIS, InterestGetInterestsRequest, InterestGetInterestsResult } from '@progress/api'
 import React, { useEffect, useState } from 'react'
-import { AuthService } from 'src/services/AuthService'
 import { UniqueKey } from 'src/services/UniqueKey'
 import { AddNewInterestCard } from './AddNewInterestCard'
 import { InterestCard } from './InterestCard'
 
-export interface ILipProps {
+export interface IMeProps {
   forceUpdate: (time: string) => void
 }
 
-export function Lip(props: ILipProps) {
+export function Lip2(props: IMeProps) {
   const [modalVisible, setModalVisible] = useState(false)
   const [interests, setInterests] = useState<string[]>([])
+  const [rawInterests, setRawInterests] = useState([])
 
   useEffect(() => {
     props.forceUpdate(UniqueKey.newKey())
-  }, [])
 
-  useEffect(() => {
     const apis = new APIS.Interest()
     const fetchData = async () => {
-      const user: any = AuthService.getCurrentUser()
-      if (user) {
-        const params = new InterestGetInterestsRequest()
-        params.user = user.id
-        const data = await apis.getInterests(params)
-        setInterests([...interests, ...data.map((d: any) => d.interest)])
-      }
+      const param = new InterestGetInterestsRequest()
+      param.user = 1
+      const [data, error] = await apis.getInterests(param)
+      const arrayOfInterests = data.map((d: any) => d.interest)
+      console.log('fetchData -> data', data)
+      setRawInterests(data)
+      setInterests([...interests, ...arrayOfInterests])
+      console.log('Lip -> interests', interests)
     }
     fetchData()
   }, interests)
 
   return (
     <div>
-      <h1>Interest</h1>
+      <h1>Interests</h1>
       <div className="flexbox-container">
-        {interests.map((i: any) => (
-          <InterestCard title={i} />
+        {rawInterests.map((int: InterestGetInterestsResult) => (
+          <InterestCard title={`${int.interest}`} description={`${int.createdAt}`} />
         ))}
       </div>
       <AddNewInterestCard

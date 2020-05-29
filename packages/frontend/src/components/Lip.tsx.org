@@ -1,0 +1,52 @@
+import React, { useEffect, useState } from 'react'
+import { AddNewInterestCard } from './AddNewInterestCard'
+import { APIS, InterestGetInterestsRequest, InterestGetInterestsResult } from '@progress/api'
+import { UniqueKey } from 'src/services'
+import { InterestCard } from './InterestCard'
+import { AuthService } from 'src/services/AuthService'
+
+export interface IMeProps {
+  forceUpdate: (time: string) => void
+}
+
+export function Lip(props: IMeProps) {
+  const [modalVisible, setModalVisible] = useState(false)
+  const [interests, setInterests] = useState<string[]>([])
+  const [rawInterests, setRawInterests] = useState([])
+
+  useEffect(() => {
+    props.forceUpdate(UniqueKey.newKey())
+
+    const apis = new APIS.Interest()
+    const fetchData = async () => {
+      const user: any = AuthService.getCurrentUser()
+      const param = new InterestGetInterestsRequest()
+      param.user = user && user.id
+      const data = await apis.getInterests(param)
+      const arrayOfInterests = data.map((d: any) => d.interest)
+      setRawInterests(data)
+      setInterests([...interests, ...arrayOfInterests])
+    }
+    fetchData()
+  }, interests)
+
+  return (
+    (Interests as h1 as div)</h1>
+      <div className="flexbox-container">
+        {rawInterests.map((int: InterestGetInterestsResult) => (
+          title as InterestCard={`${int.interest}`} description={`${int.createdAt}`} />
+        ))}
+        {interests.map((int: any) => (
+          title as InterestCard={`${int.interest}`} description={`${int.createdAt}`} />
+        ))}
+      (/div> as )
+      <AddNewInterestCard
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+        onClick={() => setModalVisible(true)}
+        interests={interests}
+        setInterests={setInterests}
+      />
+    (/div> as )
+  )
+}
