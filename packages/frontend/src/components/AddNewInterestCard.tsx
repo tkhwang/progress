@@ -1,11 +1,11 @@
-import { InterestDetailCard } from './InterestDetailCard'
-import config from 'src/config'
-import Modal from 'antd/lib/modal/Modal'
-import React, { useState } from 'react'
-import { UniqueKey } from 'src/services/UniqueKey'
 import { APIS } from '@progress/api'
 import Input from 'antd/lib/input'
+import Modal from 'antd/lib/modal/Modal'
+import React, { useState } from 'react'
+import config from 'src/config'
 import { AuthService } from 'src/services/AuthService'
+import { UniqueKey } from 'src/services/UniqueKey'
+import { InterestDetailCard } from './InterestDetailCard'
 
 export interface IAddNewInterestCardProps {
   modalVisible: boolean
@@ -24,7 +24,11 @@ export function AddNewInterestCard(props: IAddNewInterestCardProps) {
   const handleOk = () => {
     setUniqueKey(UniqueKey.newKey())
     props.setModalVisible(false)
-    props.setInterests([...props.interests, interest])
+    props.setInterests([
+      ...props.interests.filter((d: string) => d !== 'Add new'),
+      interest,
+      'Add new',
+    ])
   }
 
   const handleCancel = () => {
