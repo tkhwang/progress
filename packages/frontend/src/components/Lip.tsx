@@ -1,9 +1,9 @@
 import { APIS, InterestGetInterestsRequest } from '@progress/api'
-import React, { useEffect, useState } from 'react'
+import { Card } from 'antd'
+import React, { CSSProperties, useEffect, useState } from 'react'
 import { AuthService } from 'src/services/AuthService'
 import { UniqueKey } from 'src/services/UniqueKey'
 import { AddNewInterestCard } from './AddNewInterestCard'
-import { InterestCard } from './InterestCard'
 
 export interface ILipProps {
   forceUpdate: (time: string) => void
@@ -31,14 +31,18 @@ export function Lip(props: ILipProps) {
     fetchData()
   }, interests)
 
+  const gridStyle: CSSProperties = {
+    width: '33%',
+    textAlign: 'center',
+  }
+
   return (
     <div>
-      <h1>Interest</h1>
-      <div className="flexbox-container">
+      <Card title="Interest">
         {interests.map((i: any) => (
-          <InterestCard title={i} />
+          <Card.Grid style={gridStyle}>{i}</Card.Grid>
         ))}
-      </div>
+      </Card>
       <AddNewInterestCard
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}

@@ -1,6 +1,5 @@
-import * as React from 'react'
 import { Card } from 'antd'
-import moment from 'antd/node_modules/moment'
+import * as React from 'react'
 
 export interface IInterestCardProps {
   title: string
@@ -11,7 +10,7 @@ export function InterestCard(props: IInterestCardProps) {
   return (
     <>
       <Card title={`${props.title}`} style={{ width: 300 }}>
-        {props.description}
+        {props && props.description && props.description}
       </Card>
     </>
   )
