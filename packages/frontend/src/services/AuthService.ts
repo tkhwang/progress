@@ -1,7 +1,7 @@
+import { AUTH_KEY, UserJwtModel } from '@progress/api'
 import jwtDecode from 'jwt-decode'
 import config from 'src/config'
 import http from 'src/services/http'
-import { AUTH_KEY } from '@progress/api/models'
 import { UniqueKey } from './UniqueKey'
 
 export class AuthService {
@@ -31,7 +31,7 @@ export class AuthService {
     localStorage.setItem(AUTH_KEY.USER, JSON.stringify(jwtData))
   }
 
-  static getCurrentUser(): string | null {
+  static getCurrentUser(): UserJwtModel | null {
     try {
       const jwt = localStorage.getItem(AUTH_KEY.TOKEN)
       return jwt ? jwtDecode(jwt) : null

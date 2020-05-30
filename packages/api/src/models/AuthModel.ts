@@ -4,12 +4,14 @@ export enum OAuthProvider {
   GOOGLE = 'google',
 }
 
-export interface UserJwt {
-  id: number
-  name?: string
-  provider: string
-  providerId?: string
-  iss: string
+export class UserJwtModel {
+  public id: number
+  public name?: string
+  public email?: string
+  public imag_url?: string
+  public provider: string
+  public providerId?: string
+  public iss: string
 }
 
 // export type PassportUserExt =
