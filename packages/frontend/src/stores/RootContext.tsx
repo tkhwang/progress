@@ -26,14 +26,15 @@ export default ({ children }: { children: any }) => {
     const newUser = AuthService.getCurrentUser() || null
     setUser(newUser)
     setAuthenticated(newUser ? true : false)
-  }, [])
+  }, [authenticated])
 
   useEffect(() => {
     const apis = new APIS.Interest()
     const fetchData = async () => {
-      if (user) {
+      const newUser = AuthService.getCurrentUser() || null
+      if (newUser) {
         const params = new InterestGetInterestsRequest()
-        params.user = user.id
+        params.user = newUser.id
         const data = await apis.getInterests(params)
         setInterests([
           ...interests.filter((d: string) => d !== 'Add new'),
