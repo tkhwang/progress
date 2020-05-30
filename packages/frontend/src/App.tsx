@@ -33,7 +33,7 @@ function App() {
       }
     }
     fetchData()
-  }, interests)
+  }, [...interests])
 
   // <InterestsContext.Provider value={{ interests }}>
   // </InterestsContext.Provider>
