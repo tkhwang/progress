@@ -37,7 +37,6 @@ export default ({ children }: { children: any }) => {
         setInterests([
           ...interests.filter((d: string) => d !== 'Add new'),
           ...data.filter((d: any) => d !== 'Add new').map((d: any) => d.interest),
-          'Add new',
         ])
       }
     }

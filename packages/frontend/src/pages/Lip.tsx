@@ -4,6 +4,7 @@ import Modal from 'antd/lib/modal/Modal'
 import Title from 'antd/lib/typography/Title'
 import React, { CSSProperties, useEffect, useState } from 'react'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
+import { NavLink } from 'react-router-dom'
 import { AuthService } from 'src/services/AuthService'
 import { UniqueKey } from 'src/services/UniqueKey'
 
@@ -79,9 +80,11 @@ export const Lip = (props: ILipProps) => {
                 {`Add new`}
               </div>
             ) : (
-              <Title level={4}>
-                <span className="font-roboto-condensed">{i}</span>
-              </Title>
+              <NavLink to={`/lip/interests?interest=${i}`}>
+                <Title level={4}>
+                  <span className="font-roboto-condensed">{i}</span>
+                </Title>
+              </NavLink>
             )}
           </Card.Grid>
         ))}

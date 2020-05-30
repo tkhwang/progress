@@ -1,15 +1,36 @@
-import React, { useContext } from 'react'
+import { Tabs } from 'antd'
+import querystring from 'query-string'
+import React, { useContext, useEffect, useState } from 'react'
 import { RootContext } from 'src/stores/RootContext'
 
-export interface IInterestsProps {}
+const { TabPane } = Tabs
+export interface IInterestsProps {
+  location?: any
+  history?: any
+}
 
 export const Interests = (props: IInterestsProps) => {
   const { interests } = useContext(RootContext)
+  const [active, setActive] = useState('')
+
+  const onChange = (interest: string) => {
+    setActive(interest)
+  }
+
+  useEffect(() => {
+    const { interest } = querystring.parse(props.location.search)
+    if (interest) setActive(interest as string)
+  }, [])
 
   return (
     <div>
-      <h1>Interests detail page</h1>
-      {interests.map((i: string) => i)}
+      <Tabs activeKey={active} onChange={onChange} type="card">
+        {interests.map((interest: string) => (
+          <TabPane tab={interest} key={interest}>
+            Content of Tab Pane 1
+          </TabPane>
+        ))}
+      </Tabs>
     </div>
   )
 }

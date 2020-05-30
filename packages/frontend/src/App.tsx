@@ -46,7 +46,7 @@ function App() {
             <Route path="/token" component={Auth} />
             <Route path="/signin" component={Signin} />
             <ProtectedRoute exact path="/lip" render={() => <Lip forceUpdate={setUniqueKey} />} />
-            <ProtectedRoute exact path="/lip/interests" render={() => <Interests />} />
+            <ProtectedRoute exact path="/lip/interests" component={Interests} />
             <Route exact path="/" component={LandingPage} />
           </Switch>
         </BrowserRouter>
