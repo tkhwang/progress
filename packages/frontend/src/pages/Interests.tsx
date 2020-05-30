@@ -1,10 +1,10 @@
 import React, { useContext } from 'react'
-import { InterestsContext } from '../App'
+import { RootContext } from 'src/stores/RootContext'
 
 export interface IInterestsProps {}
 
 export const Interests = (props: IInterestsProps) => {
-  const { interests } = useContext(InterestsContext)
+  const { interests } = useContext(RootContext)
 
   return (
     <div>

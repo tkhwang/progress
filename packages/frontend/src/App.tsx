@@ -4,11 +4,11 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.scss'
 import Auth from './components/Auth'
 import ButtonAppBar from './components/ButtonAppBar'
-import ProtectedRoute from './components/ProtectedRoute'
 import { Signin } from './components/Signin'
 import { Interests } from './pages/Interests'
 import LandingPage from './pages/LandingPage'
 import { Lip } from './pages/Lip'
+import ProtectedRoute from './routers/ProtectedRoute'
 import { AuthService } from './services/AuthService'
 
 export const InterestsContext = createContext<{ interests: string[] }>({ interests: [] })
@@ -35,6 +35,8 @@ function App() {
     fetchData()
   }, interests)
 
+  // <InterestsContext.Provider value={{ interests }}>
+  // </InterestsContext.Provider>
   return (
     <React.Fragment>
       <ButtonAppBar key={uniqueKey} forceUpdate={setUniqueKey} />
@@ -43,10 +45,8 @@ function App() {
           <Switch>
             <Route path="/token" component={Auth} />
             <Route path="/signin" component={Signin} />
-            <InterestsContext.Provider value={{ interests }}>
-              <ProtectedRoute exact path="/lip" render={() => <Lip forceUpdate={setUniqueKey} />} />
-              <ProtectedRoute exact path="/lip/interests" render={() => <Interests />} />
-            </InterestsContext.Provider>
+            <ProtectedRoute exact path="/lip" render={() => <Lip forceUpdate={setUniqueKey} />} />
+            <ProtectedRoute exact path="/lip/interests" render={() => <Interests />} />
             <Route exact path="/" component={LandingPage} />
           </Switch>
         </BrowserRouter>
