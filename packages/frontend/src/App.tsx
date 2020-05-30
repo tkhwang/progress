@@ -2,9 +2,9 @@ import { APIS, InterestGetInterestsRequest } from '@progress/api'
 import React, { createContext, useEffect, useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.scss'
-import Auth from './components/Auth'
 import ButtonAppBar from './components/ButtonAppBar'
 import { Signin } from './components/Signin'
+import Auth from './pages/Auth'
 import { Interests } from './pages/Interests'
 import LandingPage from './pages/LandingPage'
 import { Lip } from './pages/Lip'
@@ -45,9 +45,16 @@ function App() {
           <Switch>
             <Route path="/token" component={Auth} />
             <Route path="/signin" component={Signin} />
-            <ProtectedRoute exact path="/lip" render={() => <Lip forceUpdate={setUniqueKey} />} />
-            <ProtectedRoute exact path="/lip/interests" component={Interests} />
-            <Route exact path="/" component={LandingPage} />
+            <ProtectedRoute exact path="/interests" component={Interests} />
+            <Route
+              exact
+              path="/"
+              render={
+                AuthService.getCurrentUser()
+                  ? () => <Lip forceUpdate={setUniqueKey} />
+                  : () => <LandingPage />
+              }
+            />
           </Switch>
         </BrowserRouter>
       </main>

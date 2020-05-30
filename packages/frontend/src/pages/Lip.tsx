@@ -80,7 +80,7 @@ export const Lip = (props: ILipProps) => {
                 {`Add new`}
               </div>
             ) : (
-              <NavLink to={`/lip/interests?interest=${i}`}>
+              <NavLink to={`/interests?interest=${i}`}>
                 <Title level={4}>
                   <span className="font-roboto-condensed">{i}</span>
                 </Title>

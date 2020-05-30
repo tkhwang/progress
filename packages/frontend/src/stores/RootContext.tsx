@@ -20,12 +20,13 @@ export default ({ children }: { children: any }) => {
   const [user, setUser] = useState(preUser)
   const [authenticated, setAuthenticated] = useState(preUser ? true : false)
   const [interests, setInterests] = useState<string[]>([])
+  console.log('interests', interests)
 
   useEffect(() => {
     const newUser = AuthService.getCurrentUser() || null
     setUser(newUser)
     setAuthenticated(newUser ? true : false)
-  }, [authenticated])
+  }, [])
 
   useEffect(() => {
     const apis = new APIS.Interest()
