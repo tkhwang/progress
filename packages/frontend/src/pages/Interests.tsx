@@ -1,6 +1,7 @@
 import { Tabs } from 'antd'
 import querystring from 'query-string'
 import React, { useContext, useEffect, useState } from 'react'
+import { AddNewInterest } from 'src/components/AddNewInterest'
 import { RootContext } from 'src/stores/RootContext'
 
 const { TabPane } = Tabs
@@ -27,7 +28,7 @@ export const Interests = (props: IInterestsProps) => {
       <Tabs activeKey={active} onChange={onChange} type="card">
         {interests.map((interest: string) => (
           <TabPane tab={interest} key={interest}>
-            Content of Tab Pane 1
+            <AddNewInterest />
           </TabPane>
         ))}
       </Tabs>
