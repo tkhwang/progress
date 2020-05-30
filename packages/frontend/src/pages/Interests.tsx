@@ -81,7 +81,6 @@ export const Interests = (props: IInterestsProps) => {
       </Tabs>
       <Modal
         title="Add new resource"
-        width="60%"
         visible={modalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
