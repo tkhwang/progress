@@ -8,6 +8,13 @@ import { NavLink } from 'react-router-dom'
 import { AuthService } from 'src/services/AuthService'
 import { UniqueKey } from 'src/services/UniqueKey'
 
+const gridStyle: CSSProperties = {
+  width: '33%',
+  height: '133px',
+  textAlign: 'center',
+  verticalAlign: 'middle',
+}
+
 export interface ILipProps {
   forceUpdate: (time: string) => void
 }
@@ -39,13 +46,6 @@ export const Lip = (props: ILipProps) => {
     }
     fetchData()
   }, interests)
-
-  const gridStyle: CSSProperties = {
-    width: '33%',
-    height: '133px',
-    textAlign: 'center',
-    verticalAlign: 'middle',
-  }
 
   const handleOk = () => {
     setUniqueKey(UniqueKey.newKey())
