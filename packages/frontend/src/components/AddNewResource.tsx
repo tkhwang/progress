@@ -9,6 +9,7 @@ import { RootContext } from 'src/stores/RootContext'
 const { TextArea } = Input
 
 export interface IAddNewResourceProps {
+  key: string
   visible: boolean
   onOk: () => void
   onCancel: () => void
@@ -105,25 +106,30 @@ export function AddNewResource(props: IAddNewResourceProps) {
               <Row>
                 <Col span={5}>Site</Col>
                 <Col span={19}>
-                  <h3>{urlSiteName}</h3>
+                  <h3 key={props.key}>{urlSiteName}</h3>
                 </Col>
               </Row>
               <Row>
                 <Col span={5}>Url</Col>
                 <Col span={19}>
-                  <h3>{url}</h3>
+                  <h3 key={props.key}>{url}</h3>
                 </Col>
               </Row>
               <Row>
                 <Col span={5}>Title</Col>
                 <Col span={19}>
-                  <TextArea value={urlTitle} onChange={e => setUrlTitle(e.target.value)} />
+                  <TextArea
+                    key={props.key}
+                    value={urlTitle}
+                    onChange={e => setUrlTitle(e.target.value)}
+                  />
                 </Col>
               </Row>
               <Row>
                 <Col span={5}>Description</Col>
                 <Col span={19}>
                   <TextArea
+                    key={props.key}
                     value={urlDescription}
                     onChange={e => setUrlDescription(e.target.value)}
                   />
@@ -133,6 +139,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
                 <Col span={5}>Date</Col>
                 <Col span={19}>
                   <Input
+                    key={props.key}
                     value={moment().format('YYYY-MM-DD HH:mm')}
                     onChange={e => setUrlDescription(e.target.value)}
                   />

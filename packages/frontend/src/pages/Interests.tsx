@@ -1,5 +1,5 @@
 import { ResourceCardModel } from '@progress/api/models'
-import { Card, Tabs } from 'antd'
+import { Card, Modal, Tabs } from 'antd'
 import querystring from 'query-string'
 import React, { CSSProperties, useContext, useEffect, useState } from 'react'
 import { AddNewResource } from 'src/components/AddNewResource'
@@ -49,6 +49,9 @@ export const Interests = (props: IInterestsProps) => {
 
   const handleOk = () => {
     onRegister()
+    Modal.success({
+      content: `New resource was added.`,
+    })
     setUniqueKey(UniqueKey.newKey())
     setModalVisible(false)
   }
@@ -72,7 +75,12 @@ export const Interests = (props: IInterestsProps) => {
           </div>
         ))}
       </Tabs>
-      <AddNewResource visible={modalVisible} onOk={handleOk} onCancel={handleCancel} />
+      <AddNewResource
+        key={uniqueKey}
+        visible={modalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      />
     </div>
   )
 }

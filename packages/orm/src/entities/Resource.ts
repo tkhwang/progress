@@ -1,3 +1,4 @@
+import { Interest } from '@progress/orm'
 import {
   BaseEntity,
   Column,
@@ -6,12 +7,15 @@ import {
   Index,
   JoinColumn,
   ManyToOne,
+  OneToOne,
   PrimaryGeneratedColumn,
+  Unique,
   UpdateDateColumn,
 } from 'typeorm'
 import { User } from '.'
 
 @Entity()
+@Unique([''])
 export class Resource extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number
@@ -20,6 +24,10 @@ export class Resource extends BaseEntity {
   @ManyToOne(type => User)
   @JoinColumn({ name: 'created_user_id' })
   public createdUser: User
+
+  @OneToOne(type => Interest)
+  @JoinColumn()
+  public interest: Interest
 
   @Column('varchar', { length: 1024, comment: 'url' })
   public url?: string
