@@ -1,5 +1,5 @@
 import { APIS } from '@progress/api'
-import { Card, Col, Input, Row } from 'antd'
+import { Card, Col, Input, Modal, Row } from 'antd'
 import Meta from 'antd/lib/card/Meta'
 import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
@@ -7,96 +7,123 @@ import React, { useState } from 'react'
 
 const { TextArea } = Input
 
-export interface IAddNewResourceProps {}
+export interface IAddNewResourceProps {
+  visible: boolean
+  onOk: () => void
+  onCancel: () => void
+}
 
 export function AddNewResource(props: IAddNewResourceProps) {
   const [loading, setLoading] = useState(false)
+  const [url, setUrl] = useState('')
   const [urlTitle, setUrlTitle] = useState('')
-  const [, setInputUrlTitle] = useState('')
   const [urlDescription, setUrlDescription] = useState('')
-  const [, setInputUrlDescription] = useState('')
   const [urlSiteName, setUrlSiteName] = useState('')
   const [urlImages, setUrlImages] = useState('')
+  const [urlMediaType, setUrlMediaType] = useState('')
+  const [urlContentType, setUrlContentType] = useState('')
 
   const clearContents = () => {
     setLoading(true)
+    setUrl('')
     setUrlTitle('')
     setUrlDescription('')
     setUrlImages('')
+    setUrlMediaType('')
+    setUrlContentType('')
+  }
+
+  const handleOk = () => {
+    props.onOk()
   }
 
   const extractUrlInfo = async (url: string) => {
     clearContents()
 
     const apis = new APIS.Url()
-    const { title, siteName, description, mediaType, images, videos } = await apis.postUrlInfo({
-      url,
-    })
-    if (title) {
-      setUrlTitle(title)
-      setInputUrlTitle(title)
-    }
-    if (description) {
-      setUrlDescription(description)
-      setInputUrlDescription(description)
-    }
+    const { title, siteName, description, images, mediaType, contentType } = await apis.postUrlInfo(
+      {
+        url,
+      },
+    )
+
+    setUrl(url)
+    if (title) setUrlTitle(title)
+    if (description) setUrlDescription(description)
     if (siteName) setUrlSiteName(siteName)
     if (images && images.length) setUrlImages(images[0])
+    if (mediaType) setUrlMediaType(mediaType)
+    if (contentType) setUrlContentType(contentType)
+
     setLoading(false)
   }
+
   return (
     <div>
-      <Search
-        placeholder="Enter url of your current learning material on interests."
-        onSearch={(value: string) => extractUrlInfo(value)}
-        enterButton="check"
-        size="large"
-      />
+      <Modal
+        title="Add new resource"
+        visible={props.visible}
+        onOk={handleOk}
+        onCancel={props.onCancel}
+      >
+        <Search
+          placeholder="Enter url of your current learning material on interests."
+          onSearch={(value: string) => extractUrlInfo(value)}
+          enterButton="check"
+          size="large"
+        />
 
-      {urlTitle ? (
-        <React.Fragment>
-          <Card
-            loading={loading}
-            hoverable
-            style={{ width: '100%' }}
-            cover={<img src={urlImages} />}
-          >
-            <Meta className={urlSiteName} title={urlTitle} description={urlDescription} />
-          </Card>
-          <div style={{ margin: '20px' }}>
-            <Row>
-              <Col span={4}>Site</Col>
-              <Col span={20}>
-                <h3>{urlSiteName}</h3>
-              </Col>
-            </Row>
-            <Row>
-              <Col span={4}>Title</Col>
-              <Col span={20}>
-                <TextArea value={urlTitle} onChange={e => setUrlTitle(e.target.value)} />
-              </Col>
-            </Row>
-            <Row>
-              <Col span={4}>Description</Col>
-              <Col span={20}>
-                <TextArea
-                  value={urlDescription}
-                  onChange={e => setUrlDescription(e.target.value)}
-                />
-              </Col>
-            </Row>
-            <Row>
-              <Col span={4}>Date</Col>
-              <Col span={20}>
-                <Input
-                  value={moment().format('YYYY-MM-DD HH:mm')}
-                  onChange={e => setUrlDescription(e.target.value)}
-                />
-              </Col>
-            </Row>
-          </div>
-        </React.Fragment>
-      ) : null}
+        {urlTitle ? (
+          <React.Fragment>
+            <Card
+              loading={loading}
+              hoverable
+              style={{ width: '100%' }}
+              cover={<img src={urlImages} />}
+            >
+              <Meta className={urlSiteName} title={urlTitle} description={urlDescription} />
+            </Card>
+            <div style={{ margin: '20px' }}>
+              <Row>
+                <Col span={5}>Site</Col>
+                <Col span={19}>
+                  <h3>{urlSiteName}</h3>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={5}>Url</Col>
+                <Col span={19}>
+                  <h3>{url}</h3>
+                </Col>
+              </Row>
+              <Row>
+                <Col span={5}>Title</Col>
+                <Col span={19}>
+                  <TextArea value={urlTitle} onChange={e => setUrlTitle(e.target.value)} />
+                </Col>
+              </Row>
+              <Row>
+                <Col span={5}>Description</Col>
+                <Col span={19}>
+                  <TextArea
+                    value={urlDescription}
+                    onChange={e => setUrlDescription(e.target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col span={5}>Date</Col>
+                <Col span={19}>
+                  <Input
+                    value={moment().format('YYYY-MM-DD HH:mm')}
+                    onChange={e => setUrlDescription(e.target.value)}
+                  />
+                </Col>
+              </Row>
+            </div>
+          </React.Fragment>
+        ) : null}
+      </Modal>
     </div>
   )
 }

@@ -1,4 +1,5 @@
-import { Card, Modal, Tabs } from 'antd'
+import { InterestResourceCardModel } from '@progress/api/models'
+import { Card, Tabs } from 'antd'
 import querystring from 'query-string'
 import React, { CSSProperties, useContext, useEffect, useState } from 'react'
 import { AddNewResource } from 'src/components/AddNewResource'
@@ -23,18 +24,17 @@ const gridStyle: CSSProperties = {
 
 export const Interests = (props: IInterestsProps) => {
   const { PROGRESS_URL } = config()
-
   const { interests } = useContext(RootContext)
+
+  const [modalVisible, setModalVisible] = useState(false)
+  const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
   const [active, setActive] = useState('')
-  const [resources, setResources] = useState<InterestResourceCardModel[]>([
+  const [resources] = useState<InterestResourceCardModel[]>([
     {
       title: `+ Add new resource`,
       // images: [`${PROGRESS_URL}/image/cloud-computing.png`],
     },
   ])
-
-  const [modalVisible, setModalVisible] = useState(false)
-  const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
 
   useEffect(() => {
     const { interest } = querystring.parse(props.location.search)
@@ -45,7 +45,10 @@ export const Interests = (props: IInterestsProps) => {
     setActive(interest)
   }
 
+  const onRegister = () => {}
+
   const handleOk = () => {
+    onRegister()
     setUniqueKey(UniqueKey.newKey())
     setModalVisible(false)
   }
@@ -55,7 +58,6 @@ export const Interests = (props: IInterestsProps) => {
     setModalVisible(false)
   }
 
-  // <AddNewInterest />
   return (
     <div>
       <Tabs activeKey={active} onChange={onChange} type="card">
@@ -64,38 +66,13 @@ export const Interests = (props: IInterestsProps) => {
         ))}
         {resources.map((resource: InterestResourceCardModel) => (
           <div onClick={() => setModalVisible(true)}>
-            <Card
-              cover={
-                resource.images && resource.images.length ? (
-                  <img src={`${resource.images[0]}`} />
-                ) : (
-                  ''
-                )
-              }
-              style={gridStyle}
-            >
+            <Card cover={resource.image ? <img src={`${resource.image}`} /> : ''} style={gridStyle}>
               <Meta title={resource.title} description={resource.description} />
             </Card>
           </div>
         ))}
       </Tabs>
-      <Modal
-        title="Add new resource"
-        visible={modalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
-        <AddNewResource key={uniqueKey} />
-      </Modal>
+      <AddNewResource visible={modalVisible} onOk={handleOk} onCancel={handleCancel} />
     </div>
   )
-}
-
-export interface InterestResourceCardModel {
-  title: string
-  siteName?: string
-  description?: string
-  mediaType?: string
-  images?: string[]
-  videos?: string
 }

@@ -8,11 +8,12 @@ export class PostUrlGetInfoRequest {
 
 export class PostUrlGetInfoResponse {
   public url: string
-  public title?: any
-  public siteName?: any
-  public description?: any
-  public mediaType?: any
+  public mediaType?: string
   public contentType?: string
+  public favicons: string[]
+  public title?: string
+  public siteName?: string
+  public description?: string
   public images?: string[]
   public videos?: Array<{
     url: any;
@@ -21,5 +22,15 @@ export class PostUrlGetInfoResponse {
     width: any;
     height: any;
   }>
-  public favicons?: any[]
+}
+
+export class InterestResourceCardModel {
+  public url?: string
+  public mediaType?: string
+  public contentType?: string
+  public favicons?: string[]
+  public title?: string
+  public siteName?: string
+  public description?: string
+  public image?: string
 }
