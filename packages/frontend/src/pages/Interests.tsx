@@ -1,3 +1,4 @@
+import { Paper } from '@material-ui/core'
 import { Card, Modal, Tabs } from 'antd'
 import querystring from 'query-string'
 import React, { CSSProperties, useContext, useEffect, useState } from 'react'
@@ -64,18 +65,19 @@ export const Interests = (props: IInterestsProps) => {
         ))}
         {resources.map((resource: InterestResourceCardModel) => (
           <div onClick={() => setModalVisible(true)}>
-            <Card
-              cover={
-                resource.images && resource.images.length ? (
-                  <img src={`${resource.images[0]}`} />
-                ) : (
-                  ''
-                )
-              }
-              style={gridStyle}
-            >
-              <Meta title={resource.title} description={resource.description} />
-            </Card>
+            <Paper>
+              <Card
+                cover={
+                  resource.images && resource.images.length ? (
+                    <img src={`${resource.images[0]}`} />
+                  ) : (
+                    ''
+                  )
+                }
+              >
+                <Meta title={resource.title} description={resource.description} />
+              </Card>
+            </Paper>
           </div>
         ))}
       </Tabs>
