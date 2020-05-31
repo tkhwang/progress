@@ -18,6 +18,7 @@ export class Interest extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number
 
+  @Index()
   @Column('varchar', { length: 300, comment: 'name' })
   public interest: string
 

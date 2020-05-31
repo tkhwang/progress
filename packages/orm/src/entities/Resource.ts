@@ -3,30 +3,24 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-  Index,
   JoinColumn,
   ManyToOne,
-  OneToOne,
   PrimaryGeneratedColumn,
-  Unique,
   UpdateDateColumn,
 } from 'typeorm'
-import { User } from '.'
 import { Interest } from './Interest'
+import { User } from './User'
 
 @Entity()
-@Unique([''])
 export class Resource extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number
 
-  @Index()
   @ManyToOne(type => User)
   @JoinColumn({ name: 'created_user_id' })
   public createdUser: User
 
-  @OneToOne(type => Interest)
-  @JoinColumn()
+  @Column('varchar', { length: 300, comment: 'interest' })
   public interest: Interest
 
   @Column('varchar', { length: 1024, comment: 'url' })
