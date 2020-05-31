@@ -1,4 +1,3 @@
-import { Interest } from '@progress/orm'
 import {
   BaseEntity,
   Column,
@@ -13,6 +12,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm'
 import { User } from '.'
+import { Interest } from './Interest'
 
 @Entity()
 @Unique([''])
