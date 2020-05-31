@@ -1,10 +1,10 @@
-import { Controller, Post, Body, Get, Query } from '@nestjs/common'
-import { InterestService } from '@services/InterestService'
+import { Body, Controller, Get, Post, Query } from '@nestjs/common'
 import {
-  InterestPostInterestRequest,
   InterestGetInterestsRequest,
   InterestGetInterestsResponse,
+  InterestPostInterestRequest,
 } from '@progress/api'
+import { InterestService } from '@services/InterestService'
 
 @Controller('interest')
 export class InterestController {
@@ -18,7 +18,7 @@ export class InterestController {
   }
 
   @Post('/')
-  async posInterest(@Body() params: InterestPostInterestRequest) {
+  async postInterest(@Body() params: InterestPostInterestRequest) {
     return this.interestService.postInterest(params.interest, params.user)
   }
 }

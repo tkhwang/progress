@@ -1,4 +1,5 @@
 export * from './AuthModel'
+export * from './InterestModel'
+export * from './ResourceModel'
 export * from './TaskModel'
 export * from './UrlModel'
-export * from './InterestModel'

@@ -1,4 +1,4 @@
-import { APIS } from '@progress/api'
+import { APIS, PostResourceRequest } from '@progress/api'
 import { Card, Col, Input, Modal, Row } from 'antd'
 import Meta from 'antd/lib/card/Meta'
 import Search from 'antd/lib/input/Search'
@@ -33,17 +33,13 @@ export function AddNewResource(props: IAddNewResourceProps) {
     setUrlContentType('')
   }
 
-  const handleOk = () => {
-    props.onOk()
-  }
-
-  const extractUrlInfo = async (url: string) => {
+  const extractUrlInfo = async (givenUrl: string) => {
     clearContents()
 
     const apis = new APIS.Url()
     const { title, siteName, description, images, mediaType, contentType } = await apis.postUrlInfo(
       {
-        url,
+        url: givenUrl,
       },
     )
 
@@ -56,6 +52,23 @@ export function AddNewResource(props: IAddNewResourceProps) {
     if (contentType) setUrlContentType(contentType)
 
     setLoading(false)
+  }
+
+  const registerNewResource = async () => {
+    const params = new PostResourceRequest()
+    if (url) params.url = url
+    if (urlTitle) params.title = urlTitle
+    if (urlDescription) params.description = urlDescription
+    if (urlSiteName) params.siteName = urlSiteName
+    if (urlImages) params.image = urlImages
+    if (urlMediaType) params.mediaType = urlMediaType
+    if (urlContentType) params.contentType = urlContentType
+    await new APIS.Resource().postInterest(params)
+  }
+
+  const handleOk = () => {
+    registerNewResource()
+    props.onOk()
   }
 
   return (

@@ -1,4 +1,4 @@
-import { InterestResourceCardModel } from '@progress/api/models'
+import { ResourceCardModel } from '@progress/api/models'
 import { Card, Tabs } from 'antd'
 import querystring from 'query-string'
 import React, { CSSProperties, useContext, useEffect, useState } from 'react'
@@ -29,7 +29,7 @@ export const Interests = (props: IInterestsProps) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
   const [active, setActive] = useState('')
-  const [resources] = useState<InterestResourceCardModel[]>([
+  const [resources] = useState<ResourceCardModel[]>([
     {
       title: `+ Add new resource`,
       // images: [`${PROGRESS_URL}/image/cloud-computing.png`],
@@ -64,7 +64,7 @@ export const Interests = (props: IInterestsProps) => {
         {interests.map((interest: string) => (
           <TabPane tab={interest} key={interest}></TabPane>
         ))}
-        {resources.map((resource: InterestResourceCardModel) => (
+        {resources.map((resource: ResourceCardModel) => (
           <div onClick={() => setModalVisible(true)}>
             <Card cover={resource.image ? <img src={`${resource.image}`} /> : ''} style={gridStyle}>
               <Meta title={resource.title} description={resource.description} />
