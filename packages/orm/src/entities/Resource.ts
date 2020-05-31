@@ -21,19 +21,25 @@ export class Resource extends BaseEntity {
   @JoinColumn({ name: 'created_user_id' })
   public createdUser: User
 
-  @Column('varchar', { length: 300, comment: 'name' })
+  @Column('varchar', { length: 1024, comment: 'url' })
+  public url?: string
+
+  @Column('varchar', { length: 300, comment: 'siteName' })
+  public siteName?: string
+
+  @Column('varchar', { length: 300, comment: 'title' })
   public title: string
 
-  @Column('varchar', { length: 1024, comment: 'name' })
+  @Column('varchar', { length: 1024, comment: 'description' })
   public description?: string
 
-  @Column('varchar', { length: 1024, comment: 'name' })
+  @Column('varchar', { length: 1024, comment: 'image' })
   public image?: string
 
-  @Column('varchar', { length: 100, comment: 'name' })
+  @Column('varchar', { length: 100, comment: 'mediaType' })
   public mediaType?: string
 
-  @Column('varchar', { length: 100, comment: 'name' })
+  @Column('varchar', { length: 100, comment: 'contentType' })
   public contentType?: string
 
   @CreateDateColumn()

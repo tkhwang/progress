@@ -3,7 +3,8 @@ import { Card, Col, Input, Modal, Row } from 'antd'
 import Meta from 'antd/lib/card/Meta'
 import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
+import { RootContext } from 'src/stores/RootContext'
 
 const { TextArea } = Input
 
@@ -14,6 +15,9 @@ export interface IAddNewResourceProps {
 }
 
 export function AddNewResource(props: IAddNewResourceProps) {
+  const { user } = useContext(RootContext)
+  console.log('AddNewResource -> user', user)
+
   const [loading, setLoading] = useState(false)
   const [url, setUrl] = useState('')
   const [urlTitle, setUrlTitle] = useState('')
@@ -43,7 +47,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
       },
     )
 
-    setUrl(url)
+    setUrl(givenUrl)
     if (title) setUrlTitle(title)
     if (description) setUrlDescription(description)
     if (siteName) setUrlSiteName(siteName)
@@ -63,6 +67,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
     if (urlImages) params.image = urlImages
     if (urlMediaType) params.mediaType = urlMediaType
     if (urlContentType) params.contentType = urlContentType
+    if (user && user.id) params.creatUser = user.id
     await new APIS.Resource().postInterest(params)
   }
 

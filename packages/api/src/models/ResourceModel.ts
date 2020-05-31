@@ -10,5 +10,5 @@ export class ResourceCardModel {
 }
 
 export class PostResourceRequest extends ResourceCardModel {
-  public user: number
+  public creatUser: number
 }
