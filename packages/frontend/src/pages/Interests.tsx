@@ -1,4 +1,3 @@
-import { Paper } from '@material-ui/core'
 import { Card, Modal, Tabs } from 'antd'
 import querystring from 'query-string'
 import React, { CSSProperties, useContext, useEffect, useState } from 'react'
@@ -16,7 +15,7 @@ export interface IInterestsProps {
 }
 
 const gridStyle: CSSProperties = {
-  width: '33%',
+  width: '50%',
   height: '20%',
   textAlign: 'center',
   verticalAlign: 'middle',
@@ -30,7 +29,7 @@ export const Interests = (props: IInterestsProps) => {
   const [resources, setResources] = useState<InterestResourceCardModel[]>([
     {
       title: `+ Add new resource`,
-      images: [`${PROGRESS_URL}/image/cloud-computing.png`],
+      // images: [`${PROGRESS_URL}/image/cloud-computing.png`],
     },
   ])
 
@@ -65,19 +64,18 @@ export const Interests = (props: IInterestsProps) => {
         ))}
         {resources.map((resource: InterestResourceCardModel) => (
           <div onClick={() => setModalVisible(true)}>
-            <Paper>
-              <Card
-                cover={
-                  resource.images && resource.images.length ? (
-                    <img src={`${resource.images[0]}`} />
-                  ) : (
-                    ''
-                  )
-                }
-              >
-                <Meta title={resource.title} description={resource.description} />
-              </Card>
-            </Paper>
+            <Card
+              cover={
+                resource.images && resource.images.length ? (
+                  <img src={`${resource.images[0]}`} />
+                ) : (
+                  ''
+                )
+              }
+              style={gridStyle}
+            >
+              <Meta title={resource.title} description={resource.description} />
+            </Card>
           </div>
         ))}
       </Tabs>
