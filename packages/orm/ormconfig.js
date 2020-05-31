@@ -5,7 +5,7 @@ module.exports = {
   type: 'mysql',
   host: process.env.RDS_TKHWANG_PROGRESS_HOST,
   port: 3306,
-  charset: 'UTF8MB4_UNICODE_CI',
+  charset: 'utf8mb4',
   username: process.env.RDS_TKHWANG_PROGRESS_USERNAME,
   password: process.env.RDS_TKHWANG_PROGRESS_PASSWORD,
   database: process.env.RDS_TKHWANG_PROGRESS_DB,
