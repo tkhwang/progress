@@ -20,16 +20,16 @@ function App() {
   useEffect(() => {
     const apis = new APIS.Interest()
     const fetchData = async () => {
-      const user: any = AuthService.getCurrentUser()
+      const user: any = AuthService.getCurrentUser();
       if (user) {
-        const params = new InterestGetInterestsRequest()
-        params.user = user.id
-        const data = await apis.getInterests(params)
+        const params = new InterestGetInterestsRequest();
+        params.user = user.id;
+        const data = await apis.getInterests(params);
         setInterests([
           ...interests.filter((d: string) => d !== 'Add new'),
           ...data.filter((d: any) => d !== 'Add new').map((d: any) => d.interest),
           'Add new',
-        ])
+        ]);
       }
     }
     fetchData()
