@@ -1,6 +1,6 @@
+import { AUTH_KEY } from '@progress/api/models'
 import { Avatar } from 'antd'
 import React, { useEffect, useState } from 'react'
-import { AUTH_KEY } from '@progress/api/models'
 
 export interface IAvatarCompProps {}
 
