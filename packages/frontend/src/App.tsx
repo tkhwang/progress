@@ -1,5 +1,4 @@
-import { APIS, InterestGetInterestsRequest } from '@progress/api'
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.scss'
 import ButtonAppBar from './components/ButtonAppBar'
@@ -15,28 +14,7 @@ export const InterestsContext = createContext<{ interests: string[] }>({ interes
 
 function App() {
   const [uniqueKey, setUniqueKey] = useState(new Date().getTime().toString())
-  const [interests, setInterests] = useState<string[]>([])
 
-  useEffect(() => {
-    const apis = new APIS.Interest()
-    const fetchData = async () => {
-      const user: any = AuthService.getCurrentUser();
-      if (user) {
-        const params = new InterestGetInterestsRequest();
-        params.user = user.id;
-        const data = await apis.getInterests(params);
-        setInterests([
-          ...interests.filter((d: string) => d !== 'Add new'),
-          ...data.filter((d: any) => d !== 'Add new').map((d: any) => d.interest),
-          'Add new',
-        ]);
-      }
-    }
-    fetchData()
-  }, [...interests])
-
-  // <InterestsContext.Provider value={{ interests }}>
-  // </InterestsContext.Provider>
   return (
     <React.Fragment>
       <ButtonAppBar key={uniqueKey} forceUpdate={setUniqueKey} />

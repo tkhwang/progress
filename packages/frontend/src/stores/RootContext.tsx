@@ -1,7 +1,8 @@
-import { APIS, InterestGetInterestsRequest } from '@progress/api'
+import { UserJwtModel } from '@progress/api'
 import React, { createContext, useEffect, useState } from 'react'
 import { AuthService } from 'src/services/AuthService'
-import { UserJwtModel } from '../../../api/src/models/AuthModel'
+// import { UserJwtModel } from '../../../api/src/models/AuthModel'
+import { useInterests } from '../hooks/useInterests'
 
 export interface IRootContextProps {}
 
@@ -19,31 +20,13 @@ export default ({ children }: { children: any }) => {
   const preUser = AuthService.getCurrentUser() || null
   const [user, setUser] = useState(preUser)
   const [authenticated, setAuthenticated] = useState(preUser ? true : false)
-  const [interests, setInterests] = useState<string[]>([])
-  console.log('interests', interests)
+  const [interests, setInterests] = useInterests()
 
   useEffect(() => {
     const newUser = AuthService.getCurrentUser() || null
     setUser(newUser)
     setAuthenticated(newUser ? true : false)
   }, [authenticated])
-
-  useEffect(() => {
-    const apis = new APIS.Interest()
-    const fetchData = async () => {
-      const newUser = AuthService.getCurrentUser() || null
-      if (newUser) {
-        const params = new InterestGetInterestsRequest()
-        params.user = newUser.id
-        const data = await apis.getInterests(params)
-        setInterests([
-          ...interests.filter((d: string) => d !== 'Add new'),
-          ...data.filter((d: any) => d !== 'Add new').map((d: any) => d.interest),
-        ])
-      }
-    }
-    fetchData()
-  }, interests)
 
   const defaultContext = {
     user,

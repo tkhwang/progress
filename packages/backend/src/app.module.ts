@@ -5,6 +5,7 @@ import { ResourceController } from '@controllers/ResourceController'
 import { UrlController } from '@controllers/UrlController'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { APP_INTERCEPTOR } from '@nestjs/core'
 import { JwtModule } from '@nestjs/jwt'
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
 import { Interest, Resource, User } from '@progress/orm'
@@ -26,6 +27,7 @@ import 'module-alias/register'
 import { MorganModule } from 'nest-morgan'
 import path from 'path'
 import configuration from './config/configurations'
+import { TransformInterceptor } from './middlwares/TransformInterceptor'
 
 @Module({
   imports: [
@@ -60,6 +62,10 @@ import configuration from './config/configurations'
     JwtStrategy,
     UrlService,
     ResourceService,
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: TransformInterceptor,
+    },
   ],
   exports: [AuthService],
 })

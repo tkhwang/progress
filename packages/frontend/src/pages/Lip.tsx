@@ -1,10 +1,11 @@
-import { APIS, InterestGetInterestsRequest } from '@progress/api'
+import { APIS } from '@progress/api'
 import { Card, Input } from 'antd'
 import Modal from 'antd/lib/modal/Modal'
 import Title from 'antd/lib/typography/Title'
 import React, { CSSProperties, useEffect, useState } from 'react'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import { NavLink } from 'react-router-dom'
+import { useInterests } from 'src/hooks/useInterests'
 import { AuthService } from 'src/services/AuthService'
 import { UniqueKey } from 'src/services/UniqueKey'
 
@@ -23,29 +24,12 @@ export const Lip = (props: ILipProps) => {
   const [modalVisible, setModalVisible] = useState(false)
   const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
   const [interest, setInterest] = useState('')
-  const [interests, setInterests] = useState<string[]>([])
+  // const [interests, setInterests] = useState<string[]>([])
+  const [interests, setInterests] = useInterests()
 
   useEffect(() => {
     props.forceUpdate(UniqueKey.newKey())
   }, [])
-
-  useEffect(() => {
-    const apis = new APIS.Interest()
-    const fetchData = async () => {
-      const user: any = AuthService.getCurrentUser()
-      if (user) {
-        const params = new InterestGetInterestsRequest()
-        params.user = user.id
-        const data = await apis.getInterests(params)
-        setInterests([
-          ...interests.filter((d: string) => d !== 'Add new'),
-          ...data.filter((d: any) => d !== 'Add new').map((d: any) => d.interest),
-          'Add new',
-        ])
-      }
-    }
-    fetchData()
-  }, interests)
 
   const handleOk = () => {
     setUniqueKey(UniqueKey.newKey())
