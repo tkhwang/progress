@@ -1,9 +1,10 @@
 import { Body, Controller, Get, Post, UseGuards } from '@nestjs/common'
-import { PostResourceRequest } from '@progress/api'
+import { GetResourceResponse, PostResourceRequest } from '@progress/api'
 import { User } from '@progress/orm'
 import { JwtAuthGuard } from '@services/JwtAuthGuard'
 import { ResourceService } from '@services/ResourceService'
 import { CurrentUser } from '@utils/CustomDecorator'
+import { plainToClass } from 'class-transformer'
 
 @Controller('resource')
 export class ResourceController {
@@ -12,7 +13,12 @@ export class ResourceController {
   @UseGuards(JwtAuthGuard)
   @Get()
   async getResource(@CurrentUser() user: User) {
-    return this.resourceService.getResource(user.id)
+    const resources = await this.resourceService.getResource(user.id)
+    return plainToClass(
+      GetResourceResponse,
+      { data: resources },
+      { excludeExtraneousValues: true },
+    )
   }
 
   @Post()
