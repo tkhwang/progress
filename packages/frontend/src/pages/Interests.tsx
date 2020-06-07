@@ -1,18 +1,18 @@
-import { ResourceCardModel } from '@progress/api/models'
-import { Card, Modal, Tabs } from 'antd'
-import querystring from 'query-string'
-import React, { CSSProperties, useContext, useEffect, useState } from 'react'
-import { AddNewResource } from 'src/components/AddNewResource'
-import config from 'src/config'
-import { UniqueKey } from 'src/services/UniqueKey'
-import { RootContext } from 'src/stores/RootContext'
+import { ResourceCardModel } from '@progress/api/models';
+import { Card, Modal, Tabs } from 'antd';
+import querystring from 'query-string';
+import React, { CSSProperties, useContext, useEffect, useState } from 'react';
+import { AddNewResource } from 'src/components/AddNewResource';
+import config from 'src/config';
+import { UniqueKey } from 'src/services/UniqueKey';
+import { RootContext } from 'src/stores/RootContext';
 
-const { TabPane } = Tabs
-const { Meta } = Card
+const { TabPane } = Tabs;
+const { Meta } = Card;
 
 export interface IInterestsProps {
-  location?: any
-  history?: any
+  location?: any;
+  history?: any;
 }
 
 const gridStyle: CSSProperties = {
@@ -20,46 +20,46 @@ const gridStyle: CSSProperties = {
   height: '20%',
   textAlign: 'center',
   verticalAlign: 'middle',
-}
+};
 
 export const Interests = (props: IInterestsProps) => {
-  const { PROGRESS_URL } = config()
-  const { interests } = useContext(RootContext)
+  const { CLIENT_HOST } = config();
+  const { interests } = useContext(RootContext);
 
-  const [modalVisible, setModalVisible] = useState(false)
-  const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
-  const [active, setActive] = useState('')
+  const [modalVisible, setModalVisible] = useState(false);
+  const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey());
+  const [active, setActive] = useState('');
   const [resources] = useState<ResourceCardModel[]>([
     {
       title: `+ Add new resource`,
-      // images: [`${PROGRESS_URL}/image/cloud-computing.png`],
+      // images: [`${CLIENT_HOST}/image/cloud-computing.png`],
     },
-  ])
+  ]);
 
   useEffect(() => {
-    const { interest } = querystring.parse(props.location.search)
-    if (interest) setActive(interest as string)
-  }, [])
+    const { interest } = querystring.parse(props.location.search);
+    if (interest) setActive(interest as string);
+  }, []);
 
   const onChange = (interest: string) => {
-    setActive(interest)
-  }
+    setActive(interest);
+  };
 
-  const onRegister = () => {}
+  const onRegister = () => {};
 
   const handleOk = () => {
-    onRegister()
+    onRegister();
     Modal.success({
       content: `New resource was added.`,
-    })
-    setUniqueKey(UniqueKey.newKey())
-    setModalVisible(false)
-  }
+    });
+    setUniqueKey(UniqueKey.newKey());
+    setModalVisible(false);
+  };
 
   const handleCancel = () => {
-    setUniqueKey(UniqueKey.newKey())
-    setModalVisible(false)
-  }
+    setUniqueKey(UniqueKey.newKey());
+    setModalVisible(false);
+  };
 
   return (
     <div>
@@ -82,5 +82,5 @@ export const Interests = (props: IInterestsProps) => {
         onCancel={handleCancel}
       />
     </div>
-  )
-}
+  );
+};

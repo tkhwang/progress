@@ -10,7 +10,7 @@ export class EtcController {
     return {
       message: 'Welcome to learn-in-public',
       now: new Date(),
-      PROGRESS_API_URL: this.configService.get<string>('PROGRESS_API_URL'),
+      API_HOST: this.configService.get<string>('API_HOST'),
     };
   }
 }

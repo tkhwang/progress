@@ -60,8 +60,8 @@ export class AuthService {
    * @memberof AuthService
    */
   static async loginSocial(provider: string) {
-    const { PROGRESS_API_URL } = config()
-    const { data: jwt } = await http.get(`${PROGRESS_API_URL}/v1/auth/${provider}`)
+    const { API_HOST } = config()
+    const { data: jwt } = await http.get(`${API_HOST}/v1/auth/${provider}`)
     AuthService.saveJwt(jwt)
   }
 

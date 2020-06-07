@@ -11,13 +11,13 @@ import SocialLoginButton from './SocialLoginButton';
 export interface ISigninProps {}
 
 export function Signin(props: ISigninProps) {
-  const { PROGRESS_URL } = config();
+  const { CLIENT_HOST } = config();
 
   return (
     <div>
       <Row>
         <Col span={12}>
-          <img src={`${PROGRESS_URL}/image/123.svg`} alt="image" />
+          <img src={`${CLIENT_HOST}/image/123.svg`} alt="image" />
         </Col>
         <Col span={12}>
           <div style={{ padding: 30 }}>

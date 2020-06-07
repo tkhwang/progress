@@ -9,7 +9,7 @@ const getJwt = () => {
 export abstract class BaseAPI {
   constructor(
     protected client: AxiosInstance = Axios.create({
-      baseURL: config().PROGRESS_API_URL,
+      baseURL: config().API_HOST,
       headers: getJwt() ? { Authorization: `Bearer ${getJwt()}` } : {},
     }),
   ) {}

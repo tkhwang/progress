@@ -39,9 +39,9 @@ export class AuthController {
       jwt: string
     }
     const { jwt } = req.user as PassportUser
-    const PROGRESS_URL = this.configService.get<string>('PROGRESS_URL')
+    const CLIENT_HOST = this.configService.get<string>('CLIENT_HOST')
 
-    if (req.user) res.redirect(`${PROGRESS_URL}/token?token=${jwt}`)
+    if (req.user) res.redirect(`${CLIENT_HOST}/token?token=${jwt}`)
   }
 
   @UseGuards(JwtAuthGuard)
