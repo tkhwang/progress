@@ -10,6 +10,10 @@ export class ResourceService {
   @InjectRepository(Resource) private readonly resourceRepository: ResourceRepository
   @InjectRepository(User) private readonly usersRepository: UsersRepository
 
+  async getResource(userId: number) {
+    return this.resourceRepository.find({ where: { created_user_id: userId } })
+  }
+
   async registerResource(params: PostResourceRequest) {
     const resource = new Resource()
     if (params.url) resource.url = params.url

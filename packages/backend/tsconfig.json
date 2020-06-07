@@ -1,23 +1,25 @@
 {
-	"extends": "../../tsconfig.json",
-	"compilerOptions": {
-		"outDir": "./dist",
-		"baseUrl": "./",
-		"skipLibCheck": true,
-		"experimentalDecorators": true,
-		"sourceRoot": "./src",
-		"mapRoot": "./dist",
-		"paths": {
-			"@progress/api/*": ["./node_modules/@progress/api/dist/*"],
-			"@progress/api": ["./node_modules/@progress/api/dist"],
-			"@progress/orm/*": ["./node_modules/@progress/orm/dist/*"],
-			"@progress/orm": ["./node_modules/@progress/orm/dist"],
-			"@controllers/*": ["src/controllers/*"],
-			"@services/*": ["src/services/*"],
-			"@repositories/*": ["src/repositories/*"],
-			"@utils/*": ["src/utils/*"]
-		}
-	},
-	"include": ["src/**/*"],
-	"exclude": ["dist", "node_modules"]
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "skipLibCheck": true,
+    "experimentalDecorators": true,
+    "sourceRoot": "./src",
+    "mapRoot": "./dist",
+    "paths": {
+      "@progress/api/*": ["./node_modules/@progress/api/dist/*"],
+      "@progress/api": ["./node_modules/@progress/api/dist"],
+      "@progress/orm/*": ["./node_modules/@progress/orm/dist/*"],
+      "@progress/orm": ["./node_modules/@progress/orm/dist"],
+      "@controllers/*": ["src/controllers/*"],
+      "@services/*": ["src/services/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@utils/*": ["src/utils/*"],
+      "class-transformer": ["./node_modules/@progress/api/node_modules/class-transformer"],
+      "class-validator": ["./node_modules/@progress/api/node_modules/class-validator"]
+    }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist", "node_modules"]
 }

@@ -1,10 +1,10 @@
 export enum TaskStatus {
-	OPEN = 'OPEN',
-	IN_PROGRESS = 'IN_PROGRESS',
-	DONE = 'DONE',
+  OPEN = 'OPEN',
+  IN_PROGRESS = 'IN_PROGRESS',
+  DONE = 'DONE',
 }
 
 export class CreateTaskDto {
-	title: string
-	description: string
+  public title: string
+  public description: string
 }

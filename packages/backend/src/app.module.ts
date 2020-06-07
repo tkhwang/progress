@@ -15,12 +15,13 @@ import { UsersRepository } from '@repositories/UsersRepository'
 import { AuthService } from '@services/AuthService'
 import { GoogleStrategy } from '@services/GoogleStrategy'
 import { InterestService } from '@services/InterestService'
+import { JwtAuthGuard } from '@services/JwtAuthGuard'
 import { JwtStrategy } from '@services/JwtStrategy'
 import { LocalStrategy } from '@services/LocalStrategy'
 import { ResourceService } from '@services/ResourceService'
 import { UrlService } from '@services/UrlService'
 import { UsersService } from '@services/UsersService'
-import { jwtConstants } from '@utils/AuthContstants'
+import { jwtConstants } from '@utils/AuthConstants'
 import 'module-alias/register'
 import { MorganModule } from 'nest-morgan'
 import path from 'path'
@@ -55,10 +56,12 @@ import configuration from './config/configurations'
     LocalStrategy,
     GoogleStrategy,
     InterestService,
+    JwtAuthGuard,
     JwtStrategy,
     UrlService,
     ResourceService,
   ],
+  exports: [AuthService],
 })
 export class AllModule {}
 
