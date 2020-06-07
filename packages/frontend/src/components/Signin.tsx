@@ -1,17 +1,17 @@
-import { Col, Row } from 'antd';
-import * as React from 'react';
+import { Col, Row } from 'antd'
+import * as React from 'react'
 import {
   FacebookLoginButton,
   GithubLoginButton,
   TwitterLoginButton,
-} from 'react-social-login-buttons';
-import config from 'src/config';
-import SocialLoginButton from './SocialLoginButton';
+} from 'react-social-login-buttons'
+import config from 'src/config'
+import SocialLoginButton from './SocialLoginButton'
 
 export interface ISigninProps {}
 
 export function Signin(props: ISigninProps) {
-  const { CLIENT_HOST } = config();
+  const { CLIENT_HOST } = config()
 
   return (
     <div>
@@ -29,5 +29,5 @@ export function Signin(props: ISigninProps) {
         </Col>
       </Row>
     </div>
-  );
+  )
 }
