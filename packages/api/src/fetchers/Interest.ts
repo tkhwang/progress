@@ -13,13 +13,12 @@ export class Interest extends BaseAPI {
   ): Promise<BaseModel<InterestGetInterestsResponse, string>> {
     const path = `/v1/interest?user=${request.user}`
     const { data } = await this.client.get(path)
-    console.log('Interest -> getInterests -> data', data)
     return data
   }
 
   public async postInterest(
     request: InterestPostInterestRequest,
-  ): Promise<InterestPostInterestResponse> {
+  ): Promise<BaseModel<InterestPostInterestResponse, string>> {
     const path = '/v1/interest'
     const { data } = await this.client.post(path, request)
     return data

@@ -11,14 +11,13 @@ const { TextArea } = Input
 export interface IAddNewResourceProps {
   key: string
   visible: boolean
+  activeInterest: string
   onOk: () => void
   onCancel: () => void
 }
 
 export function AddNewResource(props: IAddNewResourceProps) {
   const { user } = useContext(RootContext)
-  console.log('AddNewResource -> user', user)
-
   const [loading, setLoading] = useState(false)
   const [url, setUrl] = useState('')
   const [urlTitle, setUrlTitle] = useState('')
@@ -42,21 +41,23 @@ export function AddNewResource(props: IAddNewResourceProps) {
     clearContents()
 
     const apis = new APIS.Url()
-    const { title, siteName, description, images, mediaType, contentType } = await apis.postUrlInfo(
-      {
-        url: givenUrl,
-      },
-    )
+    const { success, data, error } = await apis.postUrlInfo({
+      url: givenUrl,
+    })
 
-    setUrl(givenUrl)
-    if (title) setUrlTitle(title)
-    if (description) setUrlDescription(description)
-    if (siteName) setUrlSiteName(siteName)
-    if (images && images.length) setUrlImages(images[0])
-    if (mediaType) setUrlMediaType(mediaType)
-    if (contentType) setUrlContentType(contentType)
+    if (success && data) {
+      const { title, siteName, description, images, mediaType, contentType } = data
 
-    setLoading(false)
+      setUrl(givenUrl)
+      if (title) setUrlTitle(title)
+      if (description) setUrlDescription(description)
+      if (siteName) setUrlSiteName(siteName)
+      if (images && images.length) setUrlImages(images[0])
+      if (mediaType) setUrlMediaType(mediaType)
+      if (contentType) setUrlContentType(contentType)
+
+      setLoading(false)
+    }
   }
 
   const registerNewResource = async () => {
@@ -69,6 +70,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
     if (urlMediaType) params.mediaType = urlMediaType
     if (urlContentType) params.contentType = urlContentType
     if (user && user.id) params.creatUser = user.id
+    params.interest = props.activeInterest
     await new APIS.Resource().postInterest(params)
   }
 
@@ -121,7 +123,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
                   <TextArea
                     key={props.key}
                     value={urlTitle}
-                    onChange={e => setUrlTitle(e.target.value)}
+                    onChange={(e) => setUrlTitle(e.target.value)}
                   />
                 </Col>
               </Row>
@@ -131,7 +133,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
                   <TextArea
                     key={props.key}
                     value={urlDescription}
-                    onChange={e => setUrlDescription(e.target.value)}
+                    onChange={(e) => setUrlDescription(e.target.value)}
                   />
                 </Col>
               </Row>
@@ -141,7 +143,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
                   <Input
                     key={props.key}
                     value={moment().format('YYYY-MM-DD HH:mm')}
-                    onChange={e => setUrlDescription(e.target.value)}
+                    onChange={(e) => setUrlDescription(e.target.value)}
                   />
                 </Col>
               </Row>

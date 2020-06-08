@@ -1,4 +1,5 @@
-import { Expose, Type } from 'class-transformer'
+import { Expose } from 'class-transformer'
+import { IsDefined } from 'class-validator'
 
 export class ResourceCardModel {
   public url?: string
@@ -11,13 +12,12 @@ export class ResourceCardModel {
   public image?: string
 }
 
-export class GetResourceRequest {}
-
-export class GetResourceResponse {
-  @Expose()
-  @Type(() => GetResourceResponseModel)
-  public data: GetResourceResponseModel[]
+export class GetResourceRequest {
+  @IsDefined()
+  public interest: string
 }
+
+export type GetResourceResponse = GetResourceResponseModel[]
 
 export class GetResourceResponseModel {
   @Expose()
@@ -39,5 +39,9 @@ export class GetResourceResponseModel {
 }
 
 export class PostResourceRequest extends ResourceCardModel {
+  @IsDefined()
   public creatUser: number
+
+  @IsDefined()
+  public interest: string
 }

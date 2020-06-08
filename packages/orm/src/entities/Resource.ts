@@ -4,6 +4,8 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -20,7 +22,8 @@ export class Resource extends BaseEntity {
   @JoinColumn({ name: 'created_user_id' })
   public createdUser: User
 
-  @Column('varchar', { length: 300, comment: 'interest' })
+  @ManyToOne(type => Interest)
+  @JoinColumn({ name: 'interest_id' })
   public interest: Interest
 
   @Column('varchar', { length: 1024, comment: 'url' })

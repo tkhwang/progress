@@ -4,6 +4,7 @@ import { AuthService } from '../services/AuthService'
 
 export function useInterests(): [string[], Dispatch<SetStateAction<string[]>>] {
   const [interests, setInterests] = useState<string[]>([])
+
   useEffect(() => {
     const fetchData = async () => {
       const apis = new APIS.Interest()
