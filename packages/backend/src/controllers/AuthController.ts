@@ -33,8 +33,6 @@ export class AuthController {
   @Get('google/callback')
   googleLoginCallback(@Req() req: Request, @Res() res: Response) {
     // handles the Google OAuth2 callback
-    console.log('AuthController -> googleLoginCallback -> req.user', req.user)
-
     interface PassportUser extends Request {
       jwt: string
     }

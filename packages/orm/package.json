@@ -28,6 +28,7 @@
 	"devDependencies": {
 		"@types/dotenv": "^4.0.2",
 		"@types/node": "^8.5.5",
+		"prettier-tslint": "^0.4.2",
 		"ts-node": "^5.0.0",
 		"tsconfig-paths": "^3.9.0",
 		"tslint": "^6.1.2",

@@ -55,9 +55,9 @@ export const Lip = (props: ILipProps) => {
     <div>
       <Card title={<Title level={1}>Interest</Title>}>
         {interests.map((i: any) => (
-          <Card.Grid style={gridStyle}>
+          <Card.Grid style={gridStyle} key={`${i.id}`}>
             {i === 'Add new' ? (
-              <div onClick={e => setModalVisible(true)}>
+              <div onClick={(e) => setModalVisible(true)}>
                 <Title level={1}>
                   <AiOutlineAppstoreAdd />
                 </Title>

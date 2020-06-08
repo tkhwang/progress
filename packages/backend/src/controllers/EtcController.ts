@@ -1,5 +1,5 @@
-import { Controller, Get } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
+import { Controller, Get } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
 
 @Controller('etc')
 export class EtcController {
@@ -11,6 +11,6 @@ export class EtcController {
       message: 'Welcome to learn-in-public',
       now: new Date(),
       API_HOST: this.configService.get<string>('API_HOST'),
-    };
+    }
   }
 }

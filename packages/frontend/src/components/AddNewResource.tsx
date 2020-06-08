@@ -98,7 +98,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
           <React.Fragment>
             <Card
               loading={loading}
-              hoverable
+              hoverable={true}
               style={{ width: '100%' }}
               cover={<img src={urlImages} />}
             >

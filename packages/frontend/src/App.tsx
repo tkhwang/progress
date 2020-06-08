@@ -23,9 +23,9 @@ function App() {
           <Switch>
             <Route path="/token" component={Auth} />
             <Route path="/signin" component={Signin} />
-            <ProtectedRoute exact path="/interests" component={Interests} />
+            <ProtectedRoute exact={true} path="/interests" component={Interests} />
             <Route
-              exact
+              exact={true}
               path="/"
               render={
                 AuthService.getCurrentUser()

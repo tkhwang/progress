@@ -14,7 +14,7 @@ export function InterestDetailCard(props: IInterestDetailCardProps) {
   return (
     <div>
       <Card
-        hoverable
+        hoverable={true}
         style={{ width: `${props.width}`, padding: 5 }}
         cover={<img alt={`${props.title}`} src={`${props.image}`} />}
         onClick={props.onClick}

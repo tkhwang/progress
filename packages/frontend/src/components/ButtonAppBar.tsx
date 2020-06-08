@@ -18,7 +18,7 @@ import AvatarComp from './AvatarComp'
 import LoginForm from './LoginForm'
 import SocialLoginButton from './SocialLoginButton'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },

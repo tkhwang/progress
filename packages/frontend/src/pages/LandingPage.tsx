@@ -1,10 +1,10 @@
-import * as React from 'react';
-import config from 'src/config';
+import * as React from 'react'
+import config from 'src/config'
 
 export interface ILandingPageProps {}
 
 export default function LandingPage(props: ILandingPageProps) {
-  const { CLIENT_HOST } = config();
+  const { CLIENT_HOST } = config()
 
   return (
     <React.Fragment>
@@ -13,5 +13,5 @@ export default function LandingPage(props: ILandingPageProps) {
         <img src={`${CLIENT_HOST}/image/team_meeting__two_color.svg`} alt="landing page image" />
       </div>
     </React.Fragment>
-  );
+  )
 }

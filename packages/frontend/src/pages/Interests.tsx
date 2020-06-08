@@ -81,10 +81,10 @@ export const Interests = (props: IInterestsProps) => {
     <div>
       <Tabs activeKey={activeInterest} onChange={onChange} type="card">
         {interests.map((interest: string) => (
-          <TabPane tab={interest} key={interest}></TabPane>
+          <TabPane tab={interest} key={interest} />
         ))}
         {resources.map((resource: ResourceCardModel) => (
-          <span onClick={() => setModalVisible(true)}>
+          <span onClick={() => setModalVisible(true)} key={`${resource.title}`}>
             <Card style={gridStyle} cover={resource.image ? <img src={`${resource.image}`} /> : ''}>
               <Meta title={resource.title} description={resource.description} />
             </Card>

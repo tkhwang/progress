@@ -79,6 +79,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/react-select": "^3.0.12",
     "@types/react-toastify": "^4.1.0",
+    "prettier-tslint": "^0.4.2",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",
     "tslint-eslint-rules": "^5.4.0",
