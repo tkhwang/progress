@@ -7,9 +7,9 @@ import { useInterests } from '../hooks/useInterests'
 export interface IRootContextProps {}
 
 export const RootContext = createContext<{
-  user: UserJwtModel | null;
-  authenticated: boolean;
-  interests: string[];
+  user: UserJwtModel | null
+  authenticated: boolean
+  interests: string[]
 }>({
   user: null,
   authenticated: false,
