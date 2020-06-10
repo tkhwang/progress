@@ -1,17 +1,25 @@
 import { Injectable } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { PostResourceRequest } from '@progress/api'
-import { Resource, User } from '@progress/orm'
+import { Resource, User, Interest } from '@progress/orm'
 import { UsersRepository } from '@repositories/UsersRepository'
 import { ResourceRepository } from '../repositories/ResourceRepository'
+import { InterestRepository } from '../repositories/InterestRepository'
 
 @Injectable()
 export class ResourceService {
   @InjectRepository(Resource) private readonly resourceRepository: ResourceRepository
+
+  @InjectRepository(Interest) private readonly interestRepository: InterestRepository
   @InjectRepository(User) private readonly usersRepository: UsersRepository
 
-  async getResource(userId: number) {
-    return this.resourceRepository.find({ where: { created_user_id: userId } })
+  async getResource(userId: number, interest: string) {
+    const foundInterest = await this.interestRepository.findOne({ where: { interest } })
+    return foundInterest
+      ? this.resourceRepository.find({
+          where: { created_user_id: userId, interest_id: foundInterest.id },
+        })
+      : []
   }
 
   async registerResource(params: PostResourceRequest) {

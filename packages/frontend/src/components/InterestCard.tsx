@@ -1,17 +1,31 @@
+import React from 'react'
 import { Card } from 'antd'
-import * as React from 'react'
+import moment from 'moment'
+import styled from 'styled-components'
+
+const { Meta } = Card
+
+const DivFlex = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
+
+const DivFlexRight = styled.div`
+  text-align: right;
+`
 
 export interface IInterestCardProps {
-  title: string
-  description?: string
+  interest: string
+  createdAt: string
 }
 
-export function InterestCard(props: IInterestCardProps) {
+export default function InterestCard(props: IInterestCardProps) {
+  // <Meta description={moment(props.createdAt).format('YYYY-MM-DD')} />
   return (
-    <>
-      <Card title={`${props.title}`} style={{ width: 300 }}>
-        {props && props.description && props.description}
+    <React.Fragment>
+      <Card title={props.interest}>
+        <DivFlexRight>{`${moment(props.createdAt).format('YYYY-MM-DD')}`}</DivFlexRight>
       </Card>
-    </>
+    </React.Fragment>
   )
 }

@@ -15,7 +15,7 @@ export class ResourceController {
     @CurrentUser() user: User,
     @Query() param: GetResourceRequest,
   ): Promise<GetResourceResponse> {
-    return this.resourceService.getResource(user.id)
+    return this.resourceService.getResource(user.id, param.interest)
   }
 
   @Post()

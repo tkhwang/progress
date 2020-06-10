@@ -8,6 +8,7 @@ import { NavLink } from 'react-router-dom'
 import { useInterests } from 'src/hooks/useInterests'
 import { AuthService } from 'src/services/AuthService'
 import { UniqueKey } from 'src/services/UniqueKey'
+import InterestCard from 'src/components/InterestCard'
 
 const gridStyle: CSSProperties = {
   width: '33%',
@@ -34,7 +35,7 @@ export const Lip = (props: ILipProps) => {
   const handleOk = () => {
     setUniqueKey(UniqueKey.newKey())
     setModalVisible(false)
-    setInterests([...interests.filter((d: string) => d !== 'Add new'), interest, 'Add new'])
+    // setInterests([...interests.filter((d: string) => d !== 'Add new'), interest, 'Add new'])
   }
 
   const handleCancel = () => {

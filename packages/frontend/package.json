@@ -50,6 +50,7 @@
     "react-social-login-buttons": "^3.0.0",
     "react-toastify": "^6.0.4",
     "reflect-metadata": "^0.1.13",
+    "styled-components": "^5.1.1",
     "typescript": "~3.8.2"
   },
   "eslintConfig": {
@@ -79,6 +80,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/react-select": "^3.0.12",
     "@types/react-toastify": "^4.1.0",
+    "@types/styled-components": "^5.1.0",
     "prettier-tslint": "^0.4.2",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",

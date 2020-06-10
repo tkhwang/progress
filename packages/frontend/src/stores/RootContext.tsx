@@ -1,4 +1,4 @@
-import { UserJwtModel } from '@progress/api'
+import { UserJwtModel, InterestGetInterestsResult } from '@progress/api'
 import React, { createContext, useEffect, useState } from 'react'
 import { AuthService } from 'src/services/AuthService'
 // import { UserJwtModel } from '../../../api/src/models/AuthModel'
@@ -9,7 +9,7 @@ export interface IRootContextProps {}
 export const RootContext = createContext<{
   user: UserJwtModel | null
   authenticated: boolean
-  interests: string[]
+  interests: InterestGetInterestsResult[]
 }>({
   user: null,
   authenticated: false,

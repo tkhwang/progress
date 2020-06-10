@@ -1,9 +1,12 @@
-import { APIS, InterestGetInterestsRequest } from '@progress/api'
+import { APIS, InterestGetInterestsRequest, InterestGetInterestsResult } from '@progress/api'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { AuthService } from '../services/AuthService'
 
-export function useInterests(): [string[], Dispatch<SetStateAction<string[]>>] {
-  const [interests, setInterests] = useState<string[]>([])
+export function useInterests(): [
+  InterestGetInterestsResult[],
+  Dispatch<SetStateAction<InterestGetInterestsResult[]>>
+] {
+  const [interests, setInterests] = useState<InterestGetInterestsResult[]>([])
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,11 +19,13 @@ export function useInterests(): [string[], Dispatch<SetStateAction<string[]>>] {
         if (error) {
         }
         if (success && data) {
-          setInterests([
-            ...interests.filter((d: string) => d !== 'Add new'),
-            ...data.filter((d: any) => d !== 'Add new').map((d: any) => d.interest),
-            'Add new',
-          ])
+          console.log('fetchData -> data', data)
+          setInterests([...interests, ...data])
+          // setInterests([
+          //   ...interests.filter((d: string) => d !== 'Add new'),
+          //   ...data.filter((d: any) => d !== 'Add new').map((d: any) => d.interest),
+          //   'Add new',
+          // ])
         }
       }
     }
