@@ -5,6 +5,7 @@ import 'module-alias/register'
 import morgan from 'morgan'
 import { AppModule } from './app.module'
 import { LoggerMiddleware } from './middlwares/LoggerMiddleware'
+import { DispatchError } from './common/filter/DispatchError'
 
 async function bootstrap() {
   const nestApp = await NestFactory.create(AppModule)
@@ -18,6 +19,7 @@ async function bootstrap() {
   // app.use(morgan('[:status]:method :url :response-time ms'))
   nestApp.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
   nestApp.enableCors()
+  nestApp.useGlobalFilters(new DispatchError())
 
   const globalPrefix = 'v1'
   nestApp.setGlobalPrefix(globalPrefix)
