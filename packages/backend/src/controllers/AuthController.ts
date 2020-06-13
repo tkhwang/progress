@@ -6,6 +6,7 @@ import { AuthService } from '@services/AuthService'
 import { JwtAuthGuard } from '@services/JwtAuthGuard'
 import { LocalAuthGuard } from '@services/LocalAuthGuard'
 import { Request, Response } from 'express'
+import { Cookie } from 'src/common/Auth/Cookie'
 
 @Controller('auth')
 export class AuthController {
@@ -39,7 +40,10 @@ export class AuthController {
     const { jwt } = req.user as PassportUser
     const CLIENT_HOST = this.configService.get<string>('CLIENT_HOST')
 
-    if (req.user) res.redirect(`${CLIENT_HOST}/token?token=${jwt}`)
+    if (req.user) {
+      res.cookie('_pgauth', jwt, Cookie.COOKIE_OPTIONS)
+      res.redirect(`${CLIENT_HOST}/token?token=${jwt}`)
+    }
   }
 
   @UseGuards(JwtAuthGuard)
