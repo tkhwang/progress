@@ -55,17 +55,19 @@ export default function Interests(props: IInterestsProps) {
     Modal.success({
       content: `New resource was added.`,
     })
+    setUniqueKey(UniqueKey.newKey())
     setModalVisible(false)
   }
 
   const handleCancel = () => {
+    setUniqueKey(UniqueKey.newKey())
     setModalVisible(false)
   }
 
   return (
     <React.Fragment>
       <h1>
-        <FormOutlined /> <NavLink to="/interests">Interest</NavLink> {` > ${activeInterest}`}
+        <FormOutlined /> <NavLink to="/">Interest</NavLink> {` > ${activeInterest}`}
       </h1>
       <Button onClick={(e) => setModalVisible(true)} style={{ width: '100%' }} type="primary">
         Add New Resource on {`${activeInterest}`}
