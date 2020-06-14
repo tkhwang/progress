@@ -1,9 +1,9 @@
-import { APIS, PostResourceRequest } from '@progress/api'
+import { APIS, PostResourceRequest, ResourceCardModel } from '@progress/api'
 import { Card, Col, Input, Modal, Row } from 'antd'
 import Meta from 'antd/lib/card/Meta'
 import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, SetStateAction, Dispatch } from 'react'
 import { RootContext } from 'src/stores/RootContext'
 
 const { TextArea } = Input
@@ -12,6 +12,8 @@ export interface IAddNewResourceProps {
   key: string
   visible: boolean
   activeInterest: string
+  resources: ResourceCardModel[]
+  setResources: Dispatch<SetStateAction<ResourceCardModel[]>>
   onOk: () => void
   onCancel: () => void
 }
@@ -71,7 +73,9 @@ export function AddNewResource(props: IAddNewResourceProps) {
     if (urlContentType) params.contentType = urlContentType
     if (user && user.id) params.creatUser = user.id
     params.interest = props.activeInterest
-    await new APIS.Resource().postInterest(params)
+    const response = await new APIS.Resource().postResource(params)
+
+    props.setResources([...props.resources, response.data])
   }
 
   const handleOk = () => {

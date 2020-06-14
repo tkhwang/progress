@@ -10,7 +10,7 @@ export class Resource extends BaseAPI {
     return data
   }
 
-  public async postInterest(request: PostResourceRequest) {
+  public async postResource(request: PostResourceRequest) {
     const path = '/v1/resource'
     const { data } = await this.client.post(path, request)
     return data

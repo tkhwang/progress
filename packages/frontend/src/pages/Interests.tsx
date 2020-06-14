@@ -54,12 +54,10 @@ export default function Interests(props: IInterestsProps) {
     Modal.success({
       content: `New resource was added.`,
     })
-    setUniqueKey(UniqueKey.newKey())
     setModalVisible(false)
   }
 
   const handleCancel = () => {
-    setUniqueKey(UniqueKey.newKey())
     setModalVisible(false)
   }
 
@@ -84,6 +82,8 @@ export default function Interests(props: IInterestsProps) {
       <AddNewResource
         key={uniqueKey}
         activeInterest={activeInterest}
+        resources={resources}
+        setResources={setResources}
         visible={modalVisible}
         onOk={handleOk}
         onCancel={handleCancel}
