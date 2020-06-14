@@ -41,7 +41,7 @@ export class AuthController {
     const CLIENT_HOST = this.configService.get<string>('CLIENT_HOST')
 
     if (req.user) {
-      res.cookie('_pgauth', jwt, Cookie.COOKIE_OPTIONS)
+      // res.cookie('_pgauth', jwt, Cookie.COOKIE_OPTIONS)
       res.redirect(`${CLIENT_HOST}/token?token=${jwt}`)
     }
   }
