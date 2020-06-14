@@ -1,11 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useInterests } from 'src/hooks/useInterests'
 import { InterestGetInterestsResult } from '@progress/api'
 import InterestCard from 'src/components/InterestCard'
 import styled from 'styled-components'
 import { EyeOutlined } from '@ant-design/icons'
+import { UniqueKey } from 'src/services/UniqueKey'
 
-export interface IHomeProps {}
+export interface IHomeProps {
+  forceUpdate: (time: string) => void
+}
 
 const DivFlex = styled.div`
   display: flex;
@@ -17,6 +20,10 @@ const DivFlex = styled.div`
 export default function Home(props: IHomeProps) {
   const [interests, setInterests] = useInterests()
   console.log('Home -> interests', interests)
+
+  useEffect(() => {
+    props.forceUpdate(UniqueKey.newKey())
+  }, [])
 
   return (
     <React.Fragment>

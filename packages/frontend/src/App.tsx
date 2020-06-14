@@ -28,7 +28,11 @@ function App() {
             <Route
               exact={true}
               path="/"
-              render={AuthService.getCurrentUser() ? () => <Home /> : () => <LandingPage />}
+              render={
+                AuthService.getCurrentUser()
+                  ? () => <Home forceUpdate={setUniqueKey} />
+                  : () => <LandingPage />
+              }
             />
           </Switch>
         </BrowserRouter>
