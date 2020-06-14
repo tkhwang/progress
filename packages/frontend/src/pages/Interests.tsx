@@ -9,6 +9,7 @@ import { AddNewResource } from 'src/components/AddNewResource'
 import { UniqueKey } from 'src/services/UniqueKey'
 import Modal from 'antd/lib/modal'
 import Button from 'antd/lib/button'
+import { NavLink } from 'react-router-dom'
 
 export interface IInterestsProps {
   location?: any
@@ -64,7 +65,7 @@ export default function Interests(props: IInterestsProps) {
   return (
     <React.Fragment>
       <h1>
-        <FormOutlined /> Interest > {`${activeInterest}`}
+        <FormOutlined /> <NavLink to="/interests">Interest</NavLink> {` > ${activeInterest}`}
       </h1>
       <Button onClick={(e) => setModalVisible(true)} style={{ width: '100%' }} type="primary">
         Add New Resource on {`${activeInterest}`}
