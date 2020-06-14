@@ -17,10 +17,12 @@ export default function Interests(props: IInterestsProps) {
       const apis = new APIS.Resource()
       const param = new GetResourceRequest()
       param.interest = selectedInterest
-      console.log('fetchData -> selectedInterest', selectedInterest)
+      // tslint:disable-next-line:no-console
+      console.log('Interests : fetchData -> selectedInterest', selectedInterest)
       const { success, data, error } = await apis.getResource(param)
       if (success && data) {
-        console.log('fetchData -> data', data)
+        // tslint:disable-next-line:no-console
+        console.log('Interests : fetchData -> data', data)
         setResources([...resources, ...data])
       }
     }

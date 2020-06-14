@@ -19,7 +19,7 @@ export function useInterests(): [
         if (error) {
         }
         if (success && data) {
-          console.log('fetchData -> data', data)
+          console.log('useInterests: fetchData -> data', data)
           setInterests([...interests, ...data])
           // setInterests([
           //   ...interests.filter((d: string) => d !== 'Add new'),
