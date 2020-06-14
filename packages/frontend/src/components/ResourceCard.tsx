@@ -6,11 +6,12 @@ import moment from 'antd/node_modules/moment'
 const { Meta } = Card
 
 const gridStyle: CSSProperties = {
-  width: '33%',
-  textAlign: 'center',
+  width: '50%',
+  textAlign: 'left',
   verticalAlign: 'middle',
   border: '1px solid',
-  margin: '5 px',
+  // margin: '5 px',
+  padding: '16px',
 }
 
 export interface IResourceCardProps {
@@ -24,21 +25,19 @@ export function ResourceCard(props: IResourceCardProps) {
   console.log('ResourceCard -> props', props)
   return (
     <React.Fragment>
-      <div style={{ border: '1px solid', margin: '10px', padding: '10px' }}>
-        <Row>
-          <Col span={14}>
-            <ul>
-              <li>{props.siteName}</li>
-              <li>{props.title}</li>
-            </ul>
-          </Col>
-          <Col span={10}>
-            <div>
-              <img style={{ width: '100%' }} src={`${props.image}`} />
-            </div>
-          </Col>
-        </Row>
-      </div>
+      <Card.Grid style={gridStyle}>
+        <div>
+          <ul>
+            <li className="font-roboto-condensed" style={{ fontSize: '20px' }}>
+              {props.title}
+            </li>
+            <li>{props.siteName}</li>
+          </ul>
+          <div>
+            <img style={{ width: '100%' }} src={`${props.image}`} />
+          </div>
+        </div>
+      </Card.Grid>
     </React.Fragment>
   )
 }
