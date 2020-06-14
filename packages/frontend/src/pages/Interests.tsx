@@ -4,11 +4,19 @@ import { APIS, GetResourceRequest, ResourceCardModel } from '@progress/api'
 import querystring from 'query-string'
 import { ResourceCard } from 'src/components/ResourceCard'
 import { SnippetsOutlined, FormOutlined } from '@ant-design/icons'
+import styled from 'styled-components'
 
 export interface IInterestsProps {
   location?: any
   history?: any
 }
+
+const DivFlex = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  /* margin: 30px 30px 30px 30px; */
+`
 
 export default function Interests(props: IInterestsProps) {
   const [activeInterest, setActiveInterest] = useState('')
@@ -41,14 +49,16 @@ export default function Interests(props: IInterestsProps) {
       <h1>
         <FormOutlined /> Interest > {`${activeInterest}`}
       </h1>
-      {resources.map((resource: ResourceCardModel) => (
-        <ResourceCard
-          key={resource.title}
-          title={resource.title ? resource.title : ''}
-          siteName={resource.siteName ? resource.siteName : ''}
-          image={resource.image ? resource.image : ''}
-        />
-      ))}
+      <DivFlex>
+        {resources.map((resource: ResourceCardModel) => (
+          <ResourceCard
+            key={resource.title}
+            title={resource.title ? resource.title : ''}
+            siteName={resource.siteName ? resource.siteName : ''}
+            image={resource.image ? resource.image : ''}
+          />
+        ))}
+      </DivFlex>
     </React.Fragment>
   )
 }

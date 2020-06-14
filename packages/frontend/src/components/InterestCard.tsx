@@ -6,15 +6,12 @@ import { NavLink } from 'react-router-dom'
 
 const { Meta } = Card
 
-const DivFlex = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-`
-
 const gridStyle: CSSProperties = {
-  width: '33%',
+  width: '30%',
   textAlign: 'center',
   fontSize: '50 px',
+  border: '1px solid',
+  margin: '5px',
 }
 
 export interface IInterestCardProps {
