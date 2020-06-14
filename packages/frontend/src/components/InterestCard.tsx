@@ -2,6 +2,7 @@ import React, { CSSProperties } from 'react'
 import { Card, Divider } from 'antd'
 import moment from 'moment'
 import styled from 'styled-components'
+import { NavLink } from 'react-router-dom'
 
 const { Meta } = Card
 
@@ -22,13 +23,18 @@ export interface IInterestCardProps {
 }
 
 export default function InterestCard(props: IInterestCardProps) {
-  // <Meta description={moment(props.createdAt).format('YYYY-MM-DD')} />
+  const onClick = () => {
+    console.log(props.interest)
+  }
+
   return (
     <React.Fragment>
       <Card.Grid style={gridStyle}>
-        <div style={{ fontSize: 30, fontFamily: 'Black Han Sans' }}>{props.interest}</div>
-        <hr />
-        <div>{`${moment(props.createdAt).fromNow()}`}</div>
+        <NavLink style={{ color: 'black' }} to={`/interests?interest=${props.interest}`}>
+          <div style={{ fontSize: 30, fontFamily: 'Black Han Sans' }}>{props.interest}</div>
+          <hr />
+          <div>{`${moment(props.createdAt).fromNow()}`}</div>
+        </NavLink>
       </Card.Grid>
     </React.Fragment>
   )

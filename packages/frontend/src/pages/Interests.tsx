@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { APIS, GetResourceRequest, ResourceCardModel } from '@progress/api'
 import querystring from 'query-string'
 import { ResourceCard } from 'src/components/ResourceCard'
+import { SnippetsOutlined, FormOutlined } from '@ant-design/icons'
 
 export interface IInterestsProps {
   location?: any
@@ -10,6 +11,7 @@ export interface IInterestsProps {
 }
 
 export default function Interests(props: IInterestsProps) {
+  const [activeInterest, setActiveInterest] = useState('')
   const [resources, setResources] = useState<ResourceCardModel[]>([])
 
   useEffect(() => {
@@ -28,12 +30,17 @@ export default function Interests(props: IInterestsProps) {
     }
 
     const { interest } = querystring.parse(props.location.search)
-    if (interest) fetchData(interest as string)
+    if (interest) {
+      setActiveInterest(interest as string)
+      fetchData(interest as string)
+    }
   }, [])
 
   return (
     <React.Fragment>
-      <h1>Interest</h1>
+      <h1>
+        <FormOutlined /> Interest > {`${activeInterest}`}
+      </h1>
       {resources.map((resource: ResourceCardModel) => (
         <ResourceCard
           key={resource.title}

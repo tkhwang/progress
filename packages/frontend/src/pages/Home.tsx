@@ -3,6 +3,7 @@ import { useInterests } from 'src/hooks/useInterests'
 import { InterestGetInterestsResult } from '@progress/api'
 import InterestCard from 'src/components/InterestCard'
 import styled from 'styled-components'
+import { EyeOutlined } from '@ant-design/icons'
 
 export interface IHomeProps {}
 
@@ -19,6 +20,9 @@ export default function Home(props: IHomeProps) {
 
   return (
     <React.Fragment>
+      <h1>
+        <EyeOutlined /> Interests
+      </h1>
       <DivFlex>
         {interests.map((interest: InterestGetInterestsResult) => (
           <InterestCard
