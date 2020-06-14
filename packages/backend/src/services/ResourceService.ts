@@ -15,10 +15,9 @@ export class ResourceService {
 
   async getResource(userId: number, interest: string) {
     const foundInterest = await this.interestRepository.findOne({ where: { interest } })
+
     return foundInterest
-      ? this.resourceRepository.find({
-          where: { created_user_id: userId, interest_id: foundInterest.id },
-        })
+      ? await this.resourceRepository.findByUserAndInterest(userId, foundInterest.id)
       : []
   }
 
