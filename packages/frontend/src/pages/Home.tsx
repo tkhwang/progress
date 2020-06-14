@@ -60,11 +60,9 @@ export default function Home(props: IHomeProps) {
       <h1>
         <EyeOutlined /> Interests
       </h1>
-      <div onClick={(e) => setModalVisible(true)}>
-        <Button style={{ width: '30%' }} type="primary">
-          Add New Interest
-        </Button>
-      </div>
+      <Button onClick={(e) => setModalVisible(true)} style={{ width: '100%' }} type="primary">
+        Add New Interest
+      </Button>
       <DivFlex key={uniqueKey}>
         {interests.map((i: InterestGetInterestsResult) => (
           <InterestCard

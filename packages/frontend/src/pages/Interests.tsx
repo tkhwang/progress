@@ -5,6 +5,10 @@ import querystring from 'query-string'
 import { ResourceCard } from 'src/components/ResourceCard'
 import { SnippetsOutlined, FormOutlined } from '@ant-design/icons'
 import styled from 'styled-components'
+import { AddNewResource } from 'src/components/AddNewResource'
+import { UniqueKey } from 'src/services/UniqueKey'
+import Modal from 'antd/lib/modal'
+import Button from 'antd/lib/button'
 
 export interface IInterestsProps {
   location?: any
@@ -19,8 +23,10 @@ const DivFlex = styled.div`
 `
 
 export default function Interests(props: IInterestsProps) {
+  const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
   const [activeInterest, setActiveInterest] = useState('')
   const [resources, setResources] = useState<ResourceCardModel[]>([])
+  const [modalVisible, setModalVisible] = useState(false)
 
   useEffect(() => {
     const fetchData = async (selectedInterest: string) => {
@@ -42,13 +48,29 @@ export default function Interests(props: IInterestsProps) {
       setActiveInterest(interest as string)
       fetchData(interest as string)
     }
-  }, [])
+  }, resources)
+
+  const handleOk = () => {
+    Modal.success({
+      content: `New resource was added.`,
+    })
+    setUniqueKey(UniqueKey.newKey())
+    setModalVisible(false)
+  }
+
+  const handleCancel = () => {
+    setUniqueKey(UniqueKey.newKey())
+    setModalVisible(false)
+  }
 
   return (
     <React.Fragment>
       <h1>
         <FormOutlined /> Interest > {`${activeInterest}`}
       </h1>
+      <Button onClick={(e) => setModalVisible(true)} style={{ width: '100%' }} type="primary">
+        Add New Resource on {`${activeInterest}`}
+      </Button>
       <DivFlex>
         {resources.map((resource: ResourceCardModel) => (
           <ResourceCard
@@ -59,6 +81,13 @@ export default function Interests(props: IInterestsProps) {
           />
         ))}
       </DivFlex>
+      <AddNewResource
+        key={uniqueKey}
+        activeInterest={activeInterest}
+        visible={modalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      />
     </React.Fragment>
   )
 }

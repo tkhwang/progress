@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, BadRequestException } from '@nestjs/common'
 import { InjectRepository } from '@nestjs/typeorm'
 import { PostResourceRequest } from '@progress/api'
 import { Resource, User, Interest } from '@progress/orm'
@@ -22,6 +22,11 @@ export class ResourceService {
   }
 
   async registerResource(params: PostResourceRequest) {
+    const foundInterest = await this.interestRepository.findOne({
+      where: { interest: params.interest },
+    })
+    if (!foundInterest) throw new BadRequestException('Interest is not selected.')
+
     const resource = new Resource()
     if (params.url) resource.url = params.url
     if (params.siteName) resource.siteName = params.siteName
@@ -34,6 +39,8 @@ export class ResourceService {
       const user = await this.usersRepository.findOne(params.creatUser)
       if (user) resource.createdUser = user
     }
+    resource.interest = foundInterest
+
     return this.resourceRepository.save(resource)
   }
 }
