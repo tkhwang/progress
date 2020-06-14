@@ -10,6 +10,7 @@ import { UniqueKey } from 'src/services/UniqueKey'
 import Modal from 'antd/lib/modal'
 import Button from 'antd/lib/button'
 import { NavLink } from 'react-router-dom'
+import { Row, Col } from 'antd'
 
 export interface IInterestsProps {
   location?: any
@@ -66,12 +67,18 @@ export default function Interests(props: IInterestsProps) {
 
   return (
     <React.Fragment>
-      <h1>
-        <FormOutlined /> <NavLink to="/">Interest</NavLink> {` > ${activeInterest}`}
-      </h1>
-      <Button onClick={(e) => setModalVisible(true)} style={{ width: '100%' }} type="primary">
-        Add New Resource on {`${activeInterest}`}
-      </Button>
+      <Row>
+        <Col span={12}>
+          <h1>
+            <FormOutlined /> <NavLink to="/">Interest</NavLink> {` > ${activeInterest}`}
+          </h1>
+        </Col>
+        <Col span={12}>
+          <Button onClick={(e) => setModalVisible(true)} style={{ width: '100%' }} type="primary">
+            Add New Resource on {`${activeInterest}`}
+          </Button>
+        </Col>
+      </Row>
       <DivFlex>
         {resources.map((resource: ResourceCardModel) => (
           <ResourceCard

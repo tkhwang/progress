@@ -34,7 +34,7 @@ export function ResourceCard(props: IResourceCardProps) {
           </Col>
           <Col span={10}>
             <div>
-              <img style={{ width: '90%' }} src={`${props.image}`} />
+              <img style={{ width: '100%' }} src={`${props.image}`} />
             </div>
           </Col>
         </Row>

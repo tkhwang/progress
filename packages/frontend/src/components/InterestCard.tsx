@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom'
 const { Meta } = Card
 
 const gridStyle: CSSProperties = {
-  width: '30%',
+  width: '32%',
   textAlign: 'center',
   fontSize: '50 px',
   border: '1px solid',
