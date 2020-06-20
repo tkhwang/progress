@@ -4,7 +4,7 @@ import './App.scss'
 import ButtonAppBar from './components/ButtonAppBar'
 import { Signin } from './components/Signin'
 import Auth from './pages/Auth'
-import Interests from './pages/Interests'
+import Interest from './pages/Interest'
 import LandingPage from './pages/LandingPage'
 import { Lip } from './pages/Lip'
 import ProtectedRoute from './routers/ProtectedRoute'
@@ -24,7 +24,7 @@ function App() {
           <Switch>
             <Route path="/token" component={Auth} />
             <Route path="/signin" component={Signin} />
-            <ProtectedRoute exact={true} path="/interests" component={Interests} />
+            <ProtectedRoute exact={true} path="/interest" component={Interest} />
             <Route
               exact={true}
               path="/"

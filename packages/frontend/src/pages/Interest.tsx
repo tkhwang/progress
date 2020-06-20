@@ -12,7 +12,7 @@ import Button from 'antd/lib/button'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'antd'
 
-export interface IInterestsProps {
+export interface IInterestProps {
   location?: any
   history?: any
 }
@@ -24,7 +24,7 @@ const DivFlex = styled.div`
   /* margin: 30px 30px 30px 30px; */
 `
 
-export default function Interests(props: IInterestsProps) {
+export default function Interest(props: IInterestProps) {
   const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
   const [activeInterest, setActiveInterest] = useState('')
   const [resources, setResources] = useState<ResourceCardModel[]>([])

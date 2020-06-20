@@ -27,7 +27,7 @@ export default function InterestCard(props: IInterestCardProps) {
   return (
     <React.Fragment>
       <Card.Grid style={gridStyle}>
-        <NavLink style={{ color: 'black' }} to={`/interests?interest=${props.interest}`}>
+        <NavLink style={{ color: 'black' }} to={`/interest?interest=${props.interest}`}>
           <div style={{ fontSize: 30, fontFamily: 'Black Han Sans' }}>{props.interest}</div>
           <hr />
           <div>{`${moment(props.createdAt).fromNow()}`}</div>
