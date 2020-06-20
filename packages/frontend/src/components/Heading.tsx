@@ -33,13 +33,13 @@ export default function Heading(props: IHeadingProps) {
         {AuthService.getCurrentUser() ? (
           <>
             <Button color="inherit" onClick={() => AuthService.logout(props.forceUpdate)}>
-              Logout
+              logout
             </Button>
             <AvatarComp />
           </>
         ) : (
           <Button color="inherit" onClick={() => setVisibleLogin(true)}>
-            Sign-in
+            sign-in
           </Button>
         )}
       </Navbar>

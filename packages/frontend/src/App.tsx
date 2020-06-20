@@ -12,6 +12,7 @@ import { AuthService } from './services/AuthService'
 import Interests from './pages/Interests'
 import { Memo } from './pages/Memo'
 import Heading from './components/Heading'
+import Refresh from './pages/Refresh'
 
 export const InterestsContext = createContext<{ interests: string[] }>({ interests: [] })
 
@@ -21,11 +22,11 @@ function App() {
   return (
     <React.Fragment>
       <Heading forceUpdate={setUniqueKey} />
-      <ButtonAppBar key={uniqueKey} forceUpdate={setUniqueKey} />
       <main className="content" style={{ margin: 25 }}>
         <BrowserRouter>
           <Switch>
             <Route path="/token" component={Auth} />
+            <Route path="/refresh" render={() => <Refresh forceUpdate={setUniqueKey} />} />
             <Route path="/signin" component={Signin} />
             <ProtectedRoute exact={true} path="/interest" component={Interest} />
             <ProtectedRoute
