@@ -11,6 +11,7 @@ import ProtectedRoute from './routers/ProtectedRoute'
 import { AuthService } from './services/AuthService'
 import Interests from './pages/Interests'
 import { Memo } from './pages/Memo'
+import Heading from './components/Heading'
 
 export const InterestsContext = createContext<{ interests: string[] }>({ interests: [] })
 
@@ -19,6 +20,7 @@ function App() {
 
   return (
     <React.Fragment>
+      <Heading forceUpdate={setUniqueKey} />
       <ButtonAppBar key={uniqueKey} forceUpdate={setUniqueKey} />
       <main className="content" style={{ margin: 25 }}>
         <BrowserRouter>
