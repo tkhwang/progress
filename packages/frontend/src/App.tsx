@@ -9,7 +9,8 @@ import LandingPage from './pages/LandingPage'
 import { Lip } from './pages/Lip'
 import ProtectedRoute from './routers/ProtectedRoute'
 import { AuthService } from './services/AuthService'
-import Home from './pages/Home'
+import Interests from './pages/Interests'
+import { Memo } from './pages/Memo'
 
 export const InterestsContext = createContext<{ interests: string[] }>({ interests: [] })
 
@@ -25,14 +26,15 @@ function App() {
             <Route path="/token" component={Auth} />
             <Route path="/signin" component={Signin} />
             <ProtectedRoute exact={true} path="/interest" component={Interest} />
+            <ProtectedRoute
+              exact={true}
+              path="/interests"
+              render={() => <Interests forceUpdate={setUniqueKey} />}
+            />
             <Route
               exact={true}
               path="/"
-              render={
-                AuthService.getCurrentUser()
-                  ? () => <Home forceUpdate={setUniqueKey} />
-                  : () => <LandingPage />
-              }
+              render={AuthService.getCurrentUser() ? () => <Memo /> : () => <LandingPage />}
             />
           </Switch>
         </BrowserRouter>

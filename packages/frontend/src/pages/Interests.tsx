@@ -10,7 +10,7 @@ import { AuthService } from 'src/services/AuthService'
 import Title from 'antd/lib/typography/Title'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 
-export interface IHomeProps {
+export interface IInterestsProps {
   forceUpdate: (time: string) => void
 }
 
@@ -21,12 +21,12 @@ const DivFlex = styled.div`
 `
 //   padding: 30px 30px 30px 30px;
 
-export default function Home(props: IHomeProps) {
+export default function Interests(props: IInterestsProps) {
   const [interest, setInterest] = useState('')
   const [interests, setInterests] = useInterests()
   const [modalVisible, setModalVisible] = useState(false)
   const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
-  console.log('Home -> interests', interests)
+  console.log('Interests -> interests', interests)
 
   useEffect(() => {
     props.forceUpdate(UniqueKey.newKey())
