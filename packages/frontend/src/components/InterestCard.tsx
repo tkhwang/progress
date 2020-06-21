@@ -15,6 +15,7 @@ const gridStyle: CSSProperties = {
 }
 
 export interface IInterestCardProps {
+  key: string
   interest: string
   createdAt: string
 }
