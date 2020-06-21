@@ -10,7 +10,7 @@ export class UrlService {
     return getLinkPreview(url)
   }
 
-  async toImage(userId: number, url: string) {
+  async toImage(userId: number, url: string): Promise<string | null> {
     try {
       const browser = await puppeteer.launch()
       const page = await browser.newPage()
@@ -27,14 +27,13 @@ export class UrlService {
         type: 'png',
         fullPage: false,
       })
-
-      const result = await S3.uploadToS3('resources', userId, buffer)
-      console.log('UrlService -> toImage -> result', result)
-
       await browser.close()
+
+      return await S3.uploadToS3('resources', userId, buffer)
     } catch (error) {
       // tslint:disable-next-line:no-console
       console.error(error)
+      return null
     }
   }
 }

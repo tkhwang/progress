@@ -19,6 +19,7 @@ export class PostUrlGetInfoResponse {
   public siteName?: string
   public description?: string
   public images?: string[]
+  public capturedImage?: string
   public videos?: {
     url: any;
     secureUrl: any;

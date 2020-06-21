@@ -27,7 +27,6 @@ export default function Heading(props: IHeadingProps) {
       <Navbar bg="primary" variant="dark">
         <Navbar.Brand href="/">Learn-In-Public</Navbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="/memo">Memo</Nav.Link>
           <Nav.Link href="/interests">Interests</Nav.Link>
         </Nav>
         {AuthService.getCurrentUser() ? (

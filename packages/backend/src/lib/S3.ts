@@ -2,8 +2,9 @@ import * as fs from 'fs'
 import * as AWS from 'aws-sdk'
 import { PutObjectRequest } from 'aws-sdk/clients/s3'
 export class S3 {
-  static async uploadToS3(prefix: string, userId: number, buffer: Buffer): Promise<any> {
+  static async uploadToS3(prefix: string, userId: number, buffer: Buffer): Promise<string> {
     const key = `${prefix}/${userId}/${new Date().getTime().toString()}.png`
+    const fullS3ImageUrl = `${process.env.AWS_S3_URL_PREFIX}/${key}`
     const params: PutObjectRequest = {
       Bucket: process.env.AWS_S3_BUCKET || '',
       Key: key,
@@ -18,6 +19,6 @@ export class S3 {
       .putObject(params)
       .promise()
 
-    return { url: key }
+    return fullS3ImageUrl
   }
 }

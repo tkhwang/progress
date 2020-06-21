@@ -8,10 +8,15 @@ export class UrlController {
   constructor(private readonly urlService: UrlService) {}
 
   @Post('/info')
-  async postUrlInfo(@Body() params: PostUrlGetInfoRequest): Promise<PostUrlGetInfoResponse> {
-    const urlInfo = await this.urlService.extractUrlInfo(params.url)
-    await this.urlService.toImage(params.userId, params.url)
+  async postUrlInfo(@Body() params: PostUrlGetInfoRequest) {
+    const [urlInfo, capturedUrl] = await Promise.all([
+      this.urlService.extractUrlInfo(params.url),
+      this.urlService.toImage(params.userId, params.url),
+    ])
+    console.log('UrlController -> constructor -> urlInfo', urlInfo)
+    console.log('UrlController -> constructor -> capturedUrl', capturedUrl)
 
+    if (urlInfo) urlInfo.capturedImage = capturedUrl ? capturedUrl : ''
     return urlInfo
   }
 }
