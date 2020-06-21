@@ -33,6 +33,7 @@ export class ResourceService {
     if (params.title) resource.title = params.title
     if (params.description) resource.description = params.description
     if (params.image) resource.image = params.image
+    if (params.screenshot) resource.screenshot = params.screenshot
     if (params.mediaType) resource.mediaType = params.mediaType
     if (params.contentType) resource.contentType = params.contentType
     if (params.creatUser) {

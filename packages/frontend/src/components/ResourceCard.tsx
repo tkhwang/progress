@@ -18,6 +18,7 @@ export interface IResourceCardProps {
   title: string
   siteName?: string
   image?: string
+  screenshot?: string
   description?: string
 }
 
@@ -35,6 +36,7 @@ export function ResourceCard(props: IResourceCardProps) {
           </ul>
           <div>
             <img style={{ width: '100%' }} src={`${props.image}`} />
+            <img style={{ width: '100%' }} src={`${props.screenshot}`} />
           </div>
         </div>
       </Card.Grid>

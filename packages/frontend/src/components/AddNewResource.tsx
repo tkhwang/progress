@@ -76,6 +76,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
     if (urlDescription) params.description = urlDescription
     if (urlSiteName) params.siteName = urlSiteName
     if (urlImages) params.image = urlImages
+    if (urlScreenshot) params.screenshot = urlScreenshot
     if (urlMediaType) params.mediaType = urlMediaType
     if (urlContentType) params.contentType = urlContentType
     if (user && user.id) params.creatUser = user.id

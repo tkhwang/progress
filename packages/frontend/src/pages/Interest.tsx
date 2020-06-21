@@ -86,6 +86,7 @@ export default function Interest(props: IInterestProps) {
             title={resource.title ? resource.title : ''}
             siteName={resource.siteName ? resource.siteName : ''}
             image={resource.image ? resource.image : ''}
+            screenshot={resource.screenshot ? resource.screenshot : ''}
           />
         ))}
       </DivFlex>
