@@ -41,6 +41,9 @@ export class Resource extends BaseEntity {
   @Column('varchar', { length: 1024, comment: 'image' })
   public image?: string
 
+  @Column('varchar', { length: 1024, comment: 'screenshot' })
+  public screenshot?: string
+
   @Column('varchar', { length: 100, comment: 'mediaType' })
   public mediaType?: string
 
