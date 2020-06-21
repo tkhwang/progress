@@ -8,6 +8,7 @@ export class S3 {
       Bucket: process.env.AWS_S3_BUCKET || '',
       Key: key,
       Body: buffer,
+      ContentType: 'image/png',
     }
 
     await new AWS.S3({
