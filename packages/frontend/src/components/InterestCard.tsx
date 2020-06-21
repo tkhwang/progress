@@ -1,7 +1,6 @@
 import React, { CSSProperties } from 'react'
-import { Card, Divider } from 'antd'
+import { Card } from 'antd'
 import moment from 'moment'
-import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
 const { Meta } = Card
