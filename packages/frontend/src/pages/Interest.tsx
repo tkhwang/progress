@@ -11,6 +11,10 @@ import Modal from 'antd/lib/modal'
 import Button from 'antd/lib/button'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'antd'
+import CardDeck from 'react-bootstrap/CardDeck'
+import Card from 'react-bootstrap/Card'
+import CardColumns from 'react-bootstrap/CardColumns'
+import { CardUtils } from 'src/utils/Card'
 
 export interface IInterestProps {
   location?: any
@@ -79,17 +83,23 @@ export default function Interest(props: IInterestProps) {
           </Button>
         </Col>
       </Row>
-      <DivFlex>
+      <CardColumns>
         {resources.map((resource: ResourceCardModel) => (
-          <ResourceCard
-            key={resource.title}
-            title={resource.title ? resource.title : ''}
-            siteName={resource.siteName ? resource.siteName : ''}
-            image={resource.image ? resource.image : ''}
-            screenshot={resource.screenshot ? resource.screenshot : ''}
-          />
+          <Card key={resource.url}>
+            <Card.Header>{`${resource.siteName}`}</Card.Header>
+            <a key={resource.url} href={`${resource.url}`}>
+              <Card.Img key={resource.url} variant="top" src={`${resource.image}`} />
+              <Card.Body>
+                <Card.Title>{`${resource.title}`}</Card.Title>
+                <Card.Text>{`${resource.description}`}</Card.Text>
+              </Card.Body>
+              <Card.Footer>
+                <Card.Img key={resource.url} variant="top" src={`${resource.screenshot}`} />
+              </Card.Footer>
+            </a>
+          </Card>
         ))}
-      </DivFlex>
+      </CardColumns>
       <AddNewResource
         key={uniqueKey}
         activeInterest={activeInterest}
@@ -102,3 +112,15 @@ export default function Interest(props: IInterestProps) {
     </React.Fragment>
   )
 }
+
+// ;<DivFlex>
+//   {resources.map((resource: ResourceCardModel) => (
+//     <ResourceCard
+//       key={resource.title}
+//       title={resource.title ? resource.title : ''}
+//       siteName={resource.siteName ? resource.siteName : ''}
+//       image={resource.image ? resource.image : ''}
+//       screenshot={resource.screenshot ? resource.screenshot : ''}
+//     />
+//   ))}
+// </DivFlex>
