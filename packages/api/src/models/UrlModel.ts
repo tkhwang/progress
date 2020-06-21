@@ -1,6 +1,10 @@
-import { IsDefined, IsString } from 'class-validator'
+import { IsDefined, IsString, IsNumber } from 'class-validator'
 
 export class PostUrlGetInfoRequest {
+  @IsDefined()
+  @IsNumber()
+  userId: number
+
   @IsDefined()
   @IsString()
   public url: string
@@ -15,11 +19,11 @@ export class PostUrlGetInfoResponse {
   public siteName?: string
   public description?: string
   public images?: string[]
-  public videos?: Array<{
+  public videos?: {
     url: any;
     secureUrl: any;
     type: any;
     width: any;
     height: any;
-  }>
+  }[]
 }

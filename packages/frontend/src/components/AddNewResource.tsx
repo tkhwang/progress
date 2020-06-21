@@ -44,6 +44,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
 
     const apis = new APIS.Url()
     const { success, data, error } = await apis.postUrlInfo({
+      userId: user!.id,
       url: givenUrl,
     })
 

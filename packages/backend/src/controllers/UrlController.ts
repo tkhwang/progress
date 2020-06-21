@@ -9,6 +9,9 @@ export class UrlController {
 
   @Post('/info')
   async postUrlInfo(@Body() params: PostUrlGetInfoRequest): Promise<PostUrlGetInfoResponse> {
-    return this.urlService.extractUrlInfo(params.url)
+    const urlInfo = await this.urlService.extractUrlInfo(params.url)
+    await this.urlService.toImage(params.userId, params.url)
+
+    return urlInfo
   }
 }
