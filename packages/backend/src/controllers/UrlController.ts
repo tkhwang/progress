@@ -9,14 +9,12 @@ export class UrlController {
 
   @Post('/info')
   async postUrlInfo(@Body() params: PostUrlGetInfoRequest) {
-    const [urlInfo, capturedUrl] = await Promise.all([
+    const [urlInfo, screenshot] = await Promise.all([
       this.urlService.extractUrlInfo(params.url),
       this.urlService.toImage(params.userId, params.url),
     ])
-    console.log('UrlController -> constructor -> urlInfo', urlInfo)
-    console.log('UrlController -> constructor -> capturedUrl', capturedUrl)
 
-    if (urlInfo) urlInfo.capturedImage = capturedUrl ? capturedUrl : ''
+    if (urlInfo) urlInfo.screenshot = screenshot ? screenshot : ''
     return urlInfo
   }
 }

@@ -27,7 +27,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
   const [urlDescription, setUrlDescription] = useState('')
   const [urlSiteName, setUrlSiteName] = useState('')
   const [urlImages, setUrlImages] = useState('')
-  const [screenshot, setScreenshot] = useState('')
+  const [urlScreenshot, setUrlScreenshot] = useState('')
   const [urlMediaType, setUrlMediaType] = useState('')
   const [urlContentType, setUrlContentType] = useState('')
 
@@ -37,7 +37,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
     setUrlTitle('')
     setUrlDescription('')
     setUrlImages('')
-    setScreenshot('')
+    setUrlScreenshot('')
     setUrlMediaType('')
     setUrlContentType('')
   }
@@ -53,14 +53,14 @@ export function AddNewResource(props: IAddNewResourceProps) {
     })
 
     if (success && data) {
-      const { title, siteName, description, images, capturedImage, mediaType, contentType } = data
+      const { title, siteName, description, images, screenshot, mediaType, contentType } = data
 
       setUrl(givenUrl)
       if (title) setUrlTitle(title)
       if (description) setUrlDescription(description)
       if (siteName) setUrlSiteName(siteName)
       if (images && images.length) setUrlImages(images[0])
-      if (capturedImage) setScreenshot(capturedImage)
+      if (screenshot) setUrlScreenshot(screenshot)
       if (mediaType) setUrlMediaType(mediaType)
       if (contentType) setUrlContentType(contentType)
 
@@ -150,7 +150,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
               <Row>
                 <Col span={5}>Screenshot</Col>
                 <Col span={19}>
-                  <img style={{ width: '100%' }} src={`${screenshot}`} />
+                  <img style={{ width: '100%' }} src={`${urlScreenshot}`} />
                 </Col>
               </Row>
               <Row>

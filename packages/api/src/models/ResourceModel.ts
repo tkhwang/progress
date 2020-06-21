@@ -10,6 +10,7 @@ export class ResourceCardModel {
   public siteName?: string
   public description?: string
   public image?: string
+  public screenshot?: string
 }
 
 export class GetResourceRequest {
@@ -32,6 +33,8 @@ export class GetResourceResponseModel {
   public description?: string
   @Expose()
   public image?: string
+  @Expose()
+  public screenshot?: string
   @Expose()
   public mediaType?: string
   @Expose()
