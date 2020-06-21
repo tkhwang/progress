@@ -21,6 +21,7 @@ export interface IAddNewResourceProps {
 export function AddNewResource(props: IAddNewResourceProps) {
   const { user } = useContext(RootContext)
   const [loading, setLoading] = useState(false)
+  const [isUploading, setIsUploading] = useState(false)
   const [url, setUrl] = useState('')
   const [urlTitle, setUrlTitle] = useState('')
   const [urlDescription, setUrlDescription] = useState('')
@@ -42,6 +43,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
   const extractUrlInfo = async (givenUrl: string) => {
     clearContents()
 
+    setIsUploading(true)
     const apis = new APIS.Url()
     const { success, data, error } = await apis.postUrlInfo({
       userId: user!.id,
@@ -60,6 +62,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
       if (contentType) setUrlContentType(contentType)
 
       setLoading(false)
+      setIsUploading(false)
     }
   }
 
@@ -75,7 +78,6 @@ export function AddNewResource(props: IAddNewResourceProps) {
     if (user && user.id) params.creatUser = user.id
     params.interest = props.activeInterest
     const response = await new APIS.Resource().postResource(params)
-
     props.setResources([...props.resources, response.data])
   }
 
@@ -154,6 +156,8 @@ export function AddNewResource(props: IAddNewResourceProps) {
               </Row>
             </div>
           </React.Fragment>
+        ) : isUploading ? (
+          <Card loading={isUploading} />
         ) : null}
       </Modal>
     </div>
