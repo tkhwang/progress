@@ -9,6 +9,9 @@ import { Modal, Input, Button, Row, Col } from 'antd'
 import { AuthService } from 'src/services/AuthService'
 import Title from 'antd/lib/typography/Title'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
+import Card from 'react-bootstrap/Card'
+import CardColumns from 'react-bootstrap/CardColumns'
+import CardDeck from 'react-bootstrap/CardDeck'
 
 export interface IInterestsProps {
   forceUpdate: (time: string) => void
@@ -69,7 +72,7 @@ export default function Interests(props: IInterestsProps) {
           </Button>
         </Col>
       </Row>
-      <DivFlex key={uniqueKey}>
+      <CardDeck>
         {interests.map((i: InterestGetInterestsResult) => (
           <InterestCard
             key={`${i.interest}`}
@@ -77,7 +80,7 @@ export default function Interests(props: IInterestsProps) {
             createdAt={`${i.createdAt}`}
           />
         ))}
-      </DivFlex>
+      </CardDeck>
       <Modal
         title="Add new interest"
         visible={modalVisible}

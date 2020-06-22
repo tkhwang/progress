@@ -54,7 +54,8 @@
     "react-toastify": "^6.0.4",
     "reflect-metadata": "^0.1.13",
     "styled-components": "^5.1.1",
-    "typescript": "~3.8.2"
+    "typescript": "~3.8.2",
+    "utf8": "^3.0.0"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -86,6 +87,7 @@
     "@types/react-select": "^3.0.12",
     "@types/react-toastify": "^4.1.0",
     "@types/styled-components": "^5.1.0",
+    "@types/utf8": "^2.1.6",
     "prettier-tslint": "^0.4.2",
     "tslint": "^6.1.2",
     "tslint-config-prettier": "^1.18.0",

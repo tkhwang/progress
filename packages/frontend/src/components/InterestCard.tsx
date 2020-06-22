@@ -1,17 +1,7 @@
 import React, { CSSProperties } from 'react'
-import { Card } from 'antd'
 import moment from 'moment'
 import { NavLink } from 'react-router-dom'
-
-const { Meta } = Card
-
-const gridStyle: CSSProperties = {
-  width: '32%',
-  textAlign: 'center',
-  fontSize: '50 px',
-  border: '1px solid',
-  margin: '5px',
-}
+import Card from 'react-bootstrap/Card'
 
 export interface IInterestCardProps {
   key: string
@@ -25,14 +15,17 @@ export default function InterestCard(props: IInterestCardProps) {
   }
 
   return (
-    <React.Fragment>
-      <Card.Grid style={gridStyle}>
-        <NavLink style={{ color: 'black' }} to={`/interest?interest=${props.interest}`}>
-          <div style={{ fontSize: 30, fontFamily: 'Black Han Sans' }}>{props.interest}</div>
-          <hr />
-          <div>{`${moment(props.createdAt).fromNow()}`}</div>
-        </NavLink>
-      </Card.Grid>
-    </React.Fragment>
+    <Card>
+      <NavLink style={{ color: 'black' }} to={`/interest?interest=${props.interest}`}>
+        <Card.Body>
+          <Card.Text as="h3">{props.interest}</Card.Text>
+        </Card.Body>
+        <Card.Footer>{`${moment(props.createdAt).fromNow()}`}</Card.Footer>
+      </NavLink>
+    </Card>
   )
 }
+
+// <div style={{ fontSize: 30, fontFamily: 'Black Han Sans' }}></div>
+// <hr />
+// <div></div>

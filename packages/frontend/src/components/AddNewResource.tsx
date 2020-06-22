@@ -5,6 +5,7 @@ import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
 import React, { useContext, useState, SetStateAction, Dispatch } from 'react'
 import { RootContext } from 'src/stores/RootContext'
+import utf8 from 'utf8'
 
 const { TextArea } = Input
 
@@ -72,8 +73,8 @@ export function AddNewResource(props: IAddNewResourceProps) {
   const registerNewResource = async () => {
     const params = new PostResourceRequest()
     if (url) params.url = url
-    if (urlTitle) params.title = urlTitle
-    if (urlDescription) params.description = urlDescription
+    if (urlTitle) params.title = utf8.encode(urlTitle)
+    if (urlDescription) params.description = utf8.encode(urlDescription)
     if (urlSiteName) params.siteName = urlSiteName
     if (urlImages) params.image = urlImages
     if (urlScreenshot) params.screenshot = urlScreenshot

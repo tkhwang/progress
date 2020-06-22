@@ -7,7 +7,13 @@ import { S3 } from 'src/lib/S3'
 @Injectable()
 export class UrlService {
   async extractUrlInfo(url: string): Promise<PostUrlGetInfoResponse> {
-    return getLinkPreview(url)
+    return getLinkPreview(url, {
+      imagesPropertyType: 'og', // fetches only open-graph images
+      headers: {
+        'user-agent': 'googlebot', // fetches with googlebot crawler user agent
+        'Accept-Language': 'kr-KO', // fetches site for French language
+      },
+    })
   }
 
   async toImage(userId: number, url: string): Promise<string | null> {

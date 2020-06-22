@@ -12,6 +12,8 @@ import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'antd'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
+import { ResourceCard } from 'src/components/ResourceCard'
+import CardDeck from 'react-bootstrap/CardDeck'
 
 export interface IInterestProps {
   location?: any
@@ -71,7 +73,7 @@ export default function Interest(props: IInterestProps) {
       <Row>
         <Col span={12}>
           <h1>
-            <FormOutlined /> <NavLink to="/">Interest</NavLink> {` > ${activeInterest}`}
+            <FormOutlined /> <NavLink to="/interests">Interests</NavLink> {` > ${activeInterest}`}
           </h1>
         </Col>
         <Col span={12}>
@@ -82,19 +84,15 @@ export default function Interest(props: IInterestProps) {
       </Row>
       <CardColumns>
         {resources.map((resource: ResourceCardModel) => (
-          <Card key={resource.url}>
-            <Card.Header>{`${resource.siteName}`}</Card.Header>
-            <a key={resource.url} href={`${resource.url}`}>
-              <Card.Img key={resource.url} variant="top" src={`${resource.image}`} />
-              <Card.Body>
-                <Card.Title>{`${resource.title}`}</Card.Title>
-                <Card.Text>{`${resource.description}`}</Card.Text>
-              </Card.Body>
-              <Card.Footer>
-                <Card.Img key={resource.url} variant="top" src={`${resource.screenshot}`} />
-              </Card.Footer>
-            </a>
-          </Card>
+          <ResourceCard
+            key={resource.title}
+            url={resource.url ? resource.url : ''}
+            title={resource.title ? resource.title : ''}
+            siteName={resource.siteName ? resource.siteName : ''}
+            image={resource.image ? resource.image : ''}
+            description={resource.description ? resource.description : ''}
+            screenshot={resource.screenshot ? resource.screenshot : ''}
+          />
         ))}
       </CardColumns>
       <AddNewResource
@@ -109,15 +107,3 @@ export default function Interest(props: IInterestProps) {
     </React.Fragment>
   )
 }
-
-// ;<DivFlex>
-//   {resources.map((resource: ResourceCardModel) => (
-//     <ResourceCard
-//       key={resource.title}
-//       title={resource.title ? resource.title : ''}
-//       siteName={resource.siteName ? resource.siteName : ''}
-//       image={resource.image ? resource.image : ''}
-//       screenshot={resource.screenshot ? resource.screenshot : ''}
-//     />
-//   ))}
-// </DivFlex>
