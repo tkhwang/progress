@@ -5,13 +5,14 @@ import InterestCard from 'src/components/InterestCard'
 import styled from 'styled-components'
 import { EyeOutlined } from '@ant-design/icons'
 import { UniqueKey } from 'src/services/UniqueKey'
-import { Modal, Input, Button, Row, Col } from 'antd'
+import { Modal, Input } from 'antd'
 import { AuthService } from 'src/services/AuthService'
 import Title from 'antd/lib/typography/Title'
 import { AiOutlineAppstoreAdd } from 'react-icons/ai'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 import CardDeck from 'react-bootstrap/CardDeck'
+import Button from 'react-bootstrap/Button'
 
 export interface IInterestsProps {
   forceUpdate: (time: string) => void
@@ -60,18 +61,12 @@ export default function Interests(props: IInterestsProps) {
 
   return (
     <React.Fragment>
-      <Row>
-        <Col span={12}>
-          <h1>
-            <EyeOutlined /> Interests
-          </h1>
-        </Col>
-        <Col span={12}>
-          <Button onClick={(e) => setModalVisible(true)} style={{ width: '100%' }} type="primary">
-            Add New Interest
-          </Button>
-        </Col>
-      </Row>
+      <h4>
+        <EyeOutlined /> Interests
+      </h4>
+      <Button onClick={() => setModalVisible(true)} variant="outline-primary">
+        [+] Add
+      </Button>
       <CardDeck>
         {interests.map((i: InterestGetInterestsResult) => (
           <InterestCard

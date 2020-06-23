@@ -7,13 +7,14 @@ import styled from 'styled-components'
 import { AddNewResource } from 'src/components/AddNewResource'
 import { UniqueKey } from 'src/services/UniqueKey'
 import Modal from 'antd/lib/modal'
-import Button from 'antd/lib/button'
+// import Button from 'antd/lib/button'
 import { NavLink } from 'react-router-dom'
 import { Row, Col } from 'antd'
 import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 import { ResourceCard } from 'src/components/ResourceCard'
 import CardDeck from 'react-bootstrap/CardDeck'
+import Button from 'react-bootstrap/Button'
 
 export interface IInterestProps {
   location?: any
@@ -70,18 +71,12 @@ export default function Interest(props: IInterestProps) {
 
   return (
     <React.Fragment>
-      <Row>
-        <Col span={12}>
-          <h1>
-            <FormOutlined /> <NavLink to="/interests">Interests</NavLink> {` > ${activeInterest}`}
-          </h1>
-        </Col>
-        <Col span={12}>
-          <Button onClick={(e) => setModalVisible(true)} style={{ width: '100%' }} type="primary">
-            Add New Resource on {`${activeInterest}`}
-          </Button>
-        </Col>
-      </Row>
+      <h3>
+        <FormOutlined /> <NavLink to="/interests">Interests</NavLink> {` > ${activeInterest}`}
+      </h3>
+      <Button onClick={() => setModalVisible(true)} variant="outline-primary">
+        [+] Add
+      </Button>
       <CardColumns>
         {resources.map((resource: ResourceCardModel) => (
           <ResourceCard
