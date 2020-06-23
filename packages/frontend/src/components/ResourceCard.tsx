@@ -15,7 +15,6 @@ export interface IResourceCardProps {
 }
 
 export function ResourceCard(props: IResourceCardProps) {
-  console.log('ResourceCard -> props', props)
   return (
     <Card>
       <Card.Header>{`${props.siteName}`}</Card.Header>
@@ -29,24 +28,3 @@ export function ResourceCard(props: IResourceCardProps) {
     </Card>
   )
 }
-
-// ;<Card.Footer>
-//   <Card.Img variant="top" src={`${props.screenshot}`} />
-// </Card.Footer>
-
-// ;<React.Fragment>
-//   <Card.Grid style={gridStyle}>
-//     <div>
-//       <ul>
-//         <li className="font-roboto-condensed" style={{ fontSize: '20px' }}>
-//           {props.title}
-//         </li>
-//         <li>{props.siteName}</li>
-//       </ul>
-//       <div>
-//         <img style={{ width: '100%' }} src={`${props.image}`} />
-//         <img style={{ width: '100%' }} src={`${props.screenshot}`} />
-//       </div>
-//     </div>
-//   </Card.Grid>
-// </React.Fragment>

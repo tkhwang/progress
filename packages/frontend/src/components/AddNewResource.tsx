@@ -73,8 +73,8 @@ export function AddNewResource(props: IAddNewResourceProps) {
   const registerNewResource = async () => {
     const params = new PostResourceRequest()
     if (url) params.url = url
-    if (urlTitle) params.title = utf8.encode(urlTitle)
-    if (urlDescription) params.description = utf8.encode(urlDescription)
+    if (urlTitle) params.title = urlTitle
+    if (urlDescription) params.description = urlDescription
     if (urlSiteName) params.siteName = urlSiteName
     if (urlImages) params.image = urlImages
     if (urlScreenshot) params.screenshot = urlScreenshot
@@ -82,6 +82,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
     if (urlContentType) params.contentType = urlContentType
     if (user && user.id) params.creatUser = user.id
     params.interest = props.activeInterest
+
     const response = await new APIS.Resource().postResource(params)
     props.setResources([...props.resources, response.data])
   }
