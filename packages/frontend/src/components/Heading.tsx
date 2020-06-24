@@ -6,7 +6,6 @@ import FormControl from 'react-bootstrap/FormControl'
 import Button from 'react-bootstrap/Button'
 import { Drawer } from 'antd'
 import SocialLoginButton from './SocialLoginButton'
-import LoginForm from './LoginForm'
 import {
   GithubLoginButton,
   FacebookLoginButton,
@@ -55,7 +54,6 @@ export default function Heading(props: IHeadingProps) {
         <FacebookLoginButton onClick={() => alert('Hello')} />
         <TwitterLoginButton onClick={() => alert('Hello')} />
         <hr />
-        <LoginForm />
       </Drawer>
     </React.Fragment>
   )

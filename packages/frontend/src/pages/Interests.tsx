@@ -68,12 +68,14 @@ export default function Interests(props: IInterestsProps) {
           Interests
         </Breadcrumb.Item>
       </Breadcrumb>
-      <h4>
-        <EyeOutlined /> Interests
-      </h4>
-      <Button onClick={() => setModalVisible(true)} variant="outline-primary">
-        [+] Add
-      </Button>
+      <div style={{ display: 'flex' }}>
+        <h4>
+          <EyeOutlined /> Interests
+        </h4>
+        <Button onClick={() => setModalVisible(true)} variant="outline-primary">
+          [+] Add
+        </Button>
+      </div>
       <CardDeck>
         {interests.map((i: InterestGetInterestsResult) => (
           <InterestCard

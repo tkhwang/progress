@@ -1,7 +1,6 @@
 import React, { createContext, useState } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 import './App.scss'
-import ButtonAppBar from './components/ButtonAppBar'
 import { Signin } from './components/Signin'
 import Auth from './pages/Auth'
 import Interest from './pages/Interest'
