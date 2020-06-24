@@ -1,12 +1,19 @@
 import * as React from 'react'
 import Input from 'antd/lib/input'
 import { Timeline, Divider } from 'antd'
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 export interface IMemoProps {}
 
 export function Memo(props: IMemoProps) {
   return (
     <div>
+      <Breadcrumb>
+        <Breadcrumb.Item href="/" active={true}>
+          Home
+        </Breadcrumb.Item>
+        <Breadcrumb.Item href="/interests">Interests</Breadcrumb.Item>
+      </Breadcrumb>
       <h1>Memo</h1>
       <Input placeholder="Type URL" />
       <Divider />

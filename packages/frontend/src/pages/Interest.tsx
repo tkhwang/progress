@@ -15,6 +15,7 @@ import CardColumns from 'react-bootstrap/CardColumns'
 import { ResourceCard } from 'src/components/ResourceCard'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 export interface IInterestProps {
   location?: any
@@ -71,6 +72,13 @@ export default function Interest(props: IInterestProps) {
 
   return (
     <React.Fragment>
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item href="/interests">Interests</Breadcrumb.Item>
+        <Breadcrumb.Item href="/interest" active={true}>
+          Interest
+        </Breadcrumb.Item>
+      </Breadcrumb>
       <h3>
         <FormOutlined /> <NavLink to="/interests">Interests</NavLink> {` > ${activeInterest}`}
       </h3>

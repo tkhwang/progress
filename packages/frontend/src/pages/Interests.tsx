@@ -13,6 +13,7 @@ import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
+import Breadcrumb from 'react-bootstrap/Breadcrumb'
 
 export interface IInterestsProps {
   forceUpdate: (time: string) => void
@@ -61,6 +62,12 @@ export default function Interests(props: IInterestsProps) {
 
   return (
     <React.Fragment>
+      <Breadcrumb>
+        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+        <Breadcrumb.Item href="/interests" active={true}>
+          Interests
+        </Breadcrumb.Item>
+      </Breadcrumb>
       <h4>
         <EyeOutlined /> Interests
       </h4>
