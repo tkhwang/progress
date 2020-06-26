@@ -12,6 +12,7 @@ import Interests from './pages/Interests'
 import { Memo } from './pages/Memo'
 import Heading from './components/Heading'
 import Refresh from './pages/Refresh'
+import BodyContainer from './pages/BodyContainer'
 
 export const InterestsContext = createContext<{ interests: string[] }>({ interests: [] })
 

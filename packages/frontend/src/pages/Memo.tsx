@@ -2,12 +2,13 @@ import * as React from 'react'
 import Input from 'antd/lib/input'
 import { Timeline, Divider } from 'antd'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import BodyContainer from './BodyContainer'
 
 export interface IMemoProps {}
 
 export function Memo(props: IMemoProps) {
   return (
-    <div>
+    <BodyContainer>
       <Breadcrumb>
         <Breadcrumb.Item href="/" active={true}>
           Home
@@ -23,6 +24,6 @@ export function Memo(props: IMemoProps) {
         <Timeline.Item>Technical testing</Timeline.Item>
         <Timeline.Item label="2015-09-01 09:12:11">Network problems being solved</Timeline.Item>
       </Timeline>
-    </div>
+    </BodyContainer>
   )
 }

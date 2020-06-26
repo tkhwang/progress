@@ -16,6 +16,7 @@ import { ResourceCard } from 'src/components/ResourceCard'
 import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
+import BodyContainer from './BodyContainer'
 
 export interface IInterestProps {
   location?: any
@@ -71,7 +72,7 @@ export default function Interest(props: IInterestProps) {
   }
 
   return (
-    <React.Fragment>
+    <BodyContainer>
       <Breadcrumb>
         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
         <Breadcrumb.Item href="/interests">Interests</Breadcrumb.Item>
@@ -107,6 +108,6 @@ export default function Interest(props: IInterestProps) {
         onOk={handleOk}
         onCancel={handleCancel}
       />
-    </React.Fragment>
+    </BodyContainer>
   )
 }
