@@ -13,6 +13,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { Editor } from 'react-draft-wysiwyg'
+import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 
 const { TextArea } = Input
 
@@ -31,6 +33,8 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
   const [urlScreenshot, setUrlScreenshot] = useState('')
   const [urlMediaType, setUrlMediaType] = useState('')
   const [urlContentType, setUrlContentType] = useState('')
+  const [isOgImageSelected, setIsOgImageSelected] = useState(true)
+  const [isScreenshotSelected, setIsScreenshotSelected] = useState(false)
 
   const clearContents = () => {
     // setLoading(true)
@@ -73,6 +77,16 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
     }
   }
 
+  const selectImage = (e: any) => {
+    if (e.target.className.includes('ogImage')) {
+      setIsScreenshotSelected(false)
+      setIsOgImageSelected(true)
+    } else if (e.target.className.includes('screenshot')) {
+      setIsOgImageSelected(false)
+      setIsScreenshotSelected(true)
+    }
+  }
+
   return (
     <Container>
       <Search
@@ -94,14 +108,14 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
               />
             </Form.Group>
             <Form.Group controlId="formGroupUrl">
-              <Form.Label>Site</Form.Label>
+              <Form.Label>Url</Form.Label>
               <Form.Control type="text" placeholder="Url" value={url} readOnly={true} />
             </Form.Group>
             <Form.Group controlId="formGroupTitle">
               <Form.Label>Title</Form.Label>
               <Form.Control
-                type="text"
-                placeholder="TItle"
+                as="textarea"
+                placeholder="Title"
                 value={urlTitle}
                 onChange={(e) => setUrlTitle(e.target.value)}
               />
@@ -109,30 +123,50 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
             <Form.Group controlId="formGroupDescription">
               <Form.Label>Title</Form.Label>
               <Form.Control
-                type="text={true}"
+                as="textarea"
                 placeholder="Description"
                 value={urlDescription}
-                onChange={(e) => setUrlTitle(e.target.value)}
+                onChange={(e) => setUrlDescription(e.target.value)}
               />
             </Form.Group>
             <Form.Group controlId="formGroupImage">
-              <Form.Label>Screenshot</Form.Label>
+              <Form.Label>Screenshot (Please select the representative image.)</Form.Label>
               <Row>
                 <Col sm={6}>
-                  <div style={{ padding: '2px' }}>
-                    <img style={{ width: '100%' }} src={`${urlImages}`} />
+                  <div
+                    style={{ padding: '2px' }}
+                    onClick={(e) => {
+                      selectImage(e)
+                    }}
+                  >
+                    <img
+                      className={'ogImage ' + (isOgImageSelected ? 'activeImage' : '')}
+                      style={{ width: '100%' }}
+                      src={`${urlImages}`}
+                    />
                   </div>
                 </Col>
                 <Col sm={6}>
-                  <div style={{ padding: '2px' }}>
-                    <img style={{ width: '100%' }} src={`${urlScreenshot}`} />
+                  <div
+                    style={{ padding: '2px' }}
+                    onClick={(e) => {
+                      selectImage(e)
+                    }}
+                  >
+                    <img
+                      className={'screenshot ' + (isScreenshotSelected ? 'activeImage' : '')}
+                      style={{ width: '100%' }}
+                      src={`${urlScreenshot}`}
+                    />
                   </div>
                 </Col>
               </Row>
             </Form.Group>
             <Form.Group controlId="formGroupMemo">
               <Form.Label>Memo</Form.Label>
-              <Form.Control as="textarea" />
+              <div style={{ border: '1px solid' }}>
+                <Editor />
+              </div>
             </Form.Group>
             <Form.Group controlId="formGroupUrl">
               <Form.Label>Date</Form.Label>

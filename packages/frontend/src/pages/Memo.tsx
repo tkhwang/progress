@@ -17,7 +17,7 @@ export function Memo(props: IMemoProps) {
         </Breadcrumb.Item>
         <Breadcrumb.Item href="/interests">Interests</Breadcrumb.Item>
       </Breadcrumb>
-      <h1>Memo</h1>
+      <h3>Bookmark</h3>
       <Divider />
       <AddNewBookmark />
     </BodyContainer>
