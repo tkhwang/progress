@@ -3,6 +3,8 @@ import Input from 'antd/lib/input'
 import { Timeline, Divider } from 'antd'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import BodyContainer from './BodyContainer'
+import { AddNewResource } from 'src/components/AddNewResource'
+import { AddNewBookmark } from 'src/components/AddNewBookmark'
 
 export interface IMemoProps {}
 
@@ -16,14 +18,8 @@ export function Memo(props: IMemoProps) {
         <Breadcrumb.Item href="/interests">Interests</Breadcrumb.Item>
       </Breadcrumb>
       <h1>Memo</h1>
-      <Input placeholder="Type URL" />
       <Divider />
-      <Timeline mode="left">
-        <Timeline.Item label="2015-09-01">Create a services</Timeline.Item>
-        <Timeline.Item label="2015-09-01 09:12:11">Solve initial network problems</Timeline.Item>
-        <Timeline.Item>Technical testing</Timeline.Item>
-        <Timeline.Item label="2015-09-01 09:12:11">Network problems being solved</Timeline.Item>
-      </Timeline>
+      <AddNewBookmark />
     </BodyContainer>
   )
 }
