@@ -1,22 +1,16 @@
-import { APIS, PostResourceRequest, ResourceCardModel } from '@progress/api'
-import { Card, Col as AntCol, Input, Modal, Row as AntRow } from 'antd'
-import Meta from 'antd/lib/card/Meta'
+import { APIS } from '@progress/api'
+import { Card } from 'antd'
 import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
-import React, { useContext, useState, SetStateAction, Dispatch } from 'react'
+import React, { useContext, useState, Dispatch } from 'react'
 import { RootContext } from 'src/stores/RootContext'
-import utf8 from 'utf8'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
-import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import { Editor } from 'react-draft-wysiwyg'
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
-
-const { TextArea } = Input
+import Container from 'react-bootstrap/Container'
 
 export interface IAddNewBookmarkProps {}
 

@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react'
+import React from 'react'
 import moment from 'moment'
 import { NavLink } from 'react-router-dom'
 import Card from 'react-bootstrap/Card'

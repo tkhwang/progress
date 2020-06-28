@@ -1,9 +1,5 @@
-import React, { CSSProperties } from 'react'
-// import { Card, Col, Row } from 'antd'
-import styled from 'styled-components'
-import moment from 'antd/node_modules/moment'
+import React from 'react'
 import Card from 'react-bootstrap/Card'
-import CardColumns from 'react-bootstrap/CardColumns'
 
 export interface IResourceCardProps {
   url: string

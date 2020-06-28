@@ -5,7 +5,6 @@ import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
 import React, { useContext, useState, SetStateAction, Dispatch } from 'react'
 import { RootContext } from 'src/stores/RootContext'
-import utf8 from 'utf8'
 
 const { TextArea } = Input
 

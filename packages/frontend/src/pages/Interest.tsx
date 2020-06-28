@@ -3,17 +3,12 @@ import { useEffect, useState } from 'react'
 import { APIS, GetResourceRequest, ResourceCardModel } from '@progress/api'
 import querystring from 'query-string'
 import { FormOutlined } from '@ant-design/icons'
-import styled from 'styled-components'
 import { AddNewResource } from 'src/components/AddNewResource'
 import { UniqueKey } from 'src/services/UniqueKey'
 import Modal from 'antd/lib/modal'
-// import Button from 'antd/lib/button'
 import { NavLink } from 'react-router-dom'
-import { Row, Col } from 'antd'
-import Card from 'react-bootstrap/Card'
 import CardColumns from 'react-bootstrap/CardColumns'
 import { ResourceCard } from 'src/components/ResourceCard'
-import CardDeck from 'react-bootstrap/CardDeck'
 import Button from 'react-bootstrap/Button'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import BodyContainer from './BodyContainer'
@@ -22,13 +17,6 @@ export interface IInterestProps {
   location?: any
   history?: any
 }
-
-const DivFlex = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  /* margin: 30px 30px 30px 30px; */
-`
 
 export default function Interest(props: IInterestProps) {
   const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
