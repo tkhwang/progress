@@ -1,8 +1,8 @@
 import { APIS } from '@progress/api'
-import { Card } from 'antd'
+import { Card, Tag } from 'antd'
 import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
-import React, { useContext, useState, Dispatch } from 'react'
+import React, { useContext, useState } from 'react'
 import { RootContext } from 'src/stores/RootContext'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -31,7 +31,7 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
   const [isScreenshotSelected, setIsScreenshotSelected] = useState(false)
 
   const clearContents = () => {
-    // setLoading(true)
+    setUrlSiteName('')
     setUrl('')
     setUrlTitle('')
     setUrlDescription('')
@@ -94,12 +94,7 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
           <Form>
             <Form.Group controlId="formGroupSiteName">
               <Form.Label>Site</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Site name"
-                value={urlSiteName}
-                readOnly={true}
-              />
+              <Form.Control type="text" placeholder="" value={urlSiteName} readOnly={true} />
             </Form.Group>
             <Form.Group controlId="formGroupUrl">
               <Form.Label>Url</Form.Label>
@@ -160,6 +155,13 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
               <Form.Label>Memo</Form.Label>
               <div style={{ border: '1px solid' }}>
                 <Editor />
+              </div>
+            </Form.Group>
+            <Form.Group controlId="formGroupTag">
+              <Form.Label>Interests (tags)</Form.Label>
+              <div>
+                <Tag color="blue">NLP</Tag>
+                <Tag color="blue">예능</Tag>
               </div>
             </Form.Group>
             <Form.Group controlId="formGroupUrl">

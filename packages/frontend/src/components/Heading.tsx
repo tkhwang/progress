@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Button from 'react-bootstrap/Button'
@@ -18,14 +18,20 @@ export interface IHeadingProps {
 
 export default function Heading(props: IHeadingProps) {
   const [visibleLogin, setVisibleLogin] = useState(false)
+  const [isLogged, setIsLogged] = useState(false)
 
-  return (
-    <React.Fragment>
-      <Navbar bg="primary" variant="dark">
-        <Navbar.Brand href="/">Learn-In-Public</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Nav.Link href="/interests">Interests</Nav.Link>
-        </Nav>
+  useEffect(() => {
+    if (AuthService.getCurrentUser()) setIsLogged(true)
+    setIsLogged(false)
+  }, [isLogged])
+
+  const renderMenu = () => {
+    return <React.Fragment>Memu</React.Fragment>
+  }
+
+  const renderAvatar = () => {
+    return (
+      <React.Fragment>
         {AuthService.getCurrentUser() ? (
           <>
             <Button color="inherit" onClick={() => AuthService.logout(props.forceUpdate)}>
@@ -38,6 +44,16 @@ export default function Heading(props: IHeadingProps) {
             sign-in
           </Button>
         )}
+      </React.Fragment>
+    )
+  }
+
+  return (
+    <React.Fragment>
+      <Navbar sticky="top" bg="primary" variant="dark">
+        <Navbar.Brand href="/">Today-I</Navbar.Brand>
+        <Nav activeKey="/home">{renderMenu()}</Nav>
+        <Navbar.Collapse className="justify-content-end">{renderAvatar()}</Navbar.Collapse>
       </Navbar>
       <Drawer
         title="Sign-in"
