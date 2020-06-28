@@ -11,6 +11,9 @@ import {
 } from 'react-social-login-buttons'
 import { AuthService } from 'src/services/AuthService'
 import AvatarComp from './AvatarComp'
+import Menubar from './Menubar'
+import { GrOptimize } from 'react-icons/gr'
+import { FcAreaChart } from 'react-icons/fc'
 
 export interface IHeadingProps {
   forceUpdate: Function
@@ -18,16 +21,6 @@ export interface IHeadingProps {
 
 export default function Heading(props: IHeadingProps) {
   const [visibleLogin, setVisibleLogin] = useState(false)
-  const [isLogged, setIsLogged] = useState(false)
-
-  useEffect(() => {
-    if (AuthService.getCurrentUser()) setIsLogged(true)
-    setIsLogged(false)
-  }, [isLogged])
-
-  const renderMenu = () => {
-    return <React.Fragment>Memu</React.Fragment>
-  }
 
   const renderAvatar = () => {
     return (
@@ -51,9 +44,13 @@ export default function Heading(props: IHeadingProps) {
   return (
     <React.Fragment>
       <Navbar sticky="top" bg="primary" variant="dark">
-        <Navbar.Brand href="/">Today-I</Navbar.Brand>
-        <Nav activeKey="/home">{renderMenu()}</Nav>
-        <Navbar.Collapse className="justify-content-end">{renderAvatar()}</Navbar.Collapse>
+        <Navbar.Brand href="/">
+          <FcAreaChart color="white" /> progress
+        </Navbar.Brand>
+        <Navbar.Collapse className="justify-content-end">
+          {AuthService.getCurrentUser() && <Menubar />}
+          {renderAvatar()}
+        </Navbar.Collapse>
       </Navbar>
       <Drawer
         title="Sign-in"
