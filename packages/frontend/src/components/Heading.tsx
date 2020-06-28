@@ -14,6 +14,7 @@ import AvatarComp from './AvatarComp'
 import Menubar from './Menubar'
 import { GrOptimize } from 'react-icons/gr'
 import { FcAreaChart } from 'react-icons/fc'
+import NavDropdown from 'react-bootstrap/NavDropdown'
 
 export interface IHeadingProps {
   forceUpdate: Function
@@ -27,10 +28,9 @@ export default function Heading(props: IHeadingProps) {
       <React.Fragment>
         {AuthService.getCurrentUser() ? (
           <>
-            <Button color="inherit" onClick={() => AuthService.logout(props.forceUpdate)}>
-              logout
+            <Button size="sm" color="inherit" onClick={() => AuthService.logout(props.forceUpdate)}>
+              <AvatarComp />
             </Button>
-            <AvatarComp />
           </>
         ) : (
           <Button color="inherit" onClick={() => setVisibleLogin(true)}>
@@ -47,10 +47,14 @@ export default function Heading(props: IHeadingProps) {
         <Navbar.Brand href="/">
           <FcAreaChart color="white" /> progress
         </Navbar.Brand>
-        <Navbar.Collapse className="justify-content-end">
-          {AuthService.getCurrentUser() && <Menubar />}
-          {renderAvatar()}
+        <Navbar.Collapse>
+          {AuthService.getCurrentUser() && (
+            <div style={{ width: '100%' }}>
+              <Menubar />
+            </div>
+          )}
         </Navbar.Collapse>
+        <Navbar className="mr-sm-2">{renderAvatar()}</Navbar>
       </Navbar>
       <Drawer
         title="Sign-in"
