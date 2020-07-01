@@ -46,6 +46,7 @@
     "react-social-login-buttons": "^3.0.0",
     "react-stack-grid": "^0.7.1",
     "react-toastify": "^6.0.4",
+    "redux": "^4.0.5",
     "reflect-metadata": "^0.1.13",
     "styled-components": "^5.1.1",
     "typescript": "~3.8.2",
