@@ -19,6 +19,7 @@ export function useInterests(): [
         if (error) {
         }
         if (success && data) {
+          // tslint:disable-next-line:no-console
           console.log('useInterests: fetchData -> data', data)
           setInterests([...interests, ...data])
           // setInterests([

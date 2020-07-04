@@ -11,6 +11,7 @@ export interface IInterestCardProps {
 
 export default function InterestCard(props: IInterestCardProps) {
   const onClick = () => {
+    // tslint:disable-next-line:no-console
     console.log(props.interest)
   }
 

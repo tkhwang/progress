@@ -28,6 +28,7 @@ export default function Interests(props: IInterestsProps) {
   const [interests, setInterests] = useInterests()
   const [modalVisible, setModalVisible] = useState(false)
   const [uniqueKey, setUniqueKey] = useState(UniqueKey.newKey())
+  // tslint:disable-next-line:no-console
   console.log('Interests -> interests', interests)
 
   useEffect(() => {
