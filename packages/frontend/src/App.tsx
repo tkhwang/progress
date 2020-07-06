@@ -11,6 +11,7 @@ import Interests from './pages/Interests'
 import { Memo } from './pages/Memo'
 import Heading from './components/Heading'
 import Refresh from './pages/Refresh'
+import Counter from './Counter'
 
 export const InterestsContext = createContext<{ interests: string[] }>({ interests: [] })
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/token" component={Auth} />
             <Route path="/refresh" render={() => <Refresh forceUpdate={setUniqueKey} />} />
             <Route path="/signin" component={Signin} />
+            <Route path="/counter" component={Counter} />
             <ProtectedRoute exact={true} path="/interest" component={Interest} />
             <ProtectedRoute
               exact={true}
