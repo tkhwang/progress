@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, Dispatch, useRef, createRef } from 'react'
 import { BsFillPlusSquareFill, BsSearch } from 'react-icons/bs'
 import Navbar from 'react-bootstrap/Navbar'
 import { FcSearch } from 'react-icons/fc'
@@ -9,12 +9,22 @@ import FormControl from 'react-bootstrap/FormControl'
 import { BsFillXCircleFill } from 'react-icons/bs'
 import { AiOutlineEnter } from 'react-icons/ai'
 import Nav from 'react-bootstrap/Nav'
+import { useSelector, useDispatch } from 'react-redux'
+import { AppState } from 'src/reducers/rootReducers'
+import { UrlActions } from 'src/actions/urlActions'
+
 export interface IMenubarProps {}
 
 export default function Menubar(props: IMenubarProps) {
+  const { url } = useSelector((state: AppState) => state.url)
+  const urlDispatch = useDispatch<Dispatch<UrlActions>>()
+
+  const handleRegister = (bookmarkUrl: string) => {
+    urlDispatch({ type: 'URL/REGISTER', payload: { url: bookmarkUrl } })
+  }
+
   const [isVisibleSearchMenu, setIsVisibleSearchMenu] = useState(false)
   const [isVisibleAddMenu, setIsVisibleAddMenu] = useState(false)
-
   const isVisibleMenu = isVisibleSearchMenu || isVisibleAddMenu
   const isVisibleIcon = !isVisibleMenu
 
@@ -50,7 +60,11 @@ export default function Menubar(props: IMenubarProps) {
             </InputGroup.Text>
           </InputGroup.Append>
           <Button>
-            <BsFillXCircleFill onClick={() => setVisible('')} />
+            <BsFillXCircleFill
+              onClick={() => {
+                setVisible('')
+              }}
+            />
           </Button>
         </InputGroup>
       )}
@@ -63,11 +77,15 @@ export default function Menubar(props: IMenubarProps) {
           />
           <InputGroup.Append>
             <InputGroup.Text id="basic-addon2">
-              <AiOutlineEnter />
+              <AiOutlineEnter onClick={() => handleRegister('test')} />
             </InputGroup.Text>
           </InputGroup.Append>
           <Button>
-            <BsFillXCircleFill onClick={() => setVisible('')} />
+            <BsFillXCircleFill
+              onClick={() => {
+                setVisible('')
+              }}
+            />
           </Button>
         </InputGroup>
       )}
