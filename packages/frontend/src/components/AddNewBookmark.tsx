@@ -2,7 +2,7 @@ import { APIS } from '@progress/api'
 import { Card, Tag } from 'antd'
 import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { RootContext } from 'src/stores/RootContext'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
@@ -12,7 +12,9 @@ import { Editor } from 'react-draft-wysiwyg'
 import '../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css'
 import Container from 'react-bootstrap/Container'
 
-export interface IAddNewBookmarkProps {}
+export interface IAddNewBookmarkProps {
+  url: string
+}
 
 export function AddNewBookmark(props: IAddNewBookmarkProps) {
   const { user } = useContext(RootContext)
@@ -42,6 +44,8 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
   }
 
   const extractUrlInfo = async (givenUrl: string) => {
+    if (!givenUrl) return
+
     clearContents()
 
     setIsLoadingDone(false)
@@ -81,14 +85,13 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
     }
   }
 
+  useEffect(() => {
+    console.log('extractUrlInfo executed')
+    extractUrlInfo(props.url)
+  }, [props.url])
+
   return (
     <Container>
-      <Search
-        placeholder="Enter url of your current learning material on interests."
-        onSearch={(value: string) => extractUrlInfo(value)}
-        enterButton="check"
-        size="large"
-      />
       {isLoadingDone ? (
         <React.Fragment>
           <Form>

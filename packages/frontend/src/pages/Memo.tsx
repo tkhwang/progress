@@ -3,21 +3,17 @@ import { Divider } from 'antd'
 import Breadcrumb from 'react-bootstrap/Breadcrumb'
 import BodyContainer from './BodyContainer'
 import { AddNewBookmark } from 'src/components/AddNewBookmark'
+import { useSelector } from 'react-redux'
+import { AppState } from 'src/reducers/rootReducers'
 
 export interface IMemoProps {}
 
 export function Memo(props: IMemoProps) {
+  const { url } = useSelector((state: AppState) => state.url)
+
   return (
     <BodyContainer>
-      <Breadcrumb>
-        <Breadcrumb.Item href="/" active={true}>
-          Home
-        </Breadcrumb.Item>
-        <Breadcrumb.Item href="/interests">Interests</Breadcrumb.Item>
-      </Breadcrumb>
-      <h3>Bookmark</h3>
-      <Divider />
-      <AddNewBookmark />
+      <AddNewBookmark url={url} />
     </BodyContainer>
   )
 }
