@@ -23,6 +23,8 @@ export default function Menubar(props: IMenubarProps) {
     urlDispatch({ type: 'URL/REGISTER', payload: { url: bookmarkUrl } })
   }
 
+  const inputEl = useRef<HTMLInputElement & FormControl>(null)
+
   const [isVisibleSearchMenu, setIsVisibleSearchMenu] = useState(false)
   const [isVisibleAddMenu, setIsVisibleAddMenu] = useState(false)
   const isVisibleMenu = isVisibleSearchMenu || isVisibleAddMenu
@@ -53,6 +55,7 @@ export default function Menubar(props: IMenubarProps) {
             placeholder="Type something for searching"
             aria-label="searching"
             aria-describedby="basic-addon2"
+            ref={inputEl}
           />
           <InputGroup.Append>
             <InputGroup.Text id="basic-addon2">
@@ -74,10 +77,18 @@ export default function Menubar(props: IMenubarProps) {
             placeholder="Paste URL"
             aria-label="Paste URL"
             aria-describedby="basic-addon2"
+            ref={inputEl}
           />
           <InputGroup.Append>
             <InputGroup.Text id="basic-addon2">
-              <AiOutlineEnter onClick={() => handleRegister('test')} />
+              <AiOutlineEnter
+                onClick={() => {
+                  if (inputEl.current && inputEl.current.value) {
+                    const bookmarkUrl = inputEl.current && inputEl.current.value
+                    handleRegister(bookmarkUrl)
+                  }
+                }}
+              />
             </InputGroup.Text>
           </InputGroup.Append>
           <Button>
