@@ -85,8 +85,11 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
     }
   }
 
+  const handleRegister = () => {
+    console.log('handleRegister -> handleRegister', handleRegister)
+  }
+
   useEffect(() => {
-    console.log('extractUrlInfo executed')
     extractUrlInfo(props.url)
   }, [props.url])
 
@@ -177,7 +180,7 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
               />
             </Form.Group>
           </Form>
-          <Button variant="primary" type="submit" block={true}>
+          <Button variant="primary" type="submit" block={true} onClick={() => handleRegister()}>
             Register
           </Button>
         </React.Fragment>

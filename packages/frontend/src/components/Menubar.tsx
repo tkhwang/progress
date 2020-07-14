@@ -86,6 +86,7 @@ export default function Menubar(props: IMenubarProps) {
                   if (inputEl.current && inputEl.current.value) {
                     const bookmarkUrl = inputEl.current && inputEl.current.value
                     handleRegister(bookmarkUrl)
+                    inputEl.current.value = ''
                   }
                 }}
               />

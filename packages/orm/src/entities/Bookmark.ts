@@ -9,12 +9,14 @@ import {
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  Unique,
 } from 'typeorm'
 import { Interest } from './Interest'
 import { User } from './User'
 import { Tag } from './Tag'
 
 @Entity()
+@Unique(['url', 'createdUser'])
 export class Bookmark extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number
@@ -31,24 +33,11 @@ export class Bookmark extends BaseEntity {
   @Column('varchar', { length: 1024, comment: 'description' })
   public description?: string
 
-  @Column('varchar', { length: 1024, comment: 'image' })
-  public image?: string
-
-  @Column('varchar', { length: 1024, comment: 'ogImage' })
-  public ogImage?: string
-
   @Column('varchar', { length: 1024, comment: 'screenshot' })
   public screenshot?: string
 
-  @Column('varchar', { length: 100, comment: 'mediaType' })
-  public mediaType?: string
-
-  @Column('varchar', { length: 100, comment: 'contentType' })
-  public contentType?: string
-
-  @ManyToMany(type => Tag)
-  @JoinTable()
-  tags: Tag[]
+  @Column('varchar', { length: 1024, comment: 'subScreenshot' })
+  public subScreenshot?: string
 
   @ManyToOne(type => User)
   @JoinColumn({ name: 'created_user_id' })
