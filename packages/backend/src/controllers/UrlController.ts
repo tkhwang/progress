@@ -14,6 +14,7 @@ export class UrlController {
       this.urlService.toImage(params.userId, params.url),
     ])
 
+    if (urlInfo && urlInfo.images && urlInfo.images.length) urlInfo.siteOgImage = urlInfo.images[0]
     if (urlInfo) urlInfo.screenshot = screenshot ? screenshot : ''
     return urlInfo
   }

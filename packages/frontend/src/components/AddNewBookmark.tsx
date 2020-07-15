@@ -21,26 +21,49 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
   const [loading, setLoading] = useState(false)
   const [isLoadingDone, setIsLoadingDone] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
-  const [url, setUrl] = useState('')
-  const [urlTitle, setUrlTitle] = useState('')
-  const [urlDescription, setUrlDescription] = useState('')
-  const [urlSiteName, setUrlSiteName] = useState('')
-  const [urlImages, setUrlImages] = useState('')
-  const [urlScreenshot, setUrlScreenshot] = useState('')
-  const [urlMediaType, setUrlMediaType] = useState('')
-  const [urlContentType, setUrlContentType] = useState('')
+
+  // const [url, setUrl] = useState('')
+  // const [urlTitle, setUrlTitle] = useState('')
+  // const [urlDescription, setUrlDescription] = useState('')
+  // const [urlSiteName, setUrlSiteName] = useState('')
+  // const [urlImages, setUrlImages] = useState('')
+  // const [urlScreenshot, setUrlScreenshot] = useState('')
+  // const [urlMediaType, setUrlMediaType] = useState('')
+  // const [urlContentType, setUrlContentType] = useState('')
+
+  const [state, setState] = useState({
+    url: '',
+    title: '',
+    description: '',
+    siteName: '',
+    siteOgImage: '',
+    screenshot: '',
+    thumbnail: '',
+  })
+
   const [isOgImageSelected, setIsOgImageSelected] = useState(true)
   const [isScreenshotSelected, setIsScreenshotSelected] = useState(false)
 
   const clearContents = () => {
-    setUrlSiteName('')
-    setUrl('')
-    setUrlTitle('')
-    setUrlDescription('')
-    setUrlImages('')
-    setUrlScreenshot('')
-    setUrlMediaType('')
-    setUrlContentType('')
+    // setUrlSiteName('')
+    // setUrl('')
+    // setUrlTitle('')
+    // setUrlDescription('')
+    // setUrlImages('')
+    // setUrlScreenshot('')
+    // setUrlMediaType('')
+    // setUrlContentType('')
+
+    setState((prvState) => ({
+      ...prvState,
+      url: '',
+      title: '',
+      description: '',
+      siteName: '',
+      siteOgImage: '',
+      screenshot: '',
+      thumbnail: '',
+    }))
   }
 
   const extractUrlInfo = async (givenUrl: string) => {
@@ -50,6 +73,7 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
 
     setIsLoadingDone(false)
     setIsUploading(true)
+
     const apis = new APIS.Url()
     const { success, data, error } = await apis.postUrlInfo({
       userId: user!.id,
@@ -57,16 +81,37 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
     })
 
     if (success && data) {
-      const { title, siteName, description, images, screenshot, mediaType, contentType } = data
+      const {
+        title,
+        siteName,
+        description,
+        images,
+        siteOgImage,
+        screenshot,
+        mediaType,
+        contentType,
+      } = data
 
-      setUrl(givenUrl)
-      if (title) setUrlTitle(title)
-      if (description) setUrlDescription(description)
-      if (siteName) setUrlSiteName(siteName)
-      if (images && images.length) setUrlImages(images[0])
-      if (screenshot) setUrlScreenshot(screenshot)
-      if (mediaType) setUrlMediaType(mediaType)
-      if (contentType) setUrlContentType(contentType)
+      // setUrl(givenUrl)
+      // if (title) setUrlTitle(title)
+      // if (description) setUrlDescription(description)
+      // if (siteName) setUrlSiteName(siteName)
+      // if (images && images.length) setUrlImages(images[0])
+      // if (screenshot) setUrlScreenshot(screenshot)
+      // if (mediaType) setUrlMediaType(mediaType)
+      // if (contentType) setUrlContentType(contentType)
+
+      setState((prvState) => ({
+        ...prvState,
+        url: props.url ?? '',
+        title: title ?? '',
+        description: description ?? '',
+        siteName: siteName ?? '',
+        siteOgImage: siteOgImage ?? '',
+        screenshot: screenshot ?? '',
+        thumbnail: isOgImageSelected && siteOgImage ? siteOgImage : screenshot || '',
+        // thumbnail: isOgImageSelected ? siteOgImage : screenshot || '',
+      }))
 
       setLoading(false)
       setIsUploading(false)
@@ -100,19 +145,24 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
           <Form>
             <Form.Group controlId="formGroupSiteName">
               <Form.Label>Site</Form.Label>
-              <Form.Control type="text" placeholder="" value={urlSiteName} readOnly={true} />
+              <Form.Control type="text" placeholder="" value={state.siteName} readOnly={true} />
             </Form.Group>
             <Form.Group controlId="formGroupUrl">
               <Form.Label>Url</Form.Label>
-              <Form.Control type="text" placeholder="Url" value={url} readOnly={true} />
+              <Form.Control type="text" placeholder="Url" value={state.url} readOnly={true} />
             </Form.Group>
             <Form.Group controlId="formGroupTitle">
               <Form.Label>Title</Form.Label>
               <Form.Control
                 as="textarea"
                 placeholder="Title"
-                value={urlTitle}
-                onChange={(e) => setUrlTitle(e.target.value)}
+                value={state.title}
+                onChange={(e) =>
+                  setState((prvState) => ({
+                    ...prvState,
+                    title: e.target.value,
+                  }))
+                }
               />
             </Form.Group>
             <Form.Group controlId="formGroupDescription">
@@ -120,8 +170,13 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
               <Form.Control
                 as="textarea"
                 placeholder="Description"
-                value={urlDescription}
-                onChange={(e) => setUrlDescription(e.target.value)}
+                value={state.description}
+                onChange={(e) =>
+                  setState((prvState) => ({
+                    ...prvState,
+                    description: e.target.value,
+                  }))
+                }
               />
             </Form.Group>
             <Form.Group controlId="formGroupImage">
@@ -137,7 +192,7 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
                     <img
                       className={'ogImage ' + (isOgImageSelected ? 'activeImage' : '')}
                       style={{ width: '100%' }}
-                      src={`${urlImages}`}
+                      src={state.siteOgImage}
                     />
                   </div>
                 </Col>
@@ -151,7 +206,7 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
                     <img
                       className={'screenshot ' + (isScreenshotSelected ? 'activeImage' : '')}
                       style={{ width: '100%' }}
-                      src={`${urlScreenshot}`}
+                      src={state.screenshot}
                     />
                   </div>
                 </Col>
