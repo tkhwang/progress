@@ -1,6 +1,5 @@
-import { APIS } from '@progress/api'
+import { APIS, PostBookmarkRequest } from '@progress/api'
 import { Card, Tag } from 'antd'
-import Search from 'antd/lib/input/Search'
 import moment from 'antd/node_modules/moment'
 import React, { useContext, useState, useEffect } from 'react'
 import { RootContext } from 'src/stores/RootContext'
@@ -22,15 +21,6 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
   const [isLoadingDone, setIsLoadingDone] = useState(false)
   const [isUploading, setIsUploading] = useState(false)
 
-  // const [url, setUrl] = useState('')
-  // const [urlTitle, setUrlTitle] = useState('')
-  // const [urlDescription, setUrlDescription] = useState('')
-  // const [urlSiteName, setUrlSiteName] = useState('')
-  // const [urlImages, setUrlImages] = useState('')
-  // const [urlScreenshot, setUrlScreenshot] = useState('')
-  // const [urlMediaType, setUrlMediaType] = useState('')
-  // const [urlContentType, setUrlContentType] = useState('')
-
   const [state, setState] = useState({
     url: '',
     title: '',
@@ -45,15 +35,6 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
   const [isScreenshotSelected, setIsScreenshotSelected] = useState(false)
 
   const clearContents = () => {
-    // setUrlSiteName('')
-    // setUrl('')
-    // setUrlTitle('')
-    // setUrlDescription('')
-    // setUrlImages('')
-    // setUrlScreenshot('')
-    // setUrlMediaType('')
-    // setUrlContentType('')
-
     setState((prvState) => ({
       ...prvState,
       url: '',
@@ -92,15 +73,6 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
         contentType,
       } = data
 
-      // setUrl(givenUrl)
-      // if (title) setUrlTitle(title)
-      // if (description) setUrlDescription(description)
-      // if (siteName) setUrlSiteName(siteName)
-      // if (images && images.length) setUrlImages(images[0])
-      // if (screenshot) setUrlScreenshot(screenshot)
-      // if (mediaType) setUrlMediaType(mediaType)
-      // if (contentType) setUrlContentType(contentType)
-
       setState((prvState) => ({
         ...prvState,
         url: props.url ?? '',
@@ -130,8 +102,23 @@ export function AddNewBookmark(props: IAddNewBookmarkProps) {
     }
   }
 
-  const handleRegister = () => {
-    console.log('handleRegister -> handleRegister', handleRegister)
+  const handleRegister = async () => {
+    const { url, title, description, siteName, siteOgImage, screenshot, thumbnail } = state
+    const params = new PostBookmarkRequest()
+    params.url = url
+    params.title = title
+    params.siteName = siteName
+    params.description = description
+    if (isScreenshotSelected) {
+      params.screenshot = screenshot
+      params.subScreenshot = siteOgImage
+    }
+    if (isOgImageSelected) {
+      params.screenshot = siteOgImage
+      params.subScreenshot = screenshot
+    }
+
+    await new APIS.Bookmark().postBookmark(params)
   }
 
   useEffect(() => {

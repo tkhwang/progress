@@ -4,8 +4,6 @@ import {
   CreateDateColumn,
   Entity,
   JoinColumn,
-  JoinTable,
-  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
@@ -13,10 +11,8 @@ import {
 } from 'typeorm'
 import { Interest } from './Interest'
 import { User } from './User'
-import { Tag } from './Tag'
 
 @Entity()
-@Unique(['url', 'createdUser'])
 export class Bookmark extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number
@@ -45,7 +41,7 @@ export class Bookmark extends BaseEntity {
 
   @ManyToOne(type => Interest)
   @JoinColumn({ name: 'interest_id' })
-  public interest: Interest
+  public interest?: Interest
 
   @CreateDateColumn()
   public createdAt: Date

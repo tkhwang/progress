@@ -47,7 +47,7 @@ export function AddNewResource(props: IAddNewResourceProps) {
 
     setIsUploading(true)
     const apis = new APIS.Url()
-    const { success, data, error } = await apis.postUrlInfo({
+    const { success, data } = await apis.postUrlInfo({
       userId: user!.id,
       url: givenUrl,
     })

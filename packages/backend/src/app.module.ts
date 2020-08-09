@@ -8,7 +8,7 @@ import { ConfigModule } from '@nestjs/config'
 import { APP_INTERCEPTOR } from '@nestjs/core'
 import { JwtModule } from '@nestjs/jwt'
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm'
-import { Interest, Resource, User } from '@progress/orm'
+import { Interest, Resource, User, Bookmark } from '@progress/orm'
 import connectionOptions from '@progress/orm/ormConfig'
 import { InterestRepository } from '@repositories/InterestRepository'
 import { ResourceRepository } from '@repositories/ResourceRepository'
@@ -28,6 +28,9 @@ import { MorganModule } from 'nest-morgan'
 import path from 'path'
 import configuration from './config/configurations'
 import { TransformInterceptor } from './middlwares/TransformInterceptor'
+import { BookmarkController } from '@controllers/BookmarkController'
+import { BookmarkService } from '@services/BookmarkService'
+import { BookmarkRepository } from '@repositories/BookmarkRepository'
 
 @Module({
   imports: [
@@ -38,6 +41,8 @@ import { TransformInterceptor } from './middlwares/TransformInterceptor'
       InterestRepository,
       Resource,
       ResourceRepository,
+      Bookmark,
+      BookmarkRepository,
     ]),
     ConfigModule,
     JwtModule.register({
@@ -47,6 +52,7 @@ import { TransformInterceptor } from './middlwares/TransformInterceptor'
   ],
   controllers: [
     AuthController,
+    BookmarkController,
     EtcController,
     InterestController,
     ResourceController,
@@ -54,6 +60,7 @@ import { TransformInterceptor } from './middlwares/TransformInterceptor'
   ],
   providers: [
     AuthService,
+    BookmarkService,
     UsersService,
     LocalStrategy,
     GoogleStrategy,
