@@ -8,10 +8,10 @@ import LandingPage from './pages/LandingPage'
 import ProtectedRoute from './routers/ProtectedRoute'
 import { AuthService } from './services/AuthService'
 import Interests from './pages/Interests'
-import { Memo } from './pages/Memo'
 import Heading from './components/Heading'
 import Refresh from './pages/Refresh'
 import Counter from './Counter'
+import { BookmarkWrapperPage } from './pages/BookmarkWrapperPage'
 
 export const InterestsContext = createContext<{ interests: string[] }>({ interests: [] })
 
@@ -37,7 +37,9 @@ function App() {
             <Route
               exact={true}
               path="/"
-              render={AuthService.getCurrentUser() ? () => <Memo /> : () => <LandingPage />}
+              render={
+                AuthService.getCurrentUser() ? () => <BookmarkWrapperPage /> : () => <LandingPage />
+              }
             />
           </Switch>
         </BrowserRouter>

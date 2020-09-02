@@ -5,15 +5,12 @@ import BodyContainer from './BodyContainer'
 import { AddNewBookmark } from 'src/components/AddNewBookmark'
 import { useSelector } from 'react-redux'
 import { AppState } from 'src/reducers/rootReducers'
+import { BookmarkPage } from './BookmarkPage'
 
-export interface IMemoProps {}
+export interface IBookmarkWrapperPageProps {}
 
-export function Memo(props: IMemoProps) {
+export function BookmarkWrapperPage(props: IBookmarkWrapperPageProps) {
   const { url } = useSelector((state: AppState) => state.url)
 
-  return (
-    <BodyContainer>
-      <AddNewBookmark url={url} />
-    </BodyContainer>
-  )
+  return <BodyContainer>{url ? <AddNewBookmark url={url} /> : <BookmarkPage />}</BodyContainer>
 }

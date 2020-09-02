@@ -13,11 +13,12 @@ import { Interest } from './Interest'
 import { User } from './User'
 
 @Entity()
+@Unique(['url', 'createdUser'])
 export class Bookmark extends BaseEntity {
   @PrimaryGeneratedColumn()
   public id: number
 
-  @Column('varchar', { length: 1024, comment: 'url' })
+  @Column('varchar', { length: 768, comment: 'url' })
   public url?: string
 
   @Column('varchar', { length: 300, comment: 'siteName' })

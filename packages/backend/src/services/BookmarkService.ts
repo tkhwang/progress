@@ -18,6 +18,14 @@ export class BookmarkService {
     if (params.subScreenshot) bookmark.subScreenshot = params.subScreenshot
     if (user) bookmark.createdUser = user
 
-    await this.bookmarkRepository.save(bookmark)
+    try {
+      const result = await this.bookmarkRepository.save(bookmark)
+    } catch (error) {
+      console.log(error)
+
+      if (error.code === 'ER_DUP_ENTRY') {
+        console.log('[+] got it')
+      }
+    }
   }
 }
